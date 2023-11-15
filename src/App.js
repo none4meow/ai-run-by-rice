@@ -73,13 +73,11 @@ const App = () => {
         <style>
           ${templates.O50.bigHeartStyles}
           ${templates.O50.smallHeartStyles}
+          ${templates.O50.whiteFlagStyles}
         </style>
       </defs>
       ${body}
-      <text class="st1 st2" transform="translate(0,-20)">
-        ${"trang - white"}
-      </text>
- 
+      ${templates.O50.whiteFlag(0, -20)} 
     </svg>`;
   };
 

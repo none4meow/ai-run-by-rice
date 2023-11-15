@@ -9,3 +9,5 @@ export {
   styles as smallHeartStyles,
   transform as smallHeartTransform,
 } from "./small_heart.js";
+
+export { tag as whiteFlag, styles as whiteFlagStyles } from "./white_flag.js";

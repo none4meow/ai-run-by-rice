@@ -63,12 +63,7 @@ export const animals = {
 };
 
 export { tag as sizeS, styles as sizeSStyles } from "./size_S";
-
-// export {
-//   tag as sizeM,
-//   styles as sizeMStyles,
-//   transform as sizeMTransform,
-// } from "./size_M";
+export { tag as sizeM, styles as sizeMStyles } from "./size_M";
 
 // export {
 //   tag as sizeL,

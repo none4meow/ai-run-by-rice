@@ -117,6 +117,15 @@ const O50 = () => {
       smallTranslate.y += templates.O50.smallHeartTransform.H;
     }
 
+    // const asd = (
+    //   <text
+    //     style="font-family: 'Roller Skates Regular';"
+    //     transform="translate(20,-40)"
+    //   >
+    //     ${"trai tim"}
+    //   </text>
+    // );
+
     return `<svg xmlns="http://www.w3.org/2000/svg">
       <defs>
         <style>
@@ -125,17 +134,13 @@ const O50 = () => {
           ${templates.O50.whiteFlagStyles}
         </style>
       </defs>
-
-      <text style="font-family: 'Roller Skates Regular';" transform="translate(20,-40)">
-        ${"trai tim"}
-      </text>
       ${body}
       ${templates.O50.whiteFlag(0, -30)} 
     </svg>`;
   };
 
   return (
-    <>
+    <div>
       <div className="row g-3 align-items-center mb-3">
         <label
           htmlFor="big-hearts"
@@ -185,7 +190,7 @@ const O50 = () => {
       >
         Generate
       </button>
-    </>
+    </div>
   );
 };
 

@@ -1,13 +1,97 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { templates } from "../configs/templates";
 import { colors } from "../configs/constants";
 import { Modal } from "@mui/material";
+
+const PickColorModal = ({
+  colorModal,
+  handlePickColor,
+  handleONCColorModal,
+}) => {
+  return (
+    <Modal open={colorModal} onClose={handleONCColorModal}>
+      <div className={"custom-modal"}>
+        <div className="grid-container">
+          {Object.keys(colors).map((key, index) => (
+            <div
+              key={index}
+              className="grid-item"
+              onClick={() => handlePickColor(key)}
+            >
+              <div
+                className="circle"
+                style={{ background: `${colors[key].hexCode}` }}
+              ></div>
+              <span>{colors[key].name}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </Modal>
+  );
+};
+
+const PickAnimalModal = ({
+  animalNumber,
+  animalModal,
+  onChangeCustomAnimal,
+  handlePickAnimal,
+  handleONCAnimalModal,
+}) => {
+  const onEnter = (e) => {
+    if (e.key === "Enter") {
+      handleONCAnimalModal();
+    }
+  };
+
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    // inputRef.current?.focus();
+    inputRef.current?.select();
+  }, [animalModal]);
+
+  return (
+    <div className={"custom-modal"}>
+      <input
+        type="number"
+        autoFocus={true}
+        ref={inputRef}
+        autoComplete="off"
+        className="form-control dark-input mt-3 mb-3"
+        value={animalNumber}
+        onKeyDown={(e) => onEnter(e)}
+        onChange={(e) => onChangeCustomAnimal(e)}
+      />
+      <div className="grid-container">
+        {Object.keys(templates.G87.animals).map((key, index) => (
+          <div
+            key={index}
+            className="grid-item"
+            onClick={() => handlePickAnimal(key)}
+          >
+            <div className="d-block m-auto">
+              <svg
+                dangerouslySetInnerHTML={{
+                  __html: templates.G87.animals[key].tag(23, 0, 0.8),
+                }}
+              ></svg>
+            </div>
+            <span>{key}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const G87 = () => {
   const [customColor, setCustomColor] = useState(null);
   const handlePickColor = (color) => {
     setCustomColor(colors[color]);
     handleONCColorModal();
+
+    handleONCAnimalModal();
   };
 
   const [customName, setCustomName] = useState("");
@@ -28,22 +112,72 @@ const G87 = () => {
     handleONCAnimalModal();
   };
 
-  // ${templates.G87.animals[animalNumber].tag(900, 400, 1)}
+  const onChangeCustomAnimal = (e) => {
+    const value = e.target.value;
+    // const intValue = parseInt(value);
+    // if (0 < intValue && intValue <= 30)
+    setAnimalNumber(value);
+  };
 
   const generateG87 = () => {
+    const styling = () => {
+      switch (customSize) {
+        case "S":
+          return templates.G87.sizeSStyles;
+        case "M":
+          return templates.G87.sizeMStyles;
+        case "L":
+          return templates.G87.sizeLStyles;
+        default:
+          break;
+      }
+    };
+
+    const sizing = () => {
+      switch (customSize) {
+        case "S":
+          return (
+            templates.G87.animals[animalNumber].tag(900, 360, 1) +
+            templates.G87.sizeS(
+              customName,
+              customText,
+              `#${animalNumber} - ${customColor.name}`,
+              customColor.hexCode
+            )
+          );
+
+        case "M":
+          return (
+            templates.G87.animals[animalNumber].tag(860, 500, 1.4) +
+            templates.G87.sizeM(
+              customName,
+              customText,
+              `#${animalNumber} - ${customColor.name}`,
+              customColor.hexCode
+            )
+          );
+        case "L":
+          return (
+            templates.G87.animals[animalNumber].tag(800, 600, 1.69) +
+            templates.G87.sizeL(
+              customName,
+              customText,
+              `#${animalNumber} - ${customColor.name}`,
+              customColor.hexCode
+            )
+          );
+        default:
+          break;
+      }
+    };
+
     return `<svg xmlns="http://www.w3.org/2000/svg">
       <defs>
         <style>
-          ${templates.G87.sizeMStyles}
+          ${styling()}
         </style>
       </defs>
-      ${templates.G87.animals[animalNumber].tag(860, 500, 1.4)}
-      ${templates.G87.sizeM(
-        customName,
-        customText,
-        `#${animalNumber} - ${customColor.name}`,
-        customColor.hexCode
-      )}
+      ${sizing()}
     </svg>`;
   };
 
@@ -55,126 +189,114 @@ const G87 = () => {
     setAnimalModal(!animalModal);
   };
 
-  const PickColorModal = () => {
-    return (
-      <Modal open={colorModal} onClose={handleONCColorModal}>
-        <div className={"custom-modal"}>
-          <div className="grid-container">
-            {Object.keys(colors).map((key, index) => (
-              <div
-                key={index}
-                className="grid-item"
-                onClick={() => handlePickColor(key)}
-              >
-                <div
-                  className="circle"
-                  style={{ background: `${colors[key].hexCode}` }}
-                ></div>
-                <span>{colors[key].name}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </Modal>
-    );
-  };
-
-  const PickAnimalModal = () => {
-    return (
-      <Modal open={animalModal} onClose={handleONCAnimalModal}>
-        <div className={"custom-modal"}>
-          <div className="grid-container">
-            {Object.keys(templates.G87.animals).map((key, index) => (
-              <div
-                key={index}
-                className="grid-item"
-                onClick={() => handlePickAnimal(key)}
-              >
-                <div className="d-block m-auto">
-                  <svg
-                    dangerouslySetInnerHTML={{
-                      __html: templates.G87.animals[key].tag(0, 0, 1),
-                    }}
-                  ></svg>
-                </div>
-                <span>{key}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </Modal>
-    );
+  const sizes = ["S", "M", "L"];
+  const [customSize, setCustomSize] = useState("S");
+  const onChangeCustomSize = (e) => {
+    setCustomSize(e.target.value);
   };
 
   return (
-    <>
-      <PickColorModal />
-      <PickAnimalModal />
-      <div
-        className="align-items-center mb-3 pointer"
-        onClick={handleONCColorModal}
-      >
+    <div className="w-50">
+      <Modal open={animalModal} onClose={handleONCAnimalModal}>
+        <div>
+          <PickAnimalModal
+            animalModal={animalModal}
+            animalNumber={animalNumber}
+            onChangeCustomAnimal={onChangeCustomAnimal}
+            handlePickAnimal={handlePickAnimal}
+            handleONCAnimalModal={handleONCAnimalModal}
+          />
+        </div>
+      </Modal>
+      <PickColorModal
+        colorModal={colorModal}
+        handlePickColor={handlePickColor}
+        handleONCColorModal={handleONCColorModal}
+      />
+
+      <div className="w-100 d-flex mb-3 pointer" onClick={handleONCColorModal}>
         {customColor ? (
           <>
             <label
               htmlFor="color"
-              className="form-label col-auto col-form-label pointer"
+              className="form-label col-auto col-form-label pointer me-3"
             >
               Color
             </label>
-            <input value={customColor.name} className="form-control" disabled />
+            <input
+              value={customColor.name}
+              className="form-control pointer"
+              onClick={handleONCColorModal}
+              onChange={() => {}}
+            />
           </>
         ) : (
-          <button className="btn btn-secondary">Pick Color</button>
+          <button className="w-100 btn btn-secondary">Pick Color</button>
         )}
       </div>
-      <div className="row g-3 align-items-center mb-3">
-        <label htmlFor="name" className="form-label col-auto col-form-label">
+      <div className="w-100 d-flex mb-3 pointer" onClick={handleONCAnimalModal}>
+        {animalNumber.length > 0 ? (
+          <>
+            <label htmlFor="animal-number" className="form-label pointer">
+              Animal number
+            </label>
+            <div className="d-flex ms-3">
+              <span># </span>
+              <input
+                value={animalNumber}
+                className="ms-2 form-control pointer"
+                onClick={handleONCAnimalModal}
+                onChange={() => {}}
+              />
+            </div>
+          </>
+        ) : (
+          <button className="w-100 btn btn-secondary">Pick Animal</button>
+        )}
+      </div>
+      <div className="d-flex">
+        <label htmlFor="sku" className="form-label col-form-label me-3">
+          Size
+        </label>
+        <select
+          className="form-control form-select"
+          value={customSize}
+          onChange={(e) => onChangeCustomSize(e)}
+        >
+          {sizes.map((ele) => (
+            <option key={ele} value={ele}>
+              {ele}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className="w-100 d-flex flex-column mt-3 mb-3">
+        <label htmlFor="name" className="form-label text-start">
           Name
         </label>
         <textarea
           type="text"
           id="name"
-          className={`form-control col-auto`}
+          className={`form-control`}
           autoComplete="off"
           value={customName}
           onChange={(e) => onChangeCustomName(e)}
         />
       </div>
-      <div className="row g-3 align-items-center mb-3">
-        <label
-          htmlFor="custom-text"
-          className="form-label col-auto col-form-label"
-        >
-          Custom text
+      <div className="w-100 d-flex flex-column mt-3 mb-3">
+        <label htmlFor="custom-text" className="text-start form-label">
+          Text
         </label>
         <textarea
           type="text"
           id="custom-text"
-          className={`form-control col-auto`}
+          className={`form-control`}
           autoComplete="off"
           value={customText}
           onChange={(e) => onChangeCustomText(e)}
         />
       </div>
-      <div
-        className="row g-3 align-items-center mb-3 pointer"
-        onClick={handleONCAnimalModal}
-      >
-        {animalNumber.length > 0 ? (
-          <>
-            <label
-              htmlFor="animal-number"
-              className="form-label col-auto col-form-label pointer"
-            >
-              Animal number
-            </label>
-            <input value={animalNumber} className="form-control" disabled />
-          </>
-        ) : (
-          <button className="btn btn-secondary">Pick Animal</button>
-        )}
-      </div>
+
       <button
         className="btn btn-secondary"
         onClick={() => {
@@ -183,7 +305,7 @@ const G87 = () => {
       >
         Generate
       </button>
-    </>
+    </div>
   );
 };
 

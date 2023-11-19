@@ -16,13 +16,6 @@ export const tag = (name, text, color, hex) => {
   return `
 <text transform="matrix(1 0 0 1 18.8865 440.6282)" class="st0 st1">S</text>
 <text transform="matrix(1 0 0 1 1153.8502 886.4353)" class="st0 st2">${color}</text>
-${
-  text.length > 0 && (
-    <text transform="matrix(1 0 0 1 954.5255 269.9108)" class="st3 st4">
-      ${text}
-    </text>
-  )
-}
 <text transform="matrix(0.9945 -0.1045 0.1045 0.9945 1071.3741 470.8102)" class="st5 st6 st7">${name}</text>
 <circle style="fill:${hex};stroke:${hex};" class="st8" cx="1137.5" cy="794.9" r="26.1"/>
 <path class="st5" d="M1332.2,405.7v-20.2h-8.5v-9.3c0-22.2-8.8-43.4-24.4-59.1c-15.7-15.7-36.9-24.5-59.1-24.4h-141.3v-8.5h-20.2
@@ -871,5 +864,12 @@ ${
 			<rect x="1528.2" y="345" class="st10" width="8.5" height="20.2"/>
 		</g>
 	</g>
-</g>  `;
+</g>
+${
+  text.length > 0 &&
+  `<text transform="matrix(1 0 0 1 954.5255 269.9108)" class="st3 st4">
+      ${text}
+    </text>`
+}
+`;
 };

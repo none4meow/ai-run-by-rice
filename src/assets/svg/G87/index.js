@@ -30,6 +30,7 @@ import { tag as num29 } from "./animals/num_29";
 import { tag as num30 } from "./animals/num_30";
 
 export const animals = {
+  "": { tag: () => {} },
   1: { tag: num1 },
   2: { tag: num2 },
   3: { tag: num3 },

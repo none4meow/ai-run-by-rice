@@ -1,7 +1,7 @@
 export const styles = `
-      .st0{fill:#FFFFFF;stroke:#FFB600;stroke-width:0.25;stroke-miterlimit:10;}
+    .st0{fill:#FFFFFF;stroke:#FFB600;stroke-width:0.25;stroke-miterlimit:10;}
 	.st1{font-family:'RollerSkates-Regular';}
-	.st2{font-size:20.18px;text-align: center;}
+	.st2{text-align: center;}
 `;
 
 export const transform = {
@@ -10,11 +10,37 @@ export const transform = {
 };
 
 export const tag = (x, y, text) => {
+  let fontSize = 20.2;
+
+  const textLength = text.length;
+
+  // xtext, ytext, textSize
+
+  let xMatrix = 15.77;
+  let yMatrix = 28.38;
+
+  if (textLength > 6) {
+    yMatrix = 26;
+  }
+
+  if (textLength === 7) {
+    fontSize = 18;
+  } else if (textLength === 8) {
+    fontSize = 17;
+  } else if (textLength === 9) {
+    fontSize = 16;
+  } else if (textLength === 10) {
+    fontSize = 15;
+  } else if (textLength >= 11) {
+    fontSize = 13;
+    yMatrix = 24;
+  }
+
   return `<g id="Layer_1-2" transform="translate(${x},${y})">
 	<path class="st0" d="M53.7,5.7c-0.3-0.4-6.2-7-14.6-5.2c-5.1,1-9.2,4.8-10.6,9.6C27.1,5.2,23,1.5,17.9,0.4C9.4-1.3,3.6,5.3,3.3,5.7
 		c-4.1,4.8-3.2,10.5-2.7,13.4c1.6,9.9,9.8,16.4,15.1,20.5c4.9,3.9,9.6,6.3,12.9,7.8c3.2-1.5,8-3.9,12.9-7.8
 		c5.3-4.2,13.4-10.6,15-20.5C56.9,16.2,57.8,10.4,53.7,5.7L53.7,5.7z"/>
-	<text transform="matrix(1 0 0 1 15.77 28.38)" letter-spacing="0.6" class="st1 st2">${text}</text>
+	<text style="font-size:${fontSize}px;" transform="matrix(1 0 0 1 ${xMatrix} ${yMatrix})" letter-spacing="0.6" class="st1 st2">${text}</text>
 </g>`;
 };
 

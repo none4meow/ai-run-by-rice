@@ -1,4 +1,9 @@
-export const styles = `
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 27.9.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_2_00000062878127446892349830000017115364737972546478_"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 3058.6 1442.8"
+	 style="enable-background:new 0 0 3058.6 1442.8;" xml:space="preserve">
+<style type="text/css">
 	.st0{fill:#EDD2CE;}
 	.st1{font-family:'#9Slide03QuicksandBold-Bold';}
 	.st2{font-size:480px;}
@@ -10,24 +15,17 @@ export const styles = `
 	.st8{stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 	.st9{fill:#FFFFFF;}
 	.st10{fill:none;}
-`;
-
-// "matrix(1 0 0 1 885.7263 440.2844)"
-export const tag = (name, text, color, hex) => {
-  return `
-<text transform="matrix(1 0 0 1 -0.3618 762.453)" class="st1 st2">L</text>
-<g>
-	<text transform="matrix(1 0 0 1 1385.7812 1393.6327)" class="st1 st7">${color}</text>
-	<text transform="matrix(0.9945 -0.1045 0.1045 0.9945 1074.7903 788.3523)" class="st0 st3 st4">${name}</text>
-</g>
-<circle style="fill:${hex};stroke:${hex};" class="st8" cx="1369.4" cy="1302.1" r="26.1"/>
-
+</style>
 <path class="st0" d="M1517.6,209.5v-34.2h-8.5v-15.7c0-37.4-14.8-73.3-41.3-99.8c-26.4-26.4-62.3-41.3-99.8-41.3h-238.5V10h-34.1
 	v8.5H856.8c-37.4,0-73.3,14.8-99.8,41.3c-26.4,26.5-41.3,62.3-41.3,99.8v15.7h-8.5v34.2h8.5v59h-8.5v34.2h8.5v15.7
 	c0,37.4,14.8,73.3,41.3,99.8s62.3,41.3,99.8,41.3h97v8h27.3v-8h262.7v8h27.3v-8h97c37.4,0.1,73.3-14.8,99.8-41.3
 	s41.3-62.3,41.3-99.8v-15.7h8.5v-34.2h-8.5v-59H1517.6z M1443,313.9c0,43.8-35.5,79.3-79.3,79.3H861.3c-43.8,0-79.3-35.5-79.3-79.3
 	V164.1c0-43.8,35.5-79.3,79.3-79.3h502.4c43.8,0,79.3,35.5,79.3,79.3V313.9z"/>
-
+<text transform="matrix(1 0 0 1 -0.3618 762.453)" class="st1 st2">L</text>
+<text transform="matrix(0.9945 -0.1045 0.1045 0.9945 1074.7903 788.3523)" class="st0 st3 st4">asd</text>
+<text transform="matrix(1 0 0 1 885.7949 435.7202)" class="st5 st6">Find out who you are and do it on purpose</text>
+<text transform="matrix(1 0 0 1 1385.7812 1393.6327)" class="st1 st7">color</text>
+<circle class="st8" cx="1369.4" cy="1302.1" r="26.1"/>
 <g>
 	<path class="st9" d="M3040,334.6v59l0,0v34.2l0,0v15.7c0.1,37.4-14.8,73.3-41.2,99.8c-26.5,26.5-62.3,41.3-99.8,41.2h-511.2
 		c-37.4,0-73.3-14.8-99.8-41.3c-26.5-26.4-41.3-62.3-41.3-99.7v-15.7l0,0v-34.2l0,0v-59l0,0v-34.2l0,0v-15.7
@@ -863,14 +861,5 @@ export const tag = (name, text, color, hex) => {
 		<rect x="2125.4" y="572.1" class="st9" width="8.5" height="34.2"/>
 		<rect x="1850.4" y="572.1" class="st9" width="8.5" height="34.2"/>
 	</g>
-
-
 </g>
-${
-  text.length > 0 &&
-  `<text transform="matrix(1 0 0 1 885.7949 435.7202)" class="st5 st6">
-		${text}
-	</text>`
-}
-`;
-};
+</svg>

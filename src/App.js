@@ -1,7 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import { O50, G87 } from "./pages";
+import { O50, G87, E05 } from "./pages";
 // import { pages } from "./pages";
 import { useNavigate } from "react-router-dom";
 import { templates } from "./configs/templates";
@@ -51,6 +51,7 @@ const App = () => {
           <Route path={`/`} element={<O50 />} />
           <Route path={`O50/`} element={<O50 />} />
           <Route path={`G87/`} element={<G87 />} />
+          <Route path={`E05/`} element={<E05 />} />
           {/* {Object.keys(pages).map((page, index) => (
             <Route path={`${page}/`} element={pages[page]} />
           ))} */}

@@ -14,8 +14,10 @@ export const styles = `
 export const tag = (name, text, color, hex) => {
   return `
 <text transform="matrix(1 0 0 1 1.5922 641.6838)" class="st0 st1">M</text>
-<text transform="matrix(1 0 0 1 1346.5625 1188.1956)" class="st0 st9">${color}</text>
-<text transform="matrix(0.9945 -0.1045 0.1045 0.9945 1069.0177 647.7724)" class="st4 st5">${name}</text>
+<g>
+	<text transform="matrix(1 0 0 1 1346.5625 1188.1956)" class="st0 st9">${color}</text>
+	<text transform="matrix(0.9945 -0.1045 0.1045 0.9945 1069.0177 647.7724)" class="st4 st5">${name}</text>
+</g>
 <circle style="fill:${hex};stroke:${hex};" class="st10" cx="1330.2" cy="1096.7" r="26.1"/>
 <g>
 	<path class="st2" d="M2664.2,284v48.8h0v28.3h0v13c0,31-12.2,60.7-34.1,82.6c-21.9,21.9-51.6,34.2-82.6,34.2h-80.2v0h-22.6v0

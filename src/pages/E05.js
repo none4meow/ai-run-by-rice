@@ -1,16 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import { templates } from "../configs/templates";
-import { colors } from "../configs/constants";
+import { colors, fonts } from "../configs/constants";
 import { Modal } from "@mui/material";
 
-const PickColorModal = ({
-  colorModal,
-  handlePickColor,
-  handleONCColorModal,
-}) => {
+const PickColorModal = ({ open, title, handlePickColor, onClose }) => {
   return (
-    <Modal open={colorModal} onClose={handleONCColorModal}>
+    <Modal open={open} onClose={onClose}>
       <div className={"custom-modal"}>
+        <h3 className="text-center">{title}</h3>
         <div className="grid-container">
           {Object.keys(colors).map((key, index) => (
             <div
@@ -31,17 +28,14 @@ const PickColorModal = ({
   );
 };
 
-const PickAnimalModal = ({
-  animalNumber,
-  animalModal,
-  onChangeCustomAnimal,
-  handlePickAnimal,
-  handleONCAnimalModal,
+const PickFontModal = ({
+  fontNumber,
+  handlePickFont,
+  onChangeCustomFont,
+  onClose,
 }) => {
   const onEnter = (e) => {
-    if (e.key === "Enter") {
-      handleONCAnimalModal();
-    }
+    if (e.key === "Enter") onClose();
   };
 
   const numberRef = useRef(null);
@@ -49,7 +43,7 @@ const PickAnimalModal = ({
   useEffect(() => {
     // inputRef.current?.focus();
     numberRef.current?.select();
-  }, [animalModal]);
+  }, []);
 
   return (
     <div className={"custom-modal"}>
@@ -59,26 +53,21 @@ const PickAnimalModal = ({
         ref={numberRef}
         autoComplete="off"
         className="form-control dark-input mt-3 mb-3"
-        value={animalNumber}
+        value={fontNumber}
         onKeyDown={(e) => onEnter(e)}
-        onChange={(e) => onChangeCustomAnimal(e)}
+        onChange={(e) => onChangeCustomFont(e)}
       />
       <div className="grid-container">
-        {Object.keys(templates.G87.animals).map((key, index) => (
+        {Object.keys(fonts).map((font, index) => (
           <div
             key={index}
             className="grid-item"
-            onClick={() => handlePickAnimal(key)}
+            onClick={() => handlePickFont(font)}
           >
-            <div className="d-block m-auto">
-              <svg
-                style={{ width: "182px" }}
-                dangerouslySetInnerHTML={{
-                  __html: templates.G87.animals[key].tag(23, 0, 0.8),
-                }}
-              ></svg>
-            </div>
-            <span>{key}</span>
+            <span className="me-3"># {font} -</span>
+            <span style={{ fontFamily: `'${fonts[font].name}'` }}>
+              {fonts[font].name}
+            </span>
           </div>
         ))}
       </div>
@@ -86,14 +75,26 @@ const PickAnimalModal = ({
   );
 };
 
-const G87 = () => {
-  const [customColor, setCustomColor] = useState(null);
-  const handlePickColor = (color) => {
-    setCustomColor(colors[color]);
-    handleONCColorModal();
+const E05 = () => {
+  const [customBoxColor, setCustomBoxColor] = useState(null);
+  const handlePickBoxColor = (color) => {
+    setCustomBoxColor(colors[color]);
+    handleONCBoxColorModal();
 
-    handleONCAnimalModal();
+    handleONCNameColorModal();
   };
+
+  const [customNameColor, setCustomNameColor] = useState(null);
+  const handlePickNameColor = (color) => {
+    setCustomNameColor(colors[color]);
+    handleONCNameColorModal();
+  };
+
+  const [nameColorModal, setNameColorModal] = useState(false);
+  const handleONCNameColorModal = () => setNameColorModal(!nameColorModal);
+
+  const [boxColorModal, setBoxColorModal] = useState(false);
+  const handleONCBoxColorModal = () => setBoxColorModal(!boxColorModal);
 
   const [customName, setCustomName] = useState("");
   const onChangeCustomName = (e) => {
@@ -107,28 +108,20 @@ const G87 = () => {
     setCustomText(value);
   };
 
-  const [animalNumber, setAnimalNumber] = useState("");
-  const handlePickAnimal = (animalNumber) => {
-    setAnimalNumber(animalNumber);
-    handleONCAnimalModal();
+  const [fontNumber, setFontNumber] = useState("");
+  const handlePickFont = (fontNumber) => {
+    setFontNumber(fontNumber);
+    handleONCFontModal();
   };
-
-  const onChangeCustomAnimal = (e) => {
+  const onChangeCustomFont = (e) => {
     const value = e.target.value;
     // const intValue = parseInt(value);
     // if (0 < intValue && intValue <= 30)
-    setAnimalNumber(value);
+    setFontNumber(value);
   };
 
-  const [colorModal, setColorModal] = useState(false);
-  const handleONCColorModal = () => setColorModal(!colorModal);
-
-  const [animalModal, setAnimalModal] = useState(false);
-  const handleONCAnimalModal = () => {
-    if (animalModal) sizeRef.current?.focus();
-
-    setAnimalModal(!animalModal);
-  };
+  const [fontModal, setFontModal] = useState(false);
+  const handleONCFontModal = () => setFontModal(!fontModal);
 
   const sizes = ["S", "M", "L"];
   const [customSize, setCustomSize] = useState("S");
@@ -137,26 +130,29 @@ const G87 = () => {
   };
 
   const resetCustom = () => {
-    setCustomColor(null);
+    return;
+
+    setCustomBoxColor(null);
+    setCustomNameColor(null);
     setCustomName("");
     setCustomText("");
-    setAnimalNumber("");
+    setFontNumber("");
     setCustomSize("S");
   };
 
   const sizeRef = useRef(null);
 
-  const generateG87 = () => {
+  const generateE05 = () => {
     if (customName.length <= 0) return;
 
     const styling = () => {
       switch (customSize) {
         case "S":
-          return templates.G87.sizeSStyles;
+          return templates.E05.sizeSStyles;
         case "M":
-          return templates.G87.sizeMStyles;
+          return templates.E05.sizeMStyles;
         case "L":
-          return templates.G87.sizeLStyles;
+          return templates.E05.sizeLStyles;
         default:
           break;
       }
@@ -165,36 +161,20 @@ const G87 = () => {
     const sizing = () => {
       switch (customSize) {
         case "S":
-          return (
-            templates.G87.animals[animalNumber].tag(900, 360, 1) +
-            templates.G87.sizeS(
-              customName,
-              customText,
-              `#${animalNumber} - ${customColor.name}`,
-              customColor.hexCode
-            )
+          return templates.E05.sizeS(
+            customName,
+            customText,
+            customBoxColor.name,
+            customBoxColor.hexCode,
+            customNameColor.name,
+            `#${fontNumber} - ${fonts[fontNumber].name}`,
+            fonts[fontNumber].name
           );
 
-        case "M":
-          return (
-            templates.G87.animals[animalNumber].tag(860, 500, 1.4) +
-            templates.G87.sizeM(
-              customName,
-              customText,
-              `#${animalNumber} - ${customColor.name}`,
-              customColor.hexCode
-            )
-          );
-        case "L":
-          return (
-            templates.G87.animals[animalNumber].tag(800, 600, 1.69) +
-            templates.G87.sizeL(
-              customName,
-              customText,
-              `#${animalNumber} - ${customColor.name}`,
-              customColor.hexCode
-            )
-          );
+        // case "M":
+        //   return templates.E05.sizeM();
+        // case "L":
+        //   return templates.E05.sizeL();
         default:
           break;
       }
@@ -212,63 +192,93 @@ const G87 = () => {
 
   return (
     <div className="w-50">
-      <Modal open={animalModal} onClose={handleONCAnimalModal}>
+      <PickColorModal
+        open={boxColorModal}
+        title={"Pick your box color"}
+        handlePickColor={handlePickBoxColor}
+        onClose={handleONCBoxColorModal}
+      />
+
+      <PickColorModal
+        open={nameColorModal}
+        title={"Pick your name color"}
+        handlePickColor={handlePickNameColor}
+        onClose={handleONCNameColorModal}
+      />
+
+      <Modal open={fontModal} onClose={handleONCFontModal}>
         <div>
-          <PickAnimalModal
-            animalModal={animalModal}
-            animalNumber={animalNumber}
-            onChangeCustomAnimal={onChangeCustomAnimal}
-            handlePickAnimal={handlePickAnimal}
-            handleONCAnimalModal={handleONCAnimalModal}
+          <PickFontModal
+            fontNumber={fontNumber}
+            handlePickFont={handlePickFont}
+            onChangeCustomFont={onChangeCustomFont}
+            onClose={handleONCFontModal}
           />
         </div>
       </Modal>
-      <PickColorModal
-        colorModal={colorModal}
-        handlePickColor={handlePickColor}
-        handleONCColorModal={handleONCColorModal}
-      />
 
-      <div className="w-100 d-flex mb-3 pointer" onClick={handleONCColorModal}>
-        {customColor ? (
+      <div
+        className="w-100 d-flex mb-3 pointer"
+        onClick={handleONCBoxColorModal}
+      >
+        {customBoxColor ? (
           <>
             <label
               htmlFor="color"
               className="form-label col-auto col-form-label pointer me-3"
             >
-              Color
+              Box Color
             </label>
             <input
-              value={customColor.name}
+              value={customBoxColor.name}
               className="form-control pointer"
-              onClick={handleONCColorModal}
+              onClick={handleONCNameColorModal}
               onChange={() => {}}
             />
           </>
         ) : (
-          <button className="w-100 btn btn-secondary">Pick Color</button>
+          <button className="w-100 btn btn-secondary">Pick Box Color</button>
         )}
       </div>
-      <div className="w-100 d-flex mb-3 pointer" onClick={handleONCAnimalModal}>
-        {animalNumber.length > 0 ? (
+
+      <div
+        className="w-100 d-flex mb-3 pointer"
+        onClick={handleONCNameColorModal}
+      >
+        {customNameColor ? (
           <>
-            <label htmlFor="animal-number" className="form-label pointer">
-              Animal number
+            <label
+              htmlFor="color"
+              className="form-label col-auto col-form-label pointer me-3"
+            >
+              Name Color
             </label>
-            <div className="d-flex ms-3">
-              <span># </span>
-              <input
-                value={animalNumber}
-                className="ms-2 form-control pointer"
-                onClick={handleONCAnimalModal}
-                onChange={() => {}}
-              />
-            </div>
+            <input
+              value={customNameColor.name}
+              className="form-control pointer"
+              onClick={handleONCNameColorModal}
+              onChange={() => {}}
+            />
           </>
         ) : (
-          <button className="w-100 btn btn-secondary">Pick Animal</button>
+          <button className="w-100 btn btn-secondary">Pick Name Color</button>
         )}
       </div>
+
+      <div className="w-100 d-flex mb-3 pointer" onClick={handleONCFontModal}>
+        <label htmlFor="font-number" className="form-label pointer">
+          Font number
+        </label>
+        <div className="d-flex ms-3">
+          <span># </span>
+          <input
+            value={fontNumber}
+            className="ms-2 form-control pointer"
+            onChange={() => {}}
+          />
+        </div>
+      </div>
+
       <div className="d-flex">
         <label htmlFor="sku" className="form-label col-form-label me-3">
           Size
@@ -312,11 +322,10 @@ const G87 = () => {
           onChange={(e) => onChangeCustomText(e)}
         />
       </div>
-
       <button
         className="btn btn-secondary"
         onClick={() => {
-          navigator.clipboard.writeText(generateG87());
+          navigator.clipboard.writeText(generateE05());
           resetCustom();
         }}
       >
@@ -326,4 +335,4 @@ const G87 = () => {
   );
 };
 
-export default G87;
+export default E05;

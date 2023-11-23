@@ -33,7 +33,7 @@ export const colors = {
   },
   "Pastel Pink": {
     hexCode: "#EDD2CE",
-    name: "B47 - 2553 - Pastel Pink",
+    name: "B47 - Pastel Pink",
   },
   "Blush Pink": {
     hexCode: "#F4A5AC",

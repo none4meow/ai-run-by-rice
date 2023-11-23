@@ -24,15 +24,15 @@ export const tag = (x, y, text) => {
   }
 
   if (textLength === 7) {
-    fontSize = 18;
+    fontSize = 19;
   } else if (textLength === 8) {
-    fontSize = 17;
+    fontSize = 18;
   } else if (textLength === 9) {
-    fontSize = 16;
+    fontSize = 17;
   } else if (textLength === 10) {
-    fontSize = 15;
+    fontSize = 16;
   } else if (textLength >= 11) {
-    fontSize = 13;
+    fontSize = 14;
     yMatrix = 24;
   }
 

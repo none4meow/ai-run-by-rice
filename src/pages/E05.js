@@ -88,6 +88,8 @@ const E05 = () => {
   const handlePickNameColor = (color) => {
     setCustomNameColor(colors[color]);
     handleONCNameColorModal();
+
+    handleONCFontModal();
   };
 
   const [nameColorModal, setNameColorModal] = useState(false);
@@ -121,7 +123,11 @@ const E05 = () => {
   };
 
   const [fontModal, setFontModal] = useState(false);
-  const handleONCFontModal = () => setFontModal(!fontModal);
+  const handleONCFontModal = () => {
+    if (fontModal) sizeRef.current?.focus();
+
+    setFontModal(!fontModal);
+  };
 
   const sizes = ["S", "M", "L"];
   const [customSize, setCustomSize] = useState("S");
@@ -130,13 +136,11 @@ const E05 = () => {
   };
 
   const resetCustom = () => {
-    return;
-
     setCustomBoxColor(null);
     setCustomNameColor(null);
+    setFontNumber("");
     setCustomName("");
     setCustomText("");
-    setFontNumber("");
     setCustomSize("S");
   };
 
@@ -167,14 +171,30 @@ const E05 = () => {
             customBoxColor.name,
             customBoxColor.hexCode,
             customNameColor.name,
-            `#${fontNumber} - ${fonts[fontNumber].name}`,
+            fontNumber,
             fonts[fontNumber].name
           );
 
-        // case "M":
-        //   return templates.E05.sizeM();
-        // case "L":
-        //   return templates.E05.sizeL();
+        case "M":
+          return templates.E05.sizeM(
+            customName,
+            customText,
+            customBoxColor.name,
+            customBoxColor.hexCode,
+            customNameColor.name,
+            fontNumber,
+            fonts[fontNumber].name
+          );
+        case "L":
+          return templates.E05.sizeL(
+            customName,
+            customText,
+            customBoxColor.name,
+            customBoxColor.hexCode,
+            customNameColor.name,
+            fontNumber,
+            fonts[fontNumber].name
+          );
         default:
           break;
       }
@@ -217,10 +237,7 @@ const E05 = () => {
         </div>
       </Modal>
 
-      <div
-        className="w-100 d-flex mb-3 pointer"
-        onClick={handleONCBoxColorModal}
-      >
+      <div className="w-100 d-flex mb-3 pointer">
         {customBoxColor ? (
           <>
             <label
@@ -232,19 +249,21 @@ const E05 = () => {
             <input
               value={customBoxColor.name}
               className="form-control pointer"
-              onClick={handleONCNameColorModal}
+              onClick={handleONCBoxColorModal}
               onChange={() => {}}
             />
           </>
         ) : (
-          <button className="w-100 btn btn-secondary">Pick Box Color</button>
+          <button
+            className="w-100 btn btn-secondary"
+            onClick={handleONCBoxColorModal}
+          >
+            Pick Box Color
+          </button>
         )}
       </div>
 
-      <div
-        className="w-100 d-flex mb-3 pointer"
-        onClick={handleONCNameColorModal}
-      >
+      <div className="w-100 d-flex mb-3 pointer">
         {customNameColor ? (
           <>
             <label
@@ -261,7 +280,12 @@ const E05 = () => {
             />
           </>
         ) : (
-          <button className="w-100 btn btn-secondary">Pick Name Color</button>
+          <button
+            className="w-100 btn btn-secondary"
+            onClick={handleONCNameColorModal}
+          >
+            Pick Name Color
+          </button>
         )}
       </div>
 

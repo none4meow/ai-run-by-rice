@@ -1,6 +1,9 @@
+import { fonts } from "../../../configs/constants";
+
 export const styles = `
 	.st0{font-family:'#9Slide03QuicksandBold-Bold';}
 	.st1{font-size:98px;}
+	.st10{font-size:69px;}
 	.st2{stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 	.st3{font-size:480px;}
 	.st4{fill:#EDD2CE;}
@@ -23,20 +26,34 @@ export const tag = (
   fontNumber,
   fontFamily
 ) => {
-  return `
-<text transform="matrix(1 0 0 1 34.7751 889.5459)" class="st0 st1">${fontNumber}</text>
-<text transform="matrix(1 0 0 1 12.7615 674.174)" class="st0 st3">S</text>
+  const fontNumberNName = `#${fontNumber} - ${fonts[fontNumber].name}`;
+  const fontNumberInt = parseInt(fontNumber);
+  const isBold = fontNumberInt === 20 || fontNumberInt === 26;
 
+  const extra = `style="font-family: '${fontFamily}';" ${
+    isBold ? `font-weight="bold"` : ""
+  } `;
+
+  const customText =
+    text.length > 0
+      ? `<text transform="matrix(1 0 0 1 798.969 268.5094)" class="st5 st6">
+			${text}
+		</text>`
+      : "";
+
+  return `
+<text transform="matrix(1 0 0 1 12.7615 674.174)" class="st0 st3">S</text>
+<text style="font-family: '${fontFamily}'" transform="matrix(1 0 0 1 34.7751 889.5459)" class="st0 st10">${fontNumberNName}</text>
 <circle style="fill:${boxColorHex};stroke:${boxColorHex};" class="st2" cx="1147.8" cy="862.7" r="26.1"/>
 <g>
     <text transform="matrix(1 0 0 1 943.9006 985.0399)" class="st0 st1">${boxColor}</text>
-    <text style="font-size:69px;" transform="matrix(1 0 0 1 37.6979 253.8278)" class="st0">${nameColor}</text>
+    <text transform="matrix(1 0 0 1 37.6979 253.8278)" class="st0 st10">${nameColor}</text>
 
     <g>
-        <text style="font-family: '${fontFamily}'" transform="matrix(0.9469 0 0 1 957.2794 485.5527)" class="st9 st11">${name}</text>
-        <text style="font-family: '${fontFamily}'" transform="matrix(0.9469 0 0 1 957.2794 485.5527)" class="st12 st11">${name}</text>
-        <text style="font-family: '${fontFamily}'" transform="matrix(0.9469 0 0 1 957.2794 485.5527)" class="st13 st11">${name}</text>
-        <text style="font-family: '${fontFamily}'" transform="matrix(0.9469 0 0 1 957.2794 485.5527)" class="st4 st11">${name}</text>
+        <text ${extra} transform="matrix(0.9469 0 0 1 957.2794 485.5527)" class="st9 st11">${name}</text>
+        <text ${extra} transform="matrix(0.9469 0 0 1 957.2794 485.5527)" class="st12 st11">${name}</text>
+        <text ${extra} transform="matrix(0.9469 0 0 1 957.2794 485.5527)" class="st13 st11">${name}</text>
+        <text ${extra} transform="matrix(0.9469 0 0 1 957.2794 485.5527)" class="st4 st11">${name}</text>
     </g>
  </g>
 
@@ -855,11 +872,6 @@ export const tag = (
 	</g>
 </g>
 
-${
-  text.length > 0 &&
-  `<text transform="matrix(1 0 0 1 798.969 268.5094)" class="st5 st6">
-      ${text}
-    </text>`
-}
+${customText}
 `;
 };

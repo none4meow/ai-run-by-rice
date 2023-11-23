@@ -139,6 +139,11 @@ const O50 = () => {
     </svg>`;
   };
 
+  const reset = () => {
+    setBigInput("");
+    setSmallInput("");
+  };
+
   return (
     <div>
       <div className="row g-3 align-items-center mb-3">
@@ -154,6 +159,7 @@ const O50 = () => {
           className={`form-control col-auto`}
           autoComplete="off"
           value={bigInput}
+          autoFocus
           onChange={(e) => onChangeBigInput(e)}
         />
       </div>
@@ -186,6 +192,7 @@ const O50 = () => {
         className="btn btn-secondary"
         onClick={() => {
           navigator.clipboard.writeText(generateO50());
+          reset();
         }}
       >
         Generate

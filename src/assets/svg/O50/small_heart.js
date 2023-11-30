@@ -20,7 +20,7 @@ export const tag = (x, y, text) => {
   let yMatrix = 28.38;
 
   if (textLength > 6) {
-    yMatrix = 26;
+    yMatrix = 27;
   }
 
   if (textLength === 7) {

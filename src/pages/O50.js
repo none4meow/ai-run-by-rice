@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { templates } from "../configs/templates";
+import { Regex } from "../configs/constants";
 
 const O50 = () => {
   const [bigInput, setBigInput] = useState("");
@@ -8,11 +9,18 @@ const O50 = () => {
     setBigInput(value);
   };
 
+  const [hasSpecialChars, setHasSpecialChars] = useState(false);
+
   const [smallInput, setSmallInput] = useState("");
   const onChangeSmallInput = (e) => {
     const value = e.target.value;
     setSmallInput(value);
   };
+
+  useEffect(() => {
+    const hasSpecial = Regex.hasSpecialChars.test(smallInput);
+    setHasSpecialChars(hasSpecial);
+  }, [smallInput]);
 
   const [splitByWhom, setSplitByWhom] = useState(0);
   const onChangeSplitByWhom = (e) => {
@@ -85,12 +93,15 @@ const O50 = () => {
 
   const generateO50 = () => {
     const bigArray = bigInput
+      .trim()
       .split(",")
-      .filter((ele) => ele.length > 0)
-      .map((ele) => (ele.indexOf(".") > -1 ? ele.replace(/\s/g, "") : ele));
+      .map((ele) => (ele.indexOf(".") > -1 ? ele.replace(/\s/g, "") : ele))
+      .filter((ele) => ele.length > 0);
 
     let smallArray =
-      splitByWhom === 0 ? smallInput.split(",") : smallInput.split("\n");
+      splitByWhom === 0
+        ? smallInput.trim().split(",")
+        : smallInput.trim().split("\n");
 
     smallArray = smallArray.filter((ele) => ele.length > 0);
 
@@ -178,6 +189,9 @@ const O50 = () => {
           value={smallInput}
           onChange={(e) => onChangeSmallInput(e)}
         />
+        {hasSpecialChars && (
+          <small className="text-danger">* special chars</small>
+        )}
         <select
           className="form-control form-select col-auto"
           onChange={(e) => onChangeSplitByWhom(e)}
@@ -195,7 +209,7 @@ const O50 = () => {
           reset();
         }}
       >
-        Generate
+        Get code
       </button>
     </div>
   );

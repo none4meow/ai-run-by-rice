@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { templates } from "../configs/templates";
-import { colors, fonts } from "../configs/constants";
+import { colors } from "../configs/constants";
 import { Modal } from "@mui/material";
 
 const PickColorModal = ({ open, title, handlePickColor, onClose }) => {
@@ -28,54 +28,7 @@ const PickColorModal = ({ open, title, handlePickColor, onClose }) => {
   );
 };
 
-const PickFontModal = ({
-  fontNumber,
-  handlePickFont,
-  onChangeCustomFont,
-  onClose,
-}) => {
-  const onEnter = (e) => {
-    if (e.key === "Enter") onClose();
-  };
-
-  const numberRef = useRef(null);
-
-  useEffect(() => {
-    // inputRef.current?.focus();
-    numberRef.current?.select();
-  }, []);
-
-  return (
-    <div className={"custom-modal"}>
-      <input
-        type="number"
-        autoFocus={true}
-        ref={numberRef}
-        autoComplete="off"
-        className="form-control dark-input mt-3 mb-3"
-        value={fontNumber}
-        onKeyDown={(e) => onEnter(e)}
-        onChange={(e) => onChangeCustomFont(e)}
-      />
-      <div className="grid-container">
-        {Object.keys(fonts).map((font, index) => (
-          <div
-            key={index}
-            className="grid-item"
-            onClick={() => handlePickFont(font)}
-          >
-            <span className="me-3"># {font} -</span>
-            <span style={{ fontFamily: `'${fonts[font].name}'` }}>
-              {fonts[font].name}
-            </span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
-
-const E05 = () => {
+const E13 = () => {
   const [customBoxColor, setCustomBoxColor] = useState(null);
   const handlePickBoxColor = (color) => {
     setCustomBoxColor(colors[color]);
@@ -88,8 +41,6 @@ const E05 = () => {
   const handlePickNameColor = (color) => {
     setCustomNameColor(colors[color]);
     handleONCNameColorModal();
-
-    handleONCFontModal();
   };
 
   const [nameColorModal, setNameColorModal] = useState(false);
@@ -102,36 +53,14 @@ const E05 = () => {
   const onChangeCustomName = (e) => {
     const value = e.target.value;
     setCustomName(value);
+
+    setFirstChar(value.trim().charAt(0));
   };
 
-  const [customText, setCustomText] = useState("");
-  const onChangeCustomText = (e) => {
-    const value = e.target.value;
-    setCustomText(value);
-  };
-
-  const [fontNumber, setFontNumber] = useState("");
-  const handlePickFont = (fontNumber) => {
-    setFontNumber(fontNumber);
-    handleONCFontModal();
-  };
-  const onChangeCustomFont = (e) => {
-    const value = e.target.value;
-    // const intValue = parseInt(value);
-    // if (0 < intValue && intValue <= 30)
-    setFontNumber(value);
-  };
-
-  const [fontModal, setFontModal] = useState(false);
-  const handleONCFontModal = () => {
-    if (fontModal) sizeRef.current?.focus();
-
-    setFontModal(!fontModal);
-  };
+  const [firstChar, setFirstChar] = useState(null);
 
   // eslint-disable-next-line no-unused-vars
-  const [sizes, _] = useState(["S", "M", "L"]);
-
+  const [sizes, _] = useState(["7''", "9''", "11''"]);
   const [customSize, setCustomSize] = useState(sizes[0]);
   const onChangeCustomSize = (e) => {
     setCustomSize(e.target.value);
@@ -140,45 +69,44 @@ const E05 = () => {
   const resetCustom = () => {
     setCustomBoxColor(null);
     setCustomNameColor(null);
-    setFontNumber("");
     setCustomName("");
-    setCustomText("");
     setCustomSize(sizes[0]);
   };
 
   const sizeRef = useRef(null);
 
-  const generateE05 = () => {
+  const generateE13 = () => {
     if (!customBoxColor || !customNameColor) return;
 
+    const thickness = "5mm";
     switch (customSize) {
-      case "S":
-        return templates.E05.sizeS(
+      case sizes[0]:
+        return templates.E13[firstChar](
           customName,
-          customText,
           customBoxColor,
           customNameColor,
-          fontNumber,
-          fonts[fontNumber].name
+          1,
+          sizes[0],
+          thickness
         );
 
-      case "M":
-        return templates.E05.sizeM(
+      case sizes[1]:
+        return templates.E13[firstChar](
           customName,
-          customText,
           customBoxColor,
           customNameColor,
-          fontNumber,
-          fonts[fontNumber].name
+          9 / 7,
+          sizes[1],
+          thickness
         );
-      case "L":
-        return templates.E05.sizeL(
+      case sizes[2]:
+        return templates.E13[firstChar](
           customName,
-          customText,
           customBoxColor,
           customNameColor,
-          fontNumber,
-          fonts[fontNumber].name
+          11 / 7,
+          sizes[2],
+          thickness
         );
       default:
         break;
@@ -200,17 +128,6 @@ const E05 = () => {
         handlePickColor={handlePickNameColor}
         onClose={handleONCNameColorModal}
       />
-
-      <Modal open={fontModal} onClose={handleONCFontModal}>
-        <div>
-          <PickFontModal
-            fontNumber={fontNumber}
-            handlePickFont={handlePickFont}
-            onChangeCustomFont={onChangeCustomFont}
-            onClose={handleONCFontModal}
-          />
-        </div>
-      </Modal>
 
       <div className="w-100 d-flex mb-3 pointer">
         {customBoxColor ? (
@@ -264,20 +181,6 @@ const E05 = () => {
         )}
       </div>
 
-      <div className="w-100 d-flex mb-3 pointer" onClick={handleONCFontModal}>
-        <label htmlFor="font-number" className="form-label pointer">
-          Font number
-        </label>
-        <div className="d-flex ms-3">
-          <span># </span>
-          <input
-            value={fontNumber}
-            className="ms-2 form-control pointer"
-            onChange={() => {}}
-          />
-        </div>
-      </div>
-
       <div className="d-flex">
         <label htmlFor="sku" className="form-label col-form-label me-3">
           Size
@@ -308,23 +211,11 @@ const E05 = () => {
           onChange={(e) => onChangeCustomName(e)}
         />
       </div>
-      <div className="w-100 d-flex flex-column mt-3 mb-3">
-        <label htmlFor="custom-text" className="text-start form-label">
-          Text
-        </label>
-        <textarea
-          type="text"
-          id="custom-text"
-          className={`form-control`}
-          autoComplete="off"
-          value={customText}
-          onChange={(e) => onChangeCustomText(e)}
-        />
-      </div>
+
       <button
         className="btn btn-secondary"
         onClick={() => {
-          navigator.clipboard.writeText(generateE05());
+          navigator.clipboard.writeText(generateE13());
           resetCustom();
         }}
       >
@@ -334,4 +225,4 @@ const E05 = () => {
   );
 };
 
-export default E05;
+export default E13;

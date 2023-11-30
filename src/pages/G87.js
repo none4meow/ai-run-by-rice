@@ -125,10 +125,12 @@ const G87 = () => {
 
   const [animalModal, setAnimalModal] = useState(false);
   const handleONCAnimalModal = () => {
-    if (animalModal) sizeRef.current?.focus();
-
     setAnimalModal(!animalModal);
   };
+
+  useEffect(() => {
+    sizeRef.current?.focus();
+  }, [animalModal]);
 
   const sizes = ["S", "M", "L"];
   const [customSize, setCustomSize] = useState("S");
@@ -147,7 +149,7 @@ const G87 = () => {
   const sizeRef = useRef(null);
 
   const generateG87 = () => {
-    if (customName.length <= 0) return;
+    if (!customColor) return;
 
     const styling = () => {
       switch (customSize) {
@@ -163,6 +165,12 @@ const G87 = () => {
     };
 
     const sizing = () => {
+      // const randomPick = () => {
+      //   if (Math.round(Math.random()) === 0) return num12;
+
+      //   return num14;
+      // };
+
       switch (customSize) {
         case "S":
           return (
@@ -170,8 +178,8 @@ const G87 = () => {
             templates.G87.sizeS(
               customName,
               customText,
-              `#${animalNumber} - ${customColor.name}`,
-              customColor.hexCode
+              `# ${animalNumber}`,
+              customColor
             )
           );
 
@@ -181,8 +189,8 @@ const G87 = () => {
             templates.G87.sizeM(
               customName,
               customText,
-              `#${animalNumber} - ${customColor.name}`,
-              customColor.hexCode
+              `# ${animalNumber}`,
+              customColor
             )
           );
         case "L":
@@ -191,8 +199,8 @@ const G87 = () => {
             templates.G87.sizeL(
               customName,
               customText,
-              `#${animalNumber} - ${customColor.name}`,
-              customColor.hexCode
+              `# ${animalNumber}`,
+              customColor
             )
           );
         default:
@@ -320,7 +328,7 @@ const G87 = () => {
           resetCustom();
         }}
       >
-        Generate
+        Get code
       </button>
     </div>
   );

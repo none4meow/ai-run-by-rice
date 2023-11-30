@@ -1,28 +1,9 @@
 import { fonts } from "../../../configs/constants";
 
-export const styles = `
-	.st0{font-family:'#9Slide03QuicksandBold-Bold';}
-	.st1{font-size:480px;}
-	.st2{fill:#EDD2CE;}
-	.st3{font-family:'AmaticSC-Bold';}
-	.st4{font-size:37.1513px;}
-	.st5{fill:#FFFFFF;}
-	.st6{fill:none;}
-	.st7{stroke:#000000;stroke-width:1.8275;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
-	.st8{font-family:'AutumninNovember';}
-	.st9{font-size:136.0328px;}
-	.st10{fill:none;stroke:#FFFFFF;stroke-width:13;stroke-linecap:round;stroke-linejoin:round;}
-	.st11{fill:none;stroke:#FFFFFF;stroke-width:1.8274;stroke-linecap:round;stroke-linejoin:round;}
-	.st12{font-size:98px;}
-	.st13{font-size:69px;}
-	.st14{stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
-`;
-
-export const tag = (
+export const svg = (
   name,
   text,
   boxColor,
-  boxColorHex,
   nameColor,
   fontNumber,
   fontFamily
@@ -41,11 +22,30 @@ export const tag = (
             ${text}
         </text>`
       : "";
+  const fillStyle = `style="fill:${boxColor.hexCode};"`;
 
   return `
+<svg xmlns="http://www.w3.org/2000/svg">
+<style>
+	.st0{font-family:'#9Slide03QuicksandBold-Bold';}
+	.st1{font-size:480px;}
+	.st2{fill:#EDD2CE;}
+	.st3{font-family:'AmaticSC-Bold';}
+	.st4{font-size:37.1513px;}
+	.st5{fill:#FFFFFF;}
+	.st6{fill:none;}
+	.st7{stroke:#000000;stroke-width:1.8275;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st8{font-family:'AutumninNovember';}
+	.st9{font-size:136.0328px;}
+	.st10{fill:none;stroke:#FFFFFF;stroke-width:13;stroke-linecap:round;stroke-linejoin:round;}
+	.st11{fill:none;stroke:#FFFFFF;stroke-width:1.8274;stroke-linecap:round;stroke-linejoin:round;}
+	.st12{font-size:98px;}
+	.st13{font-size:69px;}
+	.st14{stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+</style>
+
 <text transform="matrix(1 0 0 1 21.2106 650.4946)" class="st0 st1">L</text>
 <text style="font-family: '${fontFamily}'" transform="matrix(1 0 0 1 21.6324 1100)" class="st0 st13">${fontNumberNName}</text>
-<circle style="fill:${boxColorHex};stroke:${boxColorHex};" class="st14" cx="1228.6" cy="1305.1" r="26.1"/>
 
 <g>
     <g>
@@ -54,16 +54,16 @@ export const tag = (
         <text ${extra} transform="matrix(0.9469 0 0 1 1134.0853 806.3973)" class="st11 st8 st9">${name}</text>
         <text ${extra} transform="matrix(0.9469 0 0 1 1134.0853 806.3973)" class="st2 st8 st9">${name}</text>
     </g>
-    <text transform="matrix(1 0 0 1 1024.7369 1427.4104)" class="st0 st12">${boxColor}</text>
-    <text transform="matrix(1 0 0 1 24.5553 189.9245)" class="st0 st13">${nameColor}</text>
+    <text transform="matrix(1 0 0 1 1024.7369 1427.4104)" class="st0 st12">${boxColor.name}</text>
+    <text transform="matrix(1 0 0 1 24.5553 189.9245)" class="st0 st13">${nameColor.name}</text>
  </g>
     
-<path class="st2" d="M1531.8,670.7v-34.2h-8.5v-15.7c0-37.4-14.8-73.3-41.3-99.8c-26.4-26.4-62.3-41.3-99.8-41.3h-238.5v-8.5h-34.1
+<path ${fillStyle} class="st2" d="M1531.8,670.7v-34.2h-8.5v-15.7c0-37.4-14.8-73.3-41.3-99.8c-26.4-26.4-62.3-41.3-99.8-41.3h-238.5v-8.5h-34.1
 	v8.5H871.1c-37.4,0-73.3,14.8-99.8,41.3c-26.4,26.5-41.3,62.3-41.3,99.8v15.7h-8.5v34.2h8.5v59h-8.5v34.2h8.5v15.7
 	c0,37.4,14.8,73.3,41.3,99.8c26.5,26.5,62.3,41.3,99.8,41.3h97v8h27.3v-8H1258v8h27.3v-8h97c37.4,0.1,73.3-14.8,99.8-41.3
 	c26.5-26.5,41.3-62.3,41.3-99.8v-15.7h8.5v-34.2h-8.5v-59H1531.8z M1457.2,775.1c0,43.8-35.5,79.3-79.3,79.3H875.5
 	c-43.8,0-79.3-35.5-79.3-79.3V625.3c0-43.8,35.5-79.3,79.3-79.3h502.4c43.8,0,79.3,35.5,79.3,79.3V775.1z"/>
-<path class="st2" d="M1531.8,217.8v-34.2h-8.5V168c0-37.4-14.8-73.3-41.3-99.8c-26.4-26.4-62.3-41.3-99.8-41.3h-238.5v-8.5h-34.1
+<path ${fillStyle} class="st2" d="M1531.8,217.8v-34.2h-8.5V168c0-37.4-14.8-73.3-41.3-99.8c-26.4-26.4-62.3-41.3-99.8-41.3h-238.5v-8.5h-34.1
 	v8.5H871.1c-37.4,0-73.3,14.8-99.8,41.3c-26.4,26.5-41.3,62.3-41.3,99.8v15.7h-8.5v34.2h8.5v59h-8.5v34.2h8.5v15.7
 	c0,37.4,14.8,73.3,41.3,99.8c26.5,26.5,62.3,41.3,99.8,41.3h97v8h27.3v-8H1258v8h27.3v-8h97c37.4,0.1,73.3-14.8,99.8-41.3
 	c26.5-26.5,41.3-62.3,41.3-99.8v-15.7h8.5v-34.2h-8.5v-59H1531.8z M1457.2,322.2c0,43.8-35.5,79.3-79.3,79.3H875.5
@@ -868,5 +868,7 @@ export const tag = (
 </g>
 
 ${customText}
-    `;
+
+</svg>
+  `;
 };

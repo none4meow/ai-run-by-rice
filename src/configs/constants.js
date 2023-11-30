@@ -133,3 +133,12 @@ export const fonts = {
   49: { name: "BestieForever-Regular" },
   50: { name: "Sweet Kisses" },
 };
+
+export const Regex = {
+  SpecialChars: /[`~!@#$%^&*()_|+\-=?;:'",.<>{}[]\\\/]/gi,
+  Username: /^(?![_.])(?![\d])(?!.*\.\.)(?!.*\.$)(?=.*[a-z])[a-z0-9._]{3,}$/,
+  Email: /^[A-Za-z0-9._+-]+@[A-Za-z0-9]+\.[A-Z|a-z]{2,}$/,
+  Password:
+    /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z`~!@#$%^&*()-_+={}[\]|\\'";:/?>.<,]{8,}$/,
+  hasSpecialChars: /[^a-zA-Z\d\s:,.]/g,
+};

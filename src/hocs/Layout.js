@@ -5,7 +5,7 @@ import { templates } from "../configs/templates";
 const Layout = ({ children }) => {
   const navigate = useNavigate();
 
-  const [SKU, setSKU] = useState("----");
+  const [SKU, setSKU] = useState(undefined);
 
   const onChangeSKU = (e) => {
     const value = e.target.value;
@@ -34,7 +34,7 @@ const Layout = ({ children }) => {
               value={SKU}
               onChange={(e) => onChangeSKU(e)}
             >
-              <option value={"----"}>----</option>
+              <option value={undefined}>----</option>
               {Object.keys(templates).map((ele) => (
                 <option key={ele} value={ele}>
                   {ele}

@@ -27,13 +27,13 @@ export const tag = (x, y, text) => {
   } else if (textLength === 7) {
     fontSize = 18;
   } else if (textLength === 8) {
-    fontSize = 18;
-  } else if (textLength === 9) {
     fontSize = 17;
-  } else if (textLength === 10) {
+  } else if (textLength === 9) {
     fontSize = 16;
+  } else if (textLength === 10) {
+    fontSize = 15;
   } else if (textLength >= 11) {
-    fontSize = 14;
+    fontSize = 13;
     yMatrix = 24;
   }
 

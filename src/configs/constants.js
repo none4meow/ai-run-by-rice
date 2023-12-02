@@ -140,5 +140,5 @@ export const Regex = {
   Email: /^[A-Za-z0-9._+-]+@[A-Za-z0-9]+\.[A-Z|a-z]{2,}$/,
   Password:
     /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z`~!@#$%^&*()-_+={}[\]|\\'";:/?>.<,]{8,}$/,
-  hasSpecialChars: /[^a-zA-Z\d\s:,.]/g,
+  hasSpecialChars: /[^a-zA-Z\d\s:,.-]/g,
 };

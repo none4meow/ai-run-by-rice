@@ -107,7 +107,7 @@ const E05 = () => {
   const [customText, setCustomText] = useState("");
   const onChangeCustomText = (e) => {
     const value = e.target.value;
-    setCustomText(value);
+    setCustomText(value.replace("&", "&amp;"));
   };
 
   const [fontNumber, setFontNumber] = useState("");

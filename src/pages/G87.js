@@ -104,7 +104,8 @@ const G87 = () => {
   const [customText, setCustomText] = useState("");
   const onChangeCustomText = (e) => {
     const value = e.target.value;
-    setCustomText(value);
+
+    setCustomText(value.replace("&", "&amp;"));
   };
 
   const [animalNumber, setAnimalNumber] = useState("");
@@ -165,11 +166,10 @@ const G87 = () => {
     };
 
     const sizing = () => {
-      // const randomPick = () => {
-      //   if (Math.round(Math.random()) === 0) return num12;
-
-      //   return num14;
-      // };
+      // if (animalNumber.length <= 0) {
+      //   if (Math.round(Math.random()) === 0) setAnimalNumber("12");
+      //   else setAnimalNumber("14");
+      // }
 
       switch (customSize) {
         case "S":

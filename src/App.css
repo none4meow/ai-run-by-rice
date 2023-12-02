@@ -45,6 +45,8 @@
   flex-wrap: nowrap;
   flex-direction: row;
   height: 69px;
+  background-color: #000000;
+  color: #ffffff;
 }
 
 .custom-modal {
@@ -62,7 +64,8 @@
   position: absolute;
   display: flex;
   flex-direction: column;
-  background-color: #36393f;
+  /* background-color: #36393f; */
+  background-color: #c1c7d3;
   z-index: 9999;
   animation-name: animatetop;
   animation-duration: 0.4s;

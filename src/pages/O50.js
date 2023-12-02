@@ -22,84 +22,87 @@ const O50 = () => {
     setHasSpecialChars(hasSpecial);
   }, [smallInput]);
 
-  const [splitByWhom, setSplitByWhom] = useState(0);
-  const onChangeSplitByWhom = (e) => {
-    setSplitByWhom(parseInt(e.target.value));
-  };
+  // const [splitByWhom, setSplitByWhom] = useState(0);
+  // const onChangeSplitByWhom = (e) => {
+  //   setSplitByWhom(parseInt(e.target.value));
+  // };
 
-  const generate = () => {
-    const bigArray = bigInput.split(",");
+  // const generate = () => {
+  //   const bigArray = bigInput.split(",");
 
-    let smallArray =
-      splitByWhom === 0 ? smallInput.split(",") : smallInput.split("\n");
+  //   let smallArray =
+  //     splitByWhom === 0 ? smallInput.split(",") : smallInput.split("\n");
 
-    smallArray = smallArray.filter((ele) => ele.length > 0);
+  //   smallArray = smallArray.filter((ele) => ele.length > 0);
 
-    let body = "";
-    const bigTranslate = { x: 0, y: 0 };
-    const smallTranslate = { x: templates.O50.bigHeartTransform.W, y: 0 };
+  //   let body = "";
+  //   const bigTranslate = { x: 0, y: 0 };
+  //   const smallTranslate = { x: templates.O50.bigHeartTransform.W, y: 0 };
 
-    let maxSmallInRow = 5;
-    let smallCurrentIndex = 0;
+  //   let maxSmallInRow = 5;
+  //   let smallCurrentIndex = 0;
 
-    for (let index = 0; index < bigArray.length; index++) {
-      body += templates.O50.bigHeart(
-        bigTranslate.x,
-        bigTranslate.y,
-        bigArray[index]
-      );
-      bigTranslate.y += templates.O50.bigHeartTransform.H;
-    }
+  //   for (let index = 0; index < bigArray.length; index++) {
+  //     body += templates.O50.bigHeart(
+  //       bigTranslate.x,
+  //       bigTranslate.y,
+  //       bigArray[index]
+  //     );
+  //     bigTranslate.y += templates.O50.bigHeartTransform.H;
+  //   }
 
-    for (let index = 0; index < smallArray.length; index++) {
-      if (smallCurrentIndex < maxSmallInRow) {
-        body += templates.O50.smallHeart(
-          smallTranslate.x,
-          smallTranslate.y,
-          smallArray[index]
-        );
-        smallTranslate.x += templates.O50.smallHeartTransform.W;
-        smallCurrentIndex++;
-      } else {
-        smallTranslate.x = templates.O50.bigHeartTransform.W;
-        smallTranslate.y += templates.O50.smallHeartTransform.H;
-        body += templates.O50.smallHeart(
-          smallTranslate.x,
-          smallTranslate.y,
-          smallArray[index]
-        );
+  //   for (let index = 0; index < smallArray.length; index++) {
+  //     if (smallCurrentIndex < maxSmallInRow) {
+  //       body += templates.O50.smallHeart(
+  //         smallTranslate.x,
+  //         smallTranslate.y,
+  //         smallArray[index]
+  //       );
+  //       smallTranslate.x += templates.O50.smallHeartTransform.W;
+  //       smallCurrentIndex++;
+  //     } else {
+  //       smallTranslate.x = templates.O50.bigHeartTransform.W;
+  //       smallTranslate.y += templates.O50.smallHeartTransform.H;
+  //       body += templates.O50.smallHeart(
+  //         smallTranslate.x,
+  //         smallTranslate.y,
+  //         smallArray[index]
+  //       );
 
-        smallTranslate.x += templates.O50.smallHeartTransform.W;
-        smallCurrentIndex = 1;
-      }
-    }
+  //       smallTranslate.x += templates.O50.smallHeartTransform.W;
+  //       smallCurrentIndex = 1;
+  //     }
+  //   }
 
-    return `<svg xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <style>
-          ${templates.O50.bigHeartStyles}
-          ${templates.O50.smallHeartStyles}
-          ${templates.O50.whiteFlagStyles}
-        </style>
-      </defs>
+  //   return `<svg xmlns="http://www.w3.org/2000/svg">
+  //     <defs>
+  //       <style>
+  //         ${templates.O50.bigHeartStyles}
+  //         ${templates.O50.smallHeartStyles}
+  //         ${templates.O50.whiteFlagStyles}
+  //       </style>
+  //     </defs>
 
-      <text style="font-family: 'Roller Skates Regular';" transform="translate(20,-40)">
-        ${"trai tim"}
-      </text>
-      ${body}
-      ${templates.O50.whiteFlag(0, -30)} 
-    </svg>`;
-  };
+  //     <text style="font-family: 'Roller Skates Regular';" transform="translate(20,-40)">
+  //       ${"trai tim"}
+  //     </text>
+  //     ${body}
+  //     ${templates.O50.whiteFlag(0, -30)}
+  //   </svg>`;
+  // };
 
   const generateO50 = () => {
-    const bigArray = bigInput
-      .trim()
-      .split(",")
+    let bigArray =
+      (bigInput.match(/,/g) || []).length > 0
+        ? bigInput.trim().split(",")
+        : bigInput.trim().split("\n");
+
+    bigArray = bigArray
       .map((ele) => (ele.indexOf(".") > -1 ? ele.replace(/\s/g, "") : ele))
       .filter((ele) => ele.length > 0);
 
     let smallArray =
-      splitByWhom === 0
+      (smallInput.match(/,/g) || []).length > 0
         ? smallInput.trim().split(",")
         : smallInput.trim().split("\n");
 
@@ -192,14 +195,15 @@ const O50 = () => {
         {hasSpecialChars && (
           <small className="text-danger">* special chars</small>
         )}
-        <select
+
+        {/* <select
           className="form-control form-select col-auto"
           onChange={(e) => onChangeSplitByWhom(e)}
           value={splitByWhom}
         >
           <option value={0}>Split by Comma</option>
           <option value={1}>Split by New line</option>
-        </select>
+        </select> */}
       </div>
 
       <button

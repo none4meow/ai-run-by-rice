@@ -1,20 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 27.9.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+export const svg = (name, boxColor, nameColor, percent, size, thickness) => {
+  return `
+  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 1567.251 4292.946" style="enable-background:new 0 0 1567.251 4292.946;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:#E2D6C7;}
-	.st1{fill:#F4A5AC;}
-	.st2{fill:#FFFFFF;}
+	.st1{fill:${boxColor.hexCode};}
+	.st2{fill:${nameColor.hexCode};}
 	.st3{font-family:'#9Slide03QuicksandBold-Bold';}
-	.st4{font-size:130px;}
-	.st5{fill:#FFFFFF;stroke:#FFFFFF;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st4{font-size:70px;}
+	.st5{fill:${nameColor.hexCode};stroke:${nameColor.hexCode};stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 	.st6{font-family:'WildSageRegular';}
 	.st7{font-size:328.7417px;}
+	.st8{stroke:#FF0000;stroke-width:0.25;stroke-miterlimit:10;}
 </style>
+<g transform="scale(${percent})">
+<text transform="translate(900,0)" class="st3 st4">${size}</text>
+
+<g>
+	<text transform="matrix(1 0 0 1 465.9902 1716.0366)" class="st3 st4">${thickness} - ${boxColor.name}</text>
+	<text transform="matrix(1 0 0 1 397.0341 561.7948)" class="st3 st4">${nameColor.name}</text>
+	<text transform="matrix(1 0 0 1 453.7554 310.3174)" class="st5 st6 st7">${name}</text>
+</g>
+
 <g>
 	<path class="st0" d="M814.92,2740.805v141.732h481.89v-141.732H814.92z"/>
-	<path d="M1293.51,2870.269c-0.336-0.617-0.78-1.109-1.332-1.476s-1.134-0.549-1.746-0.549h-4.104c-0.312,0-0.573,0.105-0.783,0.314
+	<path class="st8" d="M1293.51,2870.269c-0.336-0.617-0.78-1.109-1.332-1.476s-1.134-0.549-1.746-0.549h-4.104c-0.312,0-0.573,0.105-0.783,0.314
 		c-0.21,0.211-0.315,0.472-0.315,0.783v10.404c0,0.312,0.096,0.573,0.288,0.783c0.191,0.21,0.438,0.314,0.738,0.314
 		c0.312,0,0.563-0.102,0.756-0.306c0.191-0.204,0.288-0.468,0.288-0.792v-3.402h3.132c0.612,0,1.194-0.183,1.746-0.549
 		s0.996-0.86,1.332-1.485c0.336-0.623,0.504-1.296,0.504-2.016C1294.014,2871.563,1293.846,2870.887,1293.51,2870.269z
@@ -112,11 +122,7 @@
 		c-3.511-4.116-5.266-9.296-5.266-15.535c0-6.24,1.775-11.44,5.33-15.601c3.553-4.16,8.103-6.239,13.65-6.239
 		c5.633,0,10.225,2.079,13.779,6.239c3.553,4.16,5.33,9.36,5.33,15.601C868.878,4098.954,867.101,4104.133,863.548,4108.25z"/>
 </g>
-<g>
-	<text transform="matrix(1 0 0 1 465.9902 1716.0366)" class="st3 st4">boxcolor</text>
-	<text transform="matrix(1 0 0 1 397.0341 561.7948)" class="st3 st4">namecolor</text>
-	<text transform="matrix(1 0 0 1 453.7554 310.3174)" class="st5 st6 st7">name</text>
-</g>
+
 <g>
 	<path d="M420.581,3035.996c-4.638-2.643-9.815-3.965-15.535-3.965c-2.255,0-4.637,0.305-7.15,0.91
 		c-2.515,0.607-4.595,1.387-6.24,2.34l2.47-18.851h32.24c2.08,0,3.813-0.67,5.2-2.015c1.385-1.343,2.08-3.01,2.08-5.005
@@ -202,4 +208,6 @@
 		c2.252,0,4.115-0.758,5.59-2.274c1.473-1.516,2.21-3.4,2.21-5.655v-33.28C1207.403,3042.648,1205.712,3035.391,1202.332,3030.146z"
 		/>
 </g>
-</svg>
+</g>
+</svg>`;
+};

@@ -54,7 +54,7 @@ const E13 = () => {
     const value = e.target.value;
     setCustomName(value);
 
-    setFirstChar(value.trim().charAt(0));
+    setFirstChar(value.trim().charAt(0).toUpperCase());
   };
 
   const [firstChar, setFirstChar] = useState(null);

@@ -149,7 +149,7 @@ const G87 = () => {
 
   const sizeRef = useRef(null);
 
-  const generateG87 = () => {
+  const getCode = () => {
     if (!customColor) return;
 
     const styling = () => {
@@ -322,9 +322,9 @@ const G87 = () => {
       </div>
 
       <button
-        className="btn btn-secondary"
+        className="btn btn-secondary mb-5 w-100"
         onClick={() => {
-          navigator.clipboard.writeText(generateG87());
+          navigator.clipboard.writeText(getCode());
           resetCustom();
         }}
       >

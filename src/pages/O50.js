@@ -27,7 +27,7 @@ const O50 = () => {
   //   setSplitByWhom(parseInt(e.target.value));
   // };
 
-  // const generate = () => {
+  // const getCode = () => {
   //   const bigArray = bigInput.split(",");
 
   //   let smallArray =
@@ -91,7 +91,7 @@ const O50 = () => {
   //   </svg>`;
   // };
 
-  const generateO50 = () => {
+  const getCode = () => {
     let bigArray =
       (bigInput.match(/,/g) || []).length > 0
         ? bigInput.trim().split(",")
@@ -131,15 +131,6 @@ const O50 = () => {
       smallTranslate.y += templates.O50.smallHeartTransform.H;
     }
 
-    // const asd = (
-    //   <text
-    //     style="font-family: 'Roller Skates Regular';"
-    //     transform="translate(20,-40)"
-    //   >
-    //     ${"trai tim"}
-    //   </text>
-    // );
-
     return `<svg xmlns="http://www.w3.org/2000/svg">
       <defs>
         <style>
@@ -159,7 +150,7 @@ const O50 = () => {
   };
 
   return (
-    <div>
+    <div style={{ width: "80vw" }}>
       <div className="row g-3 align-items-center mb-3">
         <label
           htmlFor="big-hearts"
@@ -207,9 +198,9 @@ const O50 = () => {
       </div>
 
       <button
-        className="btn btn-secondary"
+        className="btn btn-secondary mb-5 w-100"
         onClick={() => {
-          navigator.clipboard.writeText(generateO50());
+          navigator.clipboard.writeText(getCode());
           reset();
         }}
       >

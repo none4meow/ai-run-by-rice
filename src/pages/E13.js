@@ -75,7 +75,7 @@ const E13 = () => {
 
   const sizeRef = useRef(null);
 
-  const generateE13 = () => {
+  const getCode = () => {
     if (!customBoxColor || !customNameColor) return;
 
     const thickness = "5mm";
@@ -213,9 +213,9 @@ const E13 = () => {
       </div>
 
       <button
-        className="btn btn-secondary"
+        className="btn btn-secondary mb-5 w-100"
         onClick={() => {
-          navigator.clipboard.writeText(generateE13());
+          navigator.clipboard.writeText(getCode());
           resetCustom();
         }}
       >

@@ -105,9 +105,15 @@ const E05 = () => {
   };
 
   const [customText, setCustomText] = useState("");
+
+  const specialChars = {
+    "&": "&amp;",
+    "<": "&lt;",
+  };
+
   const onChangeCustomText = (e) => {
     const value = e.target.value;
-    setCustomText(value.replace("&", "&amp;"));
+    setCustomText(value.replace(/[&<]/g, (c) => specialChars[c]));
   };
 
   const [fontNumber, setFontNumber] = useState("");
@@ -148,7 +154,7 @@ const E05 = () => {
 
   const sizeRef = useRef(null);
 
-  const generateE05 = () => {
+  const getCode = () => {
     if (!customBoxColor || !customNameColor) return;
 
     switch (customSize) {
@@ -322,9 +328,9 @@ const E05 = () => {
         />
       </div>
       <button
-        className="btn btn-secondary"
+        className="btn btn-secondary mb-5 w-100"
         onClick={() => {
-          navigator.clipboard.writeText(generateE05());
+          navigator.clipboard.writeText(getCode());
           resetCustom();
         }}
       >

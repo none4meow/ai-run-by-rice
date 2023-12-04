@@ -165,6 +165,7 @@ const O50 = () => {
           autoComplete="off"
           value={bigInput}
           autoFocus
+          style={{ height: "90px" }}
           onChange={(e) => onChangeBigInput(e)}
         />
       </div>
@@ -182,6 +183,7 @@ const O50 = () => {
           autoComplete="off"
           value={smallInput}
           onChange={(e) => onChangeSmallInput(e)}
+          style={{ height: "220px" }}
         />
         {hasSpecialChars && (
           <small className="text-danger">* special chars</small>

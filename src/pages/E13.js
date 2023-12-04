@@ -51,7 +51,8 @@ const E13 = () => {
 
   const [customName, setCustomName] = useState("");
   const onChangeCustomName = (e) => {
-    const value = e.target.value;
+    let value = e.target.value;
+    value = value.charAt(0).toUpperCase() + value.slice(1);
     setCustomName(value);
 
     setFirstChar(value.trim().charAt(0).toUpperCase());

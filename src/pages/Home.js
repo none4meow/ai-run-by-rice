@@ -47,43 +47,62 @@ const Home = () => {
 
   const [justOutput, setJustOutput] = useState([]);
 
-  return (
-    <div>
-      <div className="row g-3 align-items-center mb-3">
-        <label htmlFor="Input" className="form-label col-auto col-form-label">
-          Output: {justOutput.length}
-        </label>
-        <span style={{ width: "50vw", wordWrap: "break-word" }}>
-          [{justOutput.map((ele, index) => `${ele},`)}]
-        </span>
-      </div>
-      <div className="row g-3 align-items-center mb-3">
-        <label htmlFor="Input" className="form-label col-auto col-form-label">
-          Input
-        </label>
-        <textarea
-          type="text"
-          id="Input"
-          className={`form-control col-auto`}
-          autoComplete="off"
-          value={justInput}
-          onChange={(e) => onChangeJustInput(e)}
-        />
-        <select
-          className="form-control form-select col-auto"
-          onChange={(e) => onChangeSplitByWhom(e)}
-          value={splitByWhom}
-        >
-          <option value={0}>Split by Comma</option>
-          <option value={1}>Split by New line</option>
-          <option value={2}>Split by Space</option>
-        </select>
-      </div>
+  const [isShowSort, setIsShowSort] = useState(false);
 
-      {/* <button className="btn btn-secondary" onClick={handleSort}>
+  return (
+    <>
+      <span
+        className="btn btn-secondary"
+        onClick={() => setIsShowSort(!isShowSort)}
+      >
+        Sort names
+      </span>
+
+      {isShowSort && (
+        <div>
+          <div className="row g-3 align-items-center mb-3">
+            <label
+              htmlFor="Input"
+              className="form-label col-auto col-form-label"
+            >
+              Output: {justOutput.length}
+            </label>
+            <span style={{ width: "50vw", wordWrap: "break-word" }}>
+              [{justOutput.map((ele, index) => `${ele},`)}]
+            </span>
+          </div>
+          <div className="row g-3 align-items-center mb-3">
+            <label
+              htmlFor="Input"
+              className="form-label col-auto col-form-label"
+            >
+              Input
+            </label>
+            <textarea
+              type="text"
+              id="Input"
+              className={`form-control col-auto`}
+              autoComplete="off"
+              value={justInput}
+              onChange={(e) => onChangeJustInput(e)}
+            />
+            <select
+              className="form-control form-select col-auto"
+              onChange={(e) => onChangeSplitByWhom(e)}
+              value={splitByWhom}
+            >
+              <option value={0}>Split by Comma</option>
+              <option value={1}>Split by New line</option>
+              <option value={2}>Split by Space</option>
+            </select>
+          </div>
+
+          {/* <button className="btn btn-secondary" onClick={handleSort}>
         Sort
       </button> */}
-    </div>
+        </div>
+      )}
+    </>
   );
 };
 

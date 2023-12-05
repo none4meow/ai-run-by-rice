@@ -1,4 +1,18 @@
-export const svg = (name, boxColor, nameColor, percent, size, thickness) => {
+export const svg = (name, boxColor, nameColor, inch) => {
+  const percent = inch / 7;
+  let gap = 14.1732;
+  switch (inch) {
+    case 9:
+      gap = gap / percent;
+      break;
+    case 11:
+      gap = gap / percent;
+      break;
+
+    default:
+      break;
+  }
+
   return `
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 1368 4529.2" style="enable-background:new 0 0 1368 4529.2;" xml:space="preserve">
@@ -15,10 +29,10 @@ export const svg = (name, boxColor, nameColor, percent, size, thickness) => {
 </style>
 
 <g transform="scale(${percent})">
-<text transform="translate(900,0)" class="st3 st4">${size}</text>
+<text transform="translate(900,0)" style="font-size:130px;" class="st3 st4">${inch}'</text>
 
 <g>
-	<text transform="matrix(1 0 0 1 430.1663 1779.1896)" class="st3 st4">${thickness} - ${boxColor.name}</text>
+	<text transform="matrix(1 0 0 1 430.1663 1779.1896)" class="st3 st4">5mm - ${boxColor.name}</text>
 	<text transform="matrix(1 0 0 1 361.2102 624.9478)" class="st3 st4">${nameColor.name}</text>
 	<text transform="matrix(1 0 0 1 417.9326 373.4703)" class="st5 st6 st7">${name}</text>
 </g>
@@ -46,7 +60,7 @@ export const svg = (name, boxColor, nameColor, percent, size, thickness) => {
 		c13.9,15.8,20.9,39.5,20.9,70.4c0,20.9-5.8,38.5-17.7,53.8c-12.4,15.9-27.7,27-46.9,34l-45,16.4l44.1,18.8
 		c25.9,11.1,45.1,25.3,57,42.3c11.7,16.7,17.6,40.9,17.6,71.7C681.4,1517.1,667.6,1544.4,639.3,1564.2z"/>
 </g>
-<rect x="772.8" y="2841" width="194.2" height="13.9"/>
+<rect x="772.8" y="2841" width="194.2" height="${gap}"/>
 <path class="st1" d="M1165.1,1398c-14-20.1-35.7-36.4-65.1-48.9c22.4-8.2,40.9-21.6,55.4-40.2c14.5-18.6,21.7-40.4,21.7-65.4
 	c0-35.8-8.5-63.5-25.6-82.9s-40.1-32.6-69-39.5c-28.9-6.9-64.6-10.4-106.9-10.4H718.4v112.1h52.5v280.5H710v111.4h283.7
 	c61.3,0,108.7-11.7,142.2-35c33.5-23.3,50.2-56.3,50.2-99.1C1186.1,1445.6,1179.1,1418.1,1165.1,1398z M923.6,1222.8h44.7

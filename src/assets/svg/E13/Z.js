@@ -1,4 +1,18 @@
-export const svg = (name, boxColor, nameColor, percent, size, thickness) => {
+export const svg = (name, boxColor, nameColor, inch) => {
+  const percent = inch / 7;
+  let gap = 14.1732;
+  switch (inch) {
+    case 9:
+      gap = gap / percent;
+      break;
+    case 11:
+      gap = gap / percent;
+      break;
+
+    default:
+      break;
+  }
+
   return `<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 1123.826 4163.004" style="enable-background:new 0 0 1123.826 4163.004;" xml:space="preserve">
 <style type="text/css">
@@ -13,10 +27,10 @@ export const svg = (name, boxColor, nameColor, percent, size, thickness) => {
 	.st8{stroke:#FF0000;stroke-width:0.25;stroke-miterlimit:10;}
 </style>
 <g transform="scale(${percent})">
-<text transform="translate(900,0)" class="st3 st4">${size}</text>
+<text transform="translate(900,0)" style="font-size:130px;" class="st3 st4">${inch}'</text>
 
 <g>
-	<text transform="matrix(1 0 0 1 307.3683 1716.7529)" class="st3 st4">${thickness} - ${boxColor.name}</text>
+	<text transform="matrix(1 0 0 1 307.3683 1716.7529)" class="st3 st4">5mm - ${boxColor.name}</text>
 	<text transform="matrix(1 0 0 1 238.4123 562.5113)" class="st3 st4">${nameColor.name}</text>
 	<text transform="matrix(1 0 0 1 295.1357 311.0338)" class="st5 st6 st7">${name}</text>
 </g>
@@ -28,7 +42,7 @@ export const svg = (name, boxColor, nameColor, percent, size, thickness) => {
 		c0.312,0,0.572-0.1,0.782-0.297c0.21-0.198,0.315-0.447,0.315-0.747c0-0.312-0.103-0.562-0.306-0.747
 		c-0.204-0.187-0.469-0.279-0.792-0.279h-5.742l6.84-8.784C1012.299,2712.063,1012.383,2711.835,1012.383,2711.607z"/>
 </g>
-<rect x="668.984" y="2649.221" width="195.32" height="13.89"/>
+<rect x="668.984" y="2649.221" width="195.32" height="${gap}"/>
 <g>
 	<path class="st1" d="M465.487,1278.739l-34.38,106.37h-97.29l214.05-286.7v-103.78h-441.73v210.16h91.46l25.3-98.6h99.89
 		l-214.7,281.52v110.92h446.27v-219.89H465.487z M535.367,1479.639h-408.3v-85.52l234.07-306.91h-152.97l-25.3,98.59h-57.74v-172.19

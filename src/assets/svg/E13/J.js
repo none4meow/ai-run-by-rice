@@ -1,4 +1,18 @@
-export const svg = (name, boxColor, nameColor, percent, size, thickness) => {
+export const svg = (name, boxColor, nameColor, inch) => {
+  const percent = inch / 7;
+  let gap = 14.1732;
+  switch (inch) {
+    case 9:
+      gap = gap / percent;
+      break;
+    case 11:
+      gap = gap / percent;
+      break;
+
+    default:
+      break;
+  }
+
   return `
   <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 1567.251 3916.8" style="enable-background:new 0 0 1567.251 3916.8;" xml:space="preserve">
@@ -15,10 +29,10 @@ export const svg = (name, boxColor, nameColor, percent, size, thickness) => {
 </style>
 
 <g transform="scale(${percent})">
-<text transform="translate(900,0)" class="st3 st4">${size}</text>
+<text transform="translate(900,0)" style="font-size:130px;" class="st3 st4">${inch}'</text>
 
 <g>
-	<text transform="matrix(1 0 0 1 519.9423 1705.9958)" class="st3 st4">${thickness} - ${boxColor.name}</text>
+	<text transform="matrix(1 0 0 1 519.9423 1705.9958)" class="st3 st4">5mm - ${boxColor.name}</text>
 	<text transform="matrix(1 0 0 1 450.9862 551.7542)" class="st3 st4">${nameColor.name}</text>
 	<text transform="matrix(1 0 0 1 507.71 300.2768)" class="st5 st6 st7">${name}</text>
 </g>
@@ -32,7 +46,7 @@ export const svg = (name, boxColor, nameColor, percent, size, thickness) => {
 		c0.372,0.504,0.853,0.896,1.44,1.179c0.588,0.281,1.224,0.423,1.908,0.423c0.779,0,1.499-0.188,2.159-0.567
 		c0.66-0.378,1.183-0.885,1.566-1.521s0.576-1.314,0.576-2.034v-7.56C1147.866,2707.119,1147.763,2706.855,1147.559,2706.651z"/>
 </g>
-<rect x="837.015" y="2644.917" width="178.435" height="13.89"/>
+<rect x="837.015" y="2644.917" width="178.435" height="${gap}"/>
 <path class="st1" d="M917.85,994.029v135.33h55.89v177.62c0,14-3.15,25.73-9.62,35.85c-6.56,10.23-13.46,11.55-18.74,11.55
 	c-11.76,0-14.64-4.82-16.42-9.35c-3.01-7.63-6.6-23.53-6.6-55.89v-16.23h-116.3v225.12h54.51l51.49-0.66l6.18-23.77
 	c6.2,4.64,12.97,8.76,20.26,12.36c12.49,6.15,26.44,9.97,41.59,11.41h31.44c41.14-3.2,74.76-17.99,100.1-44.11

@@ -1,4 +1,18 @@
-export const svg = (name, boxColor, nameColor, percent, size, thickness) => {
+export const svg = (name, boxColor, nameColor, inch) => {
+  const percent = inch / 7;
+  let gap = 14.1732;
+  switch (inch) {
+    case 9:
+      gap = gap / percent;
+      break;
+    case 11:
+      gap = gap / percent;
+      break;
+
+    default:
+      break;
+  }
+
   return `
   <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 1567.251 4480.674" style="enable-background:new 0 0 1567.251 4480.674;" xml:space="preserve">
@@ -15,10 +29,10 @@ export const svg = (name, boxColor, nameColor, percent, size, thickness) => {
 </style>
 
 <g transform="scale(${percent})">
-<text transform="translate(900,0)" class="st3 st4">${size}</text>
+<text transform="translate(900,0)" style="font-size:130px;" class="st3 st4">${inch}'</text>
 
 <g>
-	<text transform="matrix(1 0 0 1 585.4341 1769.3665)" class="st3 st4">${thickness} - ${boxColor.name}</text>
+	<text transform="matrix(1 0 0 1 585.4341 1769.3665)" class="st3 st4">5mm - ${boxColor.name}</text>
 	<text transform="matrix(1 0 0 1 516.4781 615.125)" class="st3 st4">${nameColor.name}</text>
 	<text transform="matrix(1 0 0 1 573.1997 363.6473)" class="st5 st6 st7">${name}</text>
 </g>
@@ -61,7 +75,7 @@ export const svg = (name, boxColor, nameColor, percent, size, thickness) => {
 	1055.24,1465.941 1146.05,1465.941 1176.53,1362.801 1257.62,1362.801 1257.62,1577.511 832.1,1577.511 832.1,1465.941 
 	893.07,1465.941 893.07,1185.071 832.1,1185.071 832.1,1073.511 1257.62,1073.511 1257.62,1273.941 1176.53,1273.941 
 	1146.05,1185.071 "/>
-<rect x="949.435" y="2906.997" width="194.51" height="13.89"/>
+<rect x="949.435" y="2906.997" width="194.51" height="${gap}"/>
 <g>
 	<path d="M745.166,4295.477c-5.115,0-9.685,1.475-13.715,4.42c-4.03,2.947-7.042,6.24-9.035,9.881
 		c-3.035-9.533-10.01-14.301-20.93-14.301c-4.42,0-8.43,1.105-12.025,3.314c-3.598,2.211-6.565,4.875-8.905,7.996v-2.08

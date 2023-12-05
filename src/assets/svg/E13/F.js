@@ -1,4 +1,18 @@
-export const svg = (name, boxColor, nameColor, percent, size, thickness) => {
+export const svg = (name, boxColor, nameColor, inch) => {
+  const percent = inch / 7;
+  let gap = 14.1732;
+  switch (inch) {
+    case 9:
+      gap = gap / percent;
+      break;
+    case 11:
+      gap = gap / percent;
+      break;
+
+    default:
+      break;
+  }
+
   return `
   <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 1567.251 4307.189" style="enable-background:new 0 0 1567.251 4307.189;" xml:space="preserve">
@@ -15,10 +29,10 @@ export const svg = (name, boxColor, nameColor, percent, size, thickness) => {
 </style>
 
 <g transform="scale(${percent})">
-<text transform="translate(900,0)" class="st3 st4">${size}</text>
+<text transform="translate(900,0)" style="font-size:130px;" class="st3 st4">${inch}'</text>
 
 <g>
-	<text transform="matrix(1 0 0 1 480.442 1695.2407)" class="st3 st4">${thickness} - ${boxColor.name}</text>
+	<text transform="matrix(1 0 0 1 480.442 1695.2407)" class="st3 st4">5mm - ${boxColor.name}</text>
 	<text transform="matrix(1 0 0 1 411.4859 540.9993)" class="st3 st4">${nameColor.name}</text>
 	<text transform="matrix(1 0 0 1 468.208 289.5216)" class="st5 st6 st7">${name}</text>
 </g>
@@ -59,7 +73,7 @@ export const svg = (name, boxColor, nameColor, percent, size, thickness) => {
 <polygon class="st1" points="1201.06,992.384 1201.06,1196.054 1109.6,1196.054 1089.49,1103.945 1008.41,1103.945 
 	1008.41,1199.304 1079.11,1199.304 1079.11,1280.385 1008.41,1280.385 1008.41,1384.814 1068.73,1384.814 1068.73,1496.385 
 	785.27,1496.385 785.27,1384.814 846.25,1384.814 846.25,1103.945 785.27,1103.945 785.27,992.384 "/>
-<rect x="906.883" y="2664.286" width="194.5" height="13.89"/>
+<rect x="906.883" y="2664.286" width="194.5" height="${gap}"/>
 <g>
 	<path d="M706.564,4059.504c-5.115,0-9.685,1.475-13.715,4.42c-4.03,2.947-7.042,6.24-9.035,9.881
 		c-3.035-9.533-10.01-14.301-20.93-14.301c-4.42,0-8.43,1.105-12.025,3.314c-3.598,2.211-6.565,4.875-8.905,7.996v-2.08

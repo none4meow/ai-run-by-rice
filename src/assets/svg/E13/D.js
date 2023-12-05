@@ -1,4 +1,18 @@
-export const svg = (name, boxColor, nameColor, percent, size, thickness) => {
+export const svg = (name, boxColor, nameColor, inch) => {
+  const percent = inch / 7;
+  let gap = 14.1732;
+  switch (inch) {
+    case 9:
+      gap = gap / percent;
+      break;
+    case 11:
+      gap = gap / percent;
+      break;
+
+    default:
+      break;
+  }
+
   return `
   <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 1567.251 4329.095" style="enable-background:new 0 0 1567.251 4329.095;" xml:space="preserve">
@@ -15,10 +29,10 @@ export const svg = (name, boxColor, nameColor, percent, size, thickness) => {
 </style>
 
 <g transform="scale(${percent})">
-<text transform="translate(900,0)" class="st3 st4">${size}</text>
+<text transform="translate(900,0)" style="font-size:130px;" class="st3 st4">${inch}'</text>
 
 <g>
-	<text transform="matrix(1 0 0 1 459.9542 1719.7211)" class="st3 st4">${thickness} - ${boxColor.name}</text>
+	<text transform="matrix(1 0 0 1 459.9542 1719.7211)" class="st3 st4">5mm - ${boxColor.name}</text>
 	<text transform="matrix(1 0 0 1 390.9981 565.4794)" class="st3 st4">${nameColor.name}</text>
 	<text transform="matrix(1 0 0 1 447.7212 314.0018)" class="st5 st6 st7">${name}</text>
 </g>
@@ -79,7 +93,7 @@ export const svg = (name, boxColor, nameColor, percent, size, thickness) => {
 	C1310.37,1166.524,1286.05,1103.824,1237.4,1061.444z M1103.77,1350.414c-16.21,26.59-42.06,39.89-77.51,39.89h-20.11v-280.86h20.11
 	c35.89,0,61.83,12.97,77.84,38.92c15.99,25.94,24,59.67,24,101.18C1128.1,1290.204,1119.99,1323.824,1103.77,1350.414z"/>
 <polygon points="1067.29,1501.721 1067.29,1516.926 872.79,1516.926 872.79,1501.786 1032.81,1501.721 "/>
-<rect x="947.876" y="2804.29" width="194.5" height="13.89"/>
+<rect x="947.876" y="2804.29" width="194.5" height="${gap}"/>
 <g>
 	<path d="M689.183,4122.36c-5.115,0-9.685,1.475-13.715,4.42c-4.03,2.947-7.042,6.24-9.035,9.881
 		c-3.035-9.533-10.01-14.301-20.93-14.301c-4.42,0-8.43,1.105-12.025,3.314c-3.598,2.211-6.565,4.875-8.905,7.996v-2.08

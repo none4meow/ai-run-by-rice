@@ -1,4 +1,18 @@
-export const svg = (name, boxColor, nameColor, percent, size, thickness) => {
+export const svg = (name, boxColor, nameColor, inch) => {
+  const percent = inch / 7;
+  let gap = 14.1732;
+  switch (inch) {
+    case 9:
+      gap = gap / percent;
+      break;
+    case 11:
+      gap = gap / percent;
+      break;
+
+    default:
+      break;
+  }
+
   return `<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 1567.251 4232.348" style="enable-background:new 0 0 1567.251 4232.348;" xml:space="preserve">
 <style type="text/css">
@@ -13,10 +27,10 @@ export const svg = (name, boxColor, nameColor, percent, size, thickness) => {
 	.st8{stroke:#FF0000;stroke-width:0.25;stroke-miterlimit:10;}
 </style>
 <g transform="scale(${percent})">
-<text transform="translate(900,0)" class="st3 st4">${size}</text>
+<text transform="translate(900,0)" style="font-size:130px;" class="st3 st4">${inch}'</text>
 
 <g>
-	<text transform="matrix(1 0 0 1 467.5195 1721.8849)" class="st3 st4">${thickness} - ${boxColor.name}</text>
+	<text transform="matrix(1 0 0 1 467.5195 1721.8849)" class="st3 st4">5mm - ${boxColor.name}</text>
 	<text transform="matrix(1 0 0 1 398.5635 567.6431)" class="st3 st4">${nameColor.name}</text>
 	<text transform="matrix(1 0 0 1 455.2847 316.1656)" class="st5 st6 st7">${name}</text>
 </g>
@@ -27,7 +41,7 @@ export const svg = (name, boxColor, nameColor, percent, size, thickness) => {
 		c0,0.312,0.108,0.573,0.324,0.783s0.491,0.314,0.828,0.314c0.335,0,0.618-0.104,0.846-0.314s0.343-0.471,0.343-0.783v-9.432h2.825
 		c0.324,0,0.588-0.094,0.792-0.279c0.204-0.187,0.307-0.435,0.307-0.747C1254.623,2779.169,1254.52,2778.916,1254.316,2778.725z"/>
 </g>
-<rect x="963.715" y="2715.477" width="195.75" height="13.89"/>
+<rect x="963.715" y="2715.477" width="195.75" height="${gap}"/>
 <g>
 	<path class="st1" d="M255.499,1000.035v198.49h88.86l13.62-86.92h44.76v278.27h-51.89v114.16h282.16v-114.16h-51.89v-278.27h46.05
 		l13.62,86.92h88.87v-198.49H255.499z M710.669,1179.535h-53.63l-13.63-86.92h-81.28v316.25h51.9v76.19h-244.2v-76.19h51.89v-316.25

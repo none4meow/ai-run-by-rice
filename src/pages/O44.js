@@ -53,7 +53,7 @@ const O44 = () => {
 
   const male = ["boy", "male", "son", "man"];
   const female = ["girl", "female", "daughter", "woman"];
-  const meow = ["cat"];
+  const meow = ["cat", "pet"];
   const gaw = ["dog", "bone"];
 
   const sorting = (name, string, boy, girl, cat, dog) => {
@@ -72,32 +72,34 @@ const O44 = () => {
 
     // console.log(name, isBoy, isGirl, isMeow, isGaw);
 
+    let isMeow = false;
+    console.log("string >>>>", string, ", name >>>>", name);
+
     meow.forEach((ele) => {
-      const meowIndex = string.indexOf(ele);
-      if (meowIndex > 1) {
-        // console.log(
-        //   "meow",
-        //   meowIndex,
-        //   name[meowIndex + ele.length],
-        //   isSpecialChars(name[meowIndex + ele.length])
-        // );
-        const nextChar = name[meowIndex + ele.length];
-        const prevChar = name[meowIndex - 1];
-        if (nextChar) {
-          if (isSpecialChars(nextChar)) {
-            if (!isSpecialChars(prevChar)) {
-              cat.push(name);
-              return;
-            }
-          }
-        } else {
-          if (isSpecialChars(prevChar)) {
+      const meowIndex = string.toLowerCase().indexOf(ele);
+      console.log("meowIndex", meowIndex);
+      if (meowIndex > -1) {
+        const nextChar = string[meowIndex + ele.length];
+        const prevChar = string[meowIndex - 1];
+
+        console.log(
+          "meow",
+          nextChar,
+          isSpecialChars(nextChar),
+          prevChar,
+          isSpecialChars(prevChar)
+        );
+        if (nextChar || prevChar) {
+          if (isSpecialChars(nextChar) || isSpecialChars(prevChar)) {
+            // if (!(isSpecialChars(nextChar) || isSpecialChars(prevChar))) {
             cat.push(name);
-            return;
+            isMeow = true;
           }
         }
       }
     });
+
+    if (isMeow) return;
 
     const isGaw = gaw.some((a) => string.toLowerCase().includes(a));
     if (isGaw) {
@@ -131,65 +133,68 @@ const O44 = () => {
 
     let index = 0;
 
+    // (personalization.match(/,/g) || []).length > 0;
+
     let entry =
-      (personalization.match(/,/g) || []).length > 0
-        ? personalization.trim().split(",")
-        : personalization.trim().split("\n");
+      (personalization.match(/\n/g) || []).length > 0
+        ? personalization.trim().split("\n")
+        : personalization.trim().split(",");
 
     const entryLength = entry.length;
 
-    if ((entry[0].match(/ /g) || []).length > 0) {
-      const newTitle = entry[0];
+    // having more than 1 space
+    // if ((entry[0].match(/ /g) || []).length > 0) {
 
-      let isTitleValid = true;
+    const newTitle = entry[0];
 
-      male.forEach((ele) => {
-        const meowIndex = newTitle.indexOf(ele);
-        if (meowIndex > 1) {
-          const nextChar = newTitle[meowIndex + ele.length];
+    let isTitleValid = true;
 
-          if (nextChar) {
-            if (isSpecialChars(nextChar)) {
-              const prevChar = newTitle[meowIndex - 1];
-              if (isSpecialChars(prevChar)) isTitleValid = false;
-            } else {
-              isTitleValid = false;
-            }
-          }
-        }
-      });
+    // console.log("newTitle", newTitle);
 
-      female.forEach((ele) => {
-        const meowIndex = newTitle.indexOf(ele);
-        if (meowIndex > 1) {
-          const nextChar = newTitle[meowIndex + ele.length];
+    male.forEach((ele) => {
+      const meowIndex = newTitle.toLowerCase().indexOf(ele);
+      console.log("male.forEach(", meowIndex);
 
-          if (nextChar) {
-            if (isSpecialChars(nextChar)) {
-              const prevChar = newTitle[meowIndex - 1];
-              if (isSpecialChars(prevChar)) isTitleValid = false;
-            }
-          } else {
+      if (meowIndex > -1) {
+        const nextChar = newTitle[meowIndex + ele.length];
+        const prevChar = newTitle[meowIndex - 1];
+
+        if (nextChar || prevChar) {
+          if (isSpecialChars(nextChar) || isSpecialChars(prevChar))
             isTitleValid = false;
-          }
         }
-      });
+      }
+    });
 
-      if (isTitleValid) {
-        const titleIndex = newTitle.toLowerCase().indexOf("title");
-        if (titleIndex > -1) {
-          for (let i = titleIndex + 5; i < newTitle.length; i++) {
-            if (isSpecialChars(newTitle[i])) continue;
-            else {
-              title = newTitle.substring(i);
-              index = 1;
-              break;
-            }
-          }
-        } else {
-          title = newTitle;
-          index = 1;
+    female.forEach((ele) => {
+      const meowIndex = newTitle.toLowerCase().indexOf(ele);
+      if (meowIndex > -1) {
+        const nextChar = newTitle[meowIndex + ele.length];
+        const prevChar = newTitle[meowIndex - 1];
+
+        if (nextChar || prevChar) {
+          if (isSpecialChars(nextChar) || isSpecialChars(prevChar))
+            isTitleValid = false;
         }
+      }
+    });
+
+    // console.log("isTitleValid", isTitleValid);
+
+    if (isTitleValid) {
+      const titleIndex = newTitle.toLowerCase().indexOf("title");
+      if (titleIndex > -1) {
+        for (let i = titleIndex + 5; i < newTitle.length; i++) {
+          if (isSpecialChars(newTitle[i])) continue;
+          else {
+            title = newTitle.substring(i);
+            index = 1;
+            break;
+          }
+        }
+      } else {
+        title = newTitle;
+        index = 1;
       }
     }
 
@@ -199,7 +204,7 @@ const O44 = () => {
 
       let name = "";
       let heading = false;
-      // console.log(element, element.length);
+      console.log("element >>>>", element, "\n");
 
       for (let o = 0; o < element.length; o++) {
         // console.log(o, element[o], heading, isSpecialChars(element[o]));
@@ -239,6 +244,8 @@ const O44 = () => {
     // console.log("\n");
     // console.log(title, boy, girl, cat, dog);
 
+    if (title.length > 0) setTitle(title);
+
     setBoyNames(boy);
     setGirlNames(girl);
     setCatNames(cat);
@@ -256,7 +263,7 @@ const O44 = () => {
   };
 
   return (
-    <div style={{ width: "80vw", paddingTop: "136px" }}>
+    <div style={{ width: "80vw", paddingTop: "234px" }}>
       <div className="row g-3 align-items-center mb-3">
         <label
           htmlFor="personalization"
@@ -266,7 +273,7 @@ const O44 = () => {
         </label>
         <textarea
           style={{
-            height: "360px",
+            height: "234px",
             position: "fixed",
             width: "80vw",
             top: "60px",
@@ -281,7 +288,13 @@ const O44 = () => {
         />
       </div>
 
-      <button className="btn btn-secondary w-100" onClick={() => sortData()}>
+      <button
+        className="btn btn-secondary w-100"
+        onClick={() => {
+          reset();
+          sortData();
+        }}
+      >
         Sort data
       </button>
 

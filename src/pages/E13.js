@@ -60,11 +60,11 @@ const E13 = () => {
 
   const [firstChar, setFirstChar] = useState(null);
 
-  // eslint-disable-next-line no-unused-vars
-  const [sizes, _] = useState(["7''", "9''", "11''"]);
+  const [sizes] = useState([7, 9, 11]);
   const [customSize, setCustomSize] = useState(sizes[0]);
   const onChangeCustomSize = (e) => {
-    setCustomSize(e.target.value);
+    const value = e.target.value;
+    setCustomSize(parseInt(value));
   };
 
   const resetCustom = () => {
@@ -77,18 +77,15 @@ const E13 = () => {
   const sizeRef = useRef(null);
 
   const getCode = () => {
-    if (!customBoxColor || !customNameColor) return;
+    if (!customName.length > 0 || !customBoxColor || !customNameColor) return;
 
-    const thickness = "5mm";
     switch (customSize) {
       case sizes[0]:
         return templates.E13[firstChar](
           customName,
           customBoxColor,
           customNameColor,
-          1,
-          sizes[0],
-          thickness
+          customSize
         );
 
       case sizes[1]:
@@ -96,18 +93,14 @@ const E13 = () => {
           customName,
           customBoxColor,
           customNameColor,
-          9 / 7,
-          sizes[1],
-          thickness
+          customSize
         );
       case sizes[2]:
         return templates.E13[firstChar](
           customName,
           customBoxColor,
           customNameColor,
-          11 / 7,
-          sizes[2],
-          thickness
+          customSize
         );
       default:
         break;

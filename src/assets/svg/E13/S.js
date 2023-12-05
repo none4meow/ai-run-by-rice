@@ -1,4 +1,18 @@
-export const svg = (name, boxColor, nameColor, percent, size, thickness) => {
+export const svg = (name, boxColor, nameColor, inch) => {
+  const percent = inch / 7;
+  let gap = 14.1732;
+  switch (inch) {
+    case 9:
+      gap = gap / percent;
+      break;
+    case 11:
+      gap = gap / percent;
+      break;
+
+    default:
+      break;
+  }
+
   return `<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 1567.251 4310.905" style="enable-background:new 0 0 1567.251 4310.905;" xml:space="preserve">
 <style type="text/css">
@@ -13,10 +27,10 @@ export const svg = (name, boxColor, nameColor, percent, size, thickness) => {
 	.st8{stroke:#FF0000;stroke-width:0.25;stroke-miterlimit:10;}
 </style>
 <g transform="scale(${percent})">
-<text transform="translate(900,0)" class="st3 st4">${size}</text>
+<text transform="translate(900,0)" style="font-size:130px;" class="st3 st4">${inch}'</text>
 
 <g>
-	<text transform="matrix(1 0 0 1 535.0707 1792.1741)" class="st3 st4">${thickness} - ${boxColor.name}</text>
+	<text transform="matrix(1 0 0 1 535.0707 1792.1741)" class="st3 st4">5mm - ${boxColor.name}</text>
 	<text transform="matrix(1 0 0 1 466.1146 637.9325)" class="st3 st4">${nameColor.name}</text>
 	<text transform="matrix(1 0 0 1 522.8364 386.455)" class="st5 st6 st7">${name}</text>
 </g>
@@ -35,7 +49,7 @@ export const svg = (name, boxColor, nameColor, percent, size, thickness) => {
 		c0.672,0.215,1.44,0.324,2.304,0.324c0.816,0,1.578-0.154,2.286-0.459c0.708-0.307,1.275-0.744,1.701-1.314
 		s0.639-1.233,0.639-1.989C1145.564,2930.102,1145.409,2929.458,1145.096,2928.971z"/>
 </g>
-<rect x="811.242" y="2858.951" width="188.72" height="13.89"/>
+<rect x="811.242" y="2858.951" width="188.72" height="${gap}"/>
 <path class="st1" d="M779.191,1343.504c-15.223-22.716-35.438-40.225-60.655-52.526c-25.228-12.291-55.966-22.609-92.234-30.953
 	c-20.43-4.583-36.17-9.478-47.211-14.695c-11.051-5.208-16.57-12.604-16.57-22.198c0-8.754,3.85-15.632,11.568-20.635
 	c7.708-5.002,18.652-7.504,32.829-7.504c18.339,0,32.829,3.547,43.459,10.631c10.631,7.093,20.323,19.805,29.077,38.144h93.797

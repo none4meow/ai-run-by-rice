@@ -1,4 +1,18 @@
-export const svg = (name, boxColor, nameColor, percent, size, thickness) => {
+export const svg = (name, boxColor, nameColor, inch) => {
+  const percent = inch / 7;
+  let gap = 14.1732;
+  switch (inch) {
+    case 9:
+      gap = gap / percent;
+      break;
+    case 11:
+      gap = gap / percent;
+      break;
+
+    default:
+      break;
+  }
+
   return `<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 1567.251 4366.942" style="enable-background:new 0 0 1567.251 4366.942;" xml:space="preserve">
 <style type="text/css">
@@ -13,10 +27,10 @@ export const svg = (name, boxColor, nameColor, percent, size, thickness) => {
 	.st8{stroke:#FF0000;stroke-width:0.25;stroke-miterlimit:10;}
 </style>
 <g transform="scale(${percent})">
-<text transform="translate(900,0)" class="st3 st4">${size}</text>
+<text transform="translate(900,0)" style="font-size:130px;" class="st3 st4">${inch}'</text>
 
 <g>
-	<text transform="matrix(1 0 0 1 506.9068 1742.0084)" class="st3 st4">${thickness} - ${boxColor.name}</text>
+	<text transform="matrix(1 0 0 1 506.9068 1742.0084)" class="st3 st4">5mm - ${boxColor.name}</text>
 	<text transform="matrix(1 0 0 1 437.9507 587.7665)" class="st3 st4">${nameColor.name}</text>
 	<text transform="matrix(1 0 0 1 494.6724 336.2892)" class="st5 st6 st7">${name}</text>
 </g>
@@ -30,7 +44,7 @@ export const svg = (name, boxColor, nameColor, percent, size, thickness) => {
 		c0.217,0,0.42-0.06,0.612-0.18s0.342-0.294,0.45-0.522l4.446-10.403c0.071-0.168,0.107-0.33,0.107-0.486
 		C1326.746,2861.829,1326.635,2861.583,1326.413,2861.379z"/>
 </g>
-<rect x="1052.875" y="2798.163" width="159.06" height="13.89"/>
+<rect x="1052.875" y="2798.163" width="159.06" height="${gap}"/>
 <g>
 	<path class="st1" d="M573.304,1006.073v111.57h41.51l-55.78,228.97l-63.57-228.97h36.32v-111.57h-273.73v111.57h52.54
 		l114.16,392.43h185.52l125.84-392.43h57.08v-111.57H573.304z M774.204,1098.653h-51.94l-125.84,392.43h-157.42l-114.16-392.43

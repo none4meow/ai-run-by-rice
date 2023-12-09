@@ -1,5 +1,6 @@
-export { svg as front, transform as frontTransform } from "./front";
-export { svg as male, transform as maleTransform } from "./male";
-export { svg as female, transform as femaleTransform } from "./female";
-export { svg as cat, transform as catTransform } from "./cat";
-export { svg as dog, transform as dogTransform } from "./dog";
+export { tag as front, param as frontParam } from "./front";
+export { tag as male, param as maleParam } from "./male";
+export { tag as female, param as femaleParam } from "./female";
+export { tag as cat, param as catParam } from "./cat";
+export { tag as dog, param as dogParam } from "./dog";
+export { tag as koson, param as kosonParam } from "./koson";

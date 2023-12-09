@@ -37,7 +37,7 @@ const O50 = () => {
 
   //   let body = "";
   //   const bigTranslate = { x: 0, y: 0 };
-  //   const smallTranslate = { x: templates.O50.bigHeartTransform.W, y: 0 };
+  //   const smallTranslate = { x: templates.O50.bigHeartParam.W, y: 0 };
 
   //   let maxSmallInRow = 5;
   //   let smallCurrentIndex = 0;
@@ -48,7 +48,7 @@ const O50 = () => {
   //       bigTranslate.y,
   //       bigArray[index]
   //     );
-  //     bigTranslate.y += templates.O50.bigHeartTransform.H;
+  //     bigTranslate.y += templates.O50.bigHeartParam.H;
   //   }
 
   //   for (let index = 0; index < smallArray.length; index++) {
@@ -58,18 +58,18 @@ const O50 = () => {
   //         smallTranslate.y,
   //         smallArray[index]
   //       );
-  //       smallTranslate.x += templates.O50.smallHeartTransform.W;
+  //       smallTranslate.x += templates.O50.smallHeartParam.W;
   //       smallCurrentIndex++;
   //     } else {
-  //       smallTranslate.x = templates.O50.bigHeartTransform.W;
-  //       smallTranslate.y += templates.O50.smallHeartTransform.H;
+  //       smallTranslate.x = templates.O50.bigHeartParam.W;
+  //       smallTranslate.y += templates.O50.smallHeartParam.H;
   //       body += templates.O50.smallHeart(
   //         smallTranslate.x,
   //         smallTranslate.y,
   //         smallArray[index]
   //       );
 
-  //       smallTranslate.x += templates.O50.smallHeartTransform.W;
+  //       smallTranslate.x += templates.O50.smallHeartParam.W;
   //       smallCurrentIndex = 1;
   //     }
   //   }
@@ -117,7 +117,7 @@ const O50 = () => {
         bigTranslate.y,
         bigArray[index]
       );
-      bigTranslate.y += templates.O50.bigHeartTransform.H;
+      bigTranslate.y += templates.O50.bigHeartParam.H;
     }
 
     const smallTranslate = { x: 0, y: bigTranslate.y };
@@ -128,7 +128,7 @@ const O50 = () => {
         smallTranslate.y,
         smallArray[index]
       );
-      smallTranslate.y += templates.O50.smallHeartTransform.H;
+      smallTranslate.y += templates.O50.smallHeartParam.H;
     }
 
     return `<svg xmlns="http://www.w3.org/2000/svg">

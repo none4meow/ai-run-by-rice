@@ -1,10 +1,10 @@
 export const styles = `
-      	.st0{fill:#FFFFFF;stroke:#FFB600;stroke-width:0.25;stroke-miterlimit:10;}
+  .st0{fill:#FFFFFF;stroke:#FFB600;stroke-width:0.25;stroke-miterlimit:10;}
 	.st1{font-family:'RollerSkates-Regular';}
 	.st2{text-align: center;}
 `;
 
-export const transform = {
+export const param = {
   W: 82,
   H: 70,
 };

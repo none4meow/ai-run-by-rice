@@ -4,7 +4,7 @@ export const styles = `
 	.st2{text-align: center;}
 `;
 
-export const transform = {
+export const param = {
   W: 58,
   H: 46,
 };

@@ -1,10 +1,18 @@
 import React, { useState } from "react";
+import { templates } from "../configs/templates";
 
 const O44 = () => {
   const [personalization, setPersonalization] = useState("");
   const onChangePersonalization = (e) => {
     const value = e.target.value;
     setPersonalization(value);
+  };
+
+  const [sizes] = useState([0, 1]);
+  const [customSize, setCustomSize] = useState(sizes[0]);
+  const onChangeCustomSize = (e) => {
+    const value = e.target.value;
+    setCustomSize(value);
   };
 
   const [defaultYear] = useState("2023");
@@ -47,7 +55,7 @@ const O44 = () => {
   };
 
   const isSpecialChars = (str) => {
-    const specialChars = /[`!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~ ]/;
+    const specialChars = /[`!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~ •]/;
     return specialChars.test(str);
   };
 
@@ -95,12 +103,12 @@ const O44 = () => {
         if (nextChar) {
           if (isSpecialChars(nextChar)) {
             if (prevChar) {
-              if (!isSpecialChars(prevChar)) {
-                console.log("if nextChar not prevChar", name);
-              } else {
+              if (isSpecialChars(prevChar)) {
                 console.log("just cat", name);
                 cat.push(name);
                 isMeow = true;
+              } else {
+                console.log("if nextChar not prevChar", name);
               }
             } else {
               console.log("just cat", name);
@@ -110,12 +118,12 @@ const O44 = () => {
           } else {
             if (prevChar) {
               if (isSpecialChars(prevChar)) {
-                console.log("else prevChar", name);
+                console.log("just cat", name);
+                cat.push(name);
+                isMeow = true;
               }
             } else {
-              console.log("just cat", name);
-              cat.push(name);
-              isMeow = true;
+              console.log("else prevChar", name);
             }
           }
         } else {
@@ -176,10 +184,9 @@ const O44 = () => {
 
     // (personalization.match(/,/g) || []).length > 0;
 
+    const pern = personalization.trim();
     let entry =
-      (personalization.match(/\n/g) || []).length > 1
-        ? personalization.trim().split("\n")
-        : personalization.trim().split(",");
+      (pern.match(/\n/g) || []).length > 1 ? pern.split("\n") : pern.split(",");
 
     console.log("entry", (personalization.match(/\n/g) || []).length, entry);
 
@@ -322,10 +329,60 @@ const O44 = () => {
     setGirlNames(girl);
     setCatNames(cat);
     setDogNames(dog);
+
+    const numNames = boy.length + girl.length + dog.length + cat.length;
+    console.log("numNames", numNames);
+    if (numNames > 6) setCustomSize("1");
   };
-  const getCode = () => {};
+
+  const getCode = () => {
+    const position = { x: 0, y: 0 };
+
+    let body = "";
+
+    console.log(
+      "parseInt customSize",
+      customSize,
+      parseInt(customSize),
+      parseInt(customSize) === 0
+    );
+
+    const percent = parseInt(customSize) === 0 ? 1 : 150 / 115;
+    console.log("percent", percent);
+
+    body += templates.O44.front(position.x, position.y, percent, title);
+    position.x += templates.O44.frontParam.W;
+
+    body += templates.O44.koson(position.x, position.y, 1, title);
+    position.y += templates.O44.kosonParam.H;
+
+    for (let index = 0; index < boyNames.length; index++) {
+      body += templates.O44.male(position.x, position.y, boyNames[index]);
+      position.y += templates.O44.maleParam.H;
+    }
+
+    for (let index = 0; index < girlNames.length; index++) {
+      body += templates.O44.female(position.x, position.y, girlNames[index]);
+      position.y += templates.O44.femaleParam.H;
+    }
+
+    for (let index = 0; index < catNames.length; index++) {
+      body += templates.O44.cat(position.x, position.y, catNames[index]);
+      position.y += templates.O44.catParam.H;
+    }
+
+    for (let index = 0; index < dogNames.length; index++) {
+      body += templates.O44.dog(position.x, position.y, dogNames[index]);
+      position.y += templates.O44.dogParam.H;
+    }
+
+    return `<svg xmlns="http://www.w3.org/2000/svg">
+      ${body}
+    </svg>`;
+  };
 
   const reset = () => {
+    setCustomSize(0);
     setYear(defaultYear);
     setTitle(defaultTitle);
     setBoyNames("");
@@ -370,6 +427,14 @@ const O44 = () => {
         Sort personalization
       </button>
 
+      <select
+        className="form-control form-select col-auto"
+        onChange={(e) => onChangeCustomSize(e)}
+        value={customSize}
+      >
+        <option value={0}>1 - 6 names</option>
+        <option value={1}>7 - 10 names</option>
+      </select>
       <div className="row d-flex flex-row justify-content-between">
         <div className="col g-3 align-items-center mb-3 me-5">
           <label htmlFor="year" className="form-label col-auto col-form-label">

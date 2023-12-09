@@ -6,9 +6,9 @@ import * as E13 from "../assets/svg/E13";
 import * as O44 from "../assets/svg/E13";
 
 export const templates = {
-  O50,
-  G87,
   E05,
   E13,
+  G87,
   O44,
+  O50,
 };

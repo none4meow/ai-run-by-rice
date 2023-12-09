@@ -187,7 +187,7 @@ const E13 = () => {
         >
           {sizes.map((ele) => (
             <option key={ele} value={ele}>
-              {ele}
+              {ele} inches
             </option>
           ))}
         </select>

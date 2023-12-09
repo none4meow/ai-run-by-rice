@@ -53,10 +53,12 @@ const O44 = () => {
 
   const male = ["boy", "male", "son", "man"];
   const female = ["girl", "female", "daughter", "woman"];
-  const meow = ["cat", "pet"];
+  const meow = ["cat"];
   const gaw = ["dog", "bone"];
 
   const sorting = (name, string, boy, girl, cat, dog) => {
+    // console.log(name, female.indexOf(name.toLowerCase()));
+
     if (
       meow.indexOf(name.toLowerCase()) > -1 ||
       gaw.indexOf(name.toLowerCase()) > -1 ||
@@ -89,13 +91,52 @@ const O44 = () => {
           prevChar,
           isSpecialChars(prevChar)
         );
-        if (nextChar || prevChar) {
-          if (isSpecialChars(nextChar) || isSpecialChars(prevChar)) {
-            // if (!(isSpecialChars(nextChar) || isSpecialChars(prevChar))) {
-            cat.push(name);
-            isMeow = true;
+
+        if (nextChar) {
+          if (isSpecialChars(nextChar)) {
+            if (prevChar) {
+              if (!isSpecialChars(prevChar)) {
+                console.log("if nextChar not prevChar", name);
+              } else {
+                console.log("just cat", name);
+                cat.push(name);
+                isMeow = true;
+              }
+            } else {
+              console.log("just cat", name);
+              cat.push(name);
+              isMeow = true;
+            }
+          } else {
+            if (prevChar) {
+              if (isSpecialChars(prevChar)) {
+                console.log("else prevChar", name);
+              }
+            } else {
+              console.log("just cat", name);
+              cat.push(name);
+              isMeow = true;
+            }
+          }
+        } else {
+          if (prevChar) {
+            if (isSpecialChars(prevChar)) {
+              console.log("just cat", name);
+              cat.push(name);
+              isMeow = true;
+            }
+          } else {
+            console.log("else prevChar", name);
           }
         }
+
+        // if (nextChar || prevChar) {
+        //   if (isSpecialChars(nextChar) || isSpecialChars(prevChar)) {
+        //     // if (!(isSpecialChars(nextChar) || isSpecialChars(prevChar))) {
+        //     cat.push(name);
+        //     isMeow = true;
+        //   }
+        // }
       }
     });
 
@@ -136,9 +177,11 @@ const O44 = () => {
     // (personalization.match(/,/g) || []).length > 0;
 
     let entry =
-      (personalization.match(/\n/g) || []).length > 0
+      (personalization.match(/\n/g) || []).length > 1
         ? personalization.trim().split("\n")
         : personalization.trim().split(",");
+
+    console.log("entry", (personalization.match(/\n/g) || []).length, entry);
 
     const entryLength = entry.length;
 
@@ -147,21 +190,47 @@ const O44 = () => {
 
     const newTitle = entry[0];
 
-    let isTitleValid = true;
+    let isValidTitle = true;
 
     // console.log("newTitle", newTitle);
 
     male.forEach((ele) => {
       const meowIndex = newTitle.toLowerCase().indexOf(ele);
-      console.log("male.forEach(", meowIndex);
+      console.log("male.forEach(", newTitle.toLowerCase(), meowIndex);
 
       if (meowIndex > -1) {
         const nextChar = newTitle[meowIndex + ele.length];
         const prevChar = newTitle[meowIndex - 1];
 
-        if (nextChar || prevChar) {
-          if (isSpecialChars(nextChar) || isSpecialChars(prevChar))
-            isTitleValid = false;
+        if (nextChar) {
+          if (isSpecialChars(nextChar)) {
+            if (prevChar) {
+              if (isSpecialChars(prevChar)) {
+                console.log("just male");
+                isValidTitle = false;
+              } else {
+              }
+            } else {
+              console.log("just male");
+              isValidTitle = false;
+            }
+          } else {
+            if (prevChar) {
+              if (isSpecialChars(prevChar)) {
+                console.log("just male");
+                isValidTitle = false;
+              }
+            } else {
+            }
+          }
+        } else {
+          if (prevChar) {
+            if (isSpecialChars(prevChar)) {
+              console.log("just male");
+              isValidTitle = false;
+            }
+          } else {
+          }
         }
       }
     });
@@ -174,14 +243,14 @@ const O44 = () => {
 
         if (nextChar || prevChar) {
           if (isSpecialChars(nextChar) || isSpecialChars(prevChar))
-            isTitleValid = false;
+            isValidTitle = false;
         }
       }
     });
 
     // console.log("isTitleValid", isTitleValid);
 
-    if (isTitleValid) {
+    if (isValidTitle) {
       const titleIndex = newTitle.toLowerCase().indexOf("title");
       if (titleIndex > -1) {
         for (let i = titleIndex + 5; i < newTitle.length; i++) {
@@ -213,14 +282,17 @@ const O44 = () => {
           if (isSpecialChars(element[o])) {
             heading = false;
 
-            sorting(name, element, boy, girl, cat, dog);
-            name = "";
+            if (isNaN(name)) {
+              sorting(name, element, boy, girl, cat, dog);
+              name = "";
+            }
           } else {
             if (o === element.length - 1) {
               name += element[o];
-
-              sorting(name, element, boy, girl, cat, dog);
-              name = "";
+              if (isNaN(name)) {
+                sorting(name, element, boy, girl, cat, dog);
+                name = "";
+              }
             } else {
               name += element[o];
             }
@@ -295,7 +367,7 @@ const O44 = () => {
           sortData();
         }}
       >
-        Sort data
+        Sort personalization
       </button>
 
       <div className="row d-flex flex-row justify-content-between">

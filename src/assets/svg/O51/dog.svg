@@ -1,20 +1,8 @@
-export const param = {
-  W: 83,
-  H: 53,
-};
-
-export const tag = (x, y, text) => {
-  let fontSize = 22;
-
-  const textLength = text.length;
-
-  if (textLength === 6) fontSize -= 1;
-  else if (textLength === 7) fontSize -= 2;
-  else if (textLength === 8) fontSize -= 3;
-  else if (textLength >= 9) fontSize -= 4;
-
-  return `
-<path transform="translate(${x},${y})" fill="#E2D6C7" stroke="#FDB515" stroke-width="0.25" stroke-miterlimit="10" d="M84.516,37.227
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 27.9.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 85.652 53.304" enable-background="new 0 0 85.652 53.304" xml:space="preserve">
+<path fill="#E2D6C7" stroke="#FDB515" stroke-width="0.25" stroke-miterlimit="10" d="M84.516,37.227
 	c0,3.944-1.622,7.776-4.449,10.515c-2.633,2.55-6.028,3.939-9.602,3.939c-0.146,0-0.287-0.005-0.432-0.01
 	c-5.192-0.16-8.31-2.89-10.205-4.93c-0.33-0.355-0.646-0.743-0.952-1.122c-1.093-1.345-2.123-2.618-3.822-2.618H42.309
 	c-0.034,0-0.063-0.005-0.092-0.005s-0.058,0.005-0.087,0.005H31.035c-1.7,0-2.73,1.273-3.822,2.618
@@ -25,12 +13,6 @@ export const tag = (x, y, text) => {
 	c0.029,0,0.058,0.005,0.087,0.005s0.058-0.005,0.092-0.005h12.745c1.7,0,2.73-1.273,3.822-2.618
 	c0.306-0.379,0.622-0.767,0.952-1.122c1.894-2.04,5.012-4.77,10.205-4.93c3.735-0.117,7.295,1.277,10.035,3.929
 	c2.827,2.739,4.449,6.572,4.449,10.515c0,4.036-1.647,7.805-4.556,10.535C82.869,29.421,84.516,33.19,84.516,37.227z"/>
-
-<g transform="translate(${x},${y}) matrix(1 0 0 1 29.8246 34.9799)">
-  <text text-anchor="start" font-family="'RollerSkates-Regular'" font-size="${fontSize}" letter-spacing="0.6"
-    fill="#FDFEFF" stroke="#6ABD45" stroke-width="0.25" stroke-miterlimit="9.9999" >
-      ${text}
-  </text>
-</g>
-`;
-};
+<text transform="matrix(1 0 0 1 29.8246 34.9799)" fill="#FDFEFF" font-family="'RollerSkates-Regular'" font-size="21px">ASD</text>
+<text transform="matrix(1 0 0 1 29.8246 34.9799)" fill="none" stroke="#6ABD45" stroke-width="0.25" stroke-miterlimit="10" font-family="'RollerSkates-Regular'" font-size="21px">ASD</text>
+</svg>

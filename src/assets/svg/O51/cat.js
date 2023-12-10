@@ -1,10 +1,10 @@
 export const param = {
-  W: 58,
-  H: 53,
+  W: 53,
+  H: 50,
 };
 
 export const tag = (x, y, text) => {
-  let fontSize = 22;
+  let fontSize = 16;
 
   const textLength = text.length;
 
@@ -23,11 +23,9 @@ export const tag = (x, y, text) => {
 	C59.503,26.132,58.884,23.816,57.971,21.615z"/>
 
 <g transform="translate(${x},${y}) matrix(1 0 0 1 17.8239 41.0345)">
-  <text text-anchor="start" font-family="'RollerSkates-Regular'" font-size="${fontSize}" letter-spacing="0.6"
-    fill="#FDFEFF" stroke="#6ABD45" stroke-width="0.25" stroke-miterlimit="9.9999" >
-      ${text}
-  </text>
+  <text text-anchor="start" fill="#FDFEFF" font-family="'RollerSkates-Regular'" stroke="#6ABD45" stroke-width="0.25" stroke-miterlimit="10"
+    font-size="${fontSize}" letter-spacing="0.6">${text}</text>
+  <text transform="matrix(1 0 0 1 17.8239 41.0345)" fill="none"  font-family="'RollerSkates-Regular'" font-size="21px">ASD</text>
 </g>
-
 `;
 };

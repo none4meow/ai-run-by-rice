@@ -142,3 +142,8 @@ export const Regex = {
     /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z`~!@#$%^&*()-_+={}[\]|\\'";:/?>.<,]{8,}$/,
   hasSpecialChars: /[^a-zA-Z\d\s:,.-]/g,
 };
+
+export const isSpecialChars = (str) => {
+  const specialChars = /[`!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~ •]/;
+  return specialChars.test(str);
+};

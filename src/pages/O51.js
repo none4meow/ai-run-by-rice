@@ -1,144 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { templates } from "../configs/templates";
 import { isSpecialChars } from "../configs/constants";
+import { havingWords, sortNames } from "./O44";
 
-export const havingWords = (string, word) => {
-  const index = string.toLowerCase().indexOf(word);
-
-  if (index > -1) {
-    const nextChar = string[index + word.length];
-    const prevChar = string[index - 1];
-
-    // console.log(nextChar, isSpecialChars(nextChar));
-    // console.log(prevChar, isSpecialChars(prevChar));
-
-    if (nextChar) {
-      if (isSpecialChars(nextChar)) {
-        if (prevChar) {
-          if (isSpecialChars(prevChar)) {
-            console.log("just ", word);
-
-            return true;
-          } else {
-            console.log("if nextChar not prevChar");
-          }
-        } else {
-          console.log("just ", word);
-          return true;
-        }
-      } else {
-        if (prevChar) {
-          if (isSpecialChars(prevChar)) {
-            console.log("just ", word);
-            return true;
-          }
-        } else {
-          console.log("else prevChar");
-        }
-      }
-    } else {
-      if (prevChar) {
-        if (isSpecialChars(prevChar)) {
-          console.log("just ", word);
-          return true;
-        }
-      } else {
-        console.log("else else prevChar");
-      }
-    }
-
-    return false;
-  }
-};
-
-export const handleSort = (name, string, keys, boy, girl, cat, dog) => {
-  if (
-    keys.meow.indexOf(name.toLowerCase()) > -1 ||
-    keys.gaw.indexOf(name.toLowerCase()) > -1 ||
-    keys.male.indexOf(name.toLowerCase()) > -1 ||
-    keys.female.indexOf(name.toLowerCase()) > -1
-  )
-    return;
-
-  console.log("string >>>>", string, ", name >>>>", name);
-
-  let isHaving = keys.meow.some((ele) => havingWords(string, ele));
-  if (isHaving) {
-    cat.push(name);
-    return;
-  }
-
-  isHaving = keys.gaw.some((ele) => havingWords(string, ele));
-  if (isHaving) {
-    dog.push(name);
-    return;
-  }
-
-  isHaving = keys.female.some((ele) => havingWords(string, ele));
-  if (isHaving) {
-    girl.push(name);
-    return;
-  }
-
-  isHaving = keys.male.some((ele) => havingWords(string, ele));
-  if (isHaving) {
-    boy.push(name);
-    return;
-  }
-
-  boy.push(name);
-};
-
-export const sortNames = (index, entry, keys) => {
-  let boy = [];
-  let girl = [];
-  let cat = [];
-  let dog = [];
-
-  for (let i = index; i < entry.length; i++) {
-    // for(let i = index; i < 3;i++){
-    const element = entry[i].trim();
-
-    let name = "";
-    let heading = false;
-    console.log("element >>>>", element, "\n");
-
-    for (let o = 0; o < element.length; o++) {
-      // console.log(o, element[o], heading, isSpecialChars(element[o]));
-
-      if (heading === true) {
-        if (isSpecialChars(element[o])) {
-          heading = false;
-
-          if (isNaN(name)) {
-            handleSort(name, element, keys, boy, girl, cat, dog);
-            name = "";
-          }
-        } else {
-          if (o === element.length - 1) {
-            name += element[o];
-
-            if (isNaN(name)) {
-              handleSort(name, element, keys, boy, girl, cat, dog);
-              name = "";
-            }
-          } else name += element[o];
-        }
-      } else {
-        if (isSpecialChars(element[o])) continue;
-
-        if (element[o].toUpperCase() === element[o]) {
-          name += element[o];
-          heading = true;
-        }
-      }
-    }
-  }
-
-  return { boy, girl, cat, dog };
-};
-
-const O44 = () => {
+const O51 = () => {
   const [personalization, setPersonalization] = useState("");
   const onChangePersonalization = (e) => {
     const value = e.target.value;
@@ -256,7 +121,7 @@ const O44 = () => {
       boyNames.length + girlNames.length + catNames.length + dogNames.length;
     // console.log("numNames", numNames);
 
-    if (numNames < 7) setCustomSize(0);
+    if (numNames < 6) setCustomSize(0);
     else setCustomSize(1);
   }, [boyNames.length, catNames.length, dogNames.length, girlNames.length]);
 
@@ -286,44 +151,43 @@ const O44 = () => {
 
     let body = "";
 
-    const percent = parseInt(customSize) === 0 ? 1 : 150 / 115;
+    // const percent = parseInt(customSize) === 0 ? 1 : 148.638 / 124.723;
+    // body += templates.O51.front(position.x, position.y, percent, title);
+    // position.x += templates.O51.frontParam.W;
 
-    body += templates.O44.front(position.x, position.y, percent, title);
-    position.x += templates.O44.frontParam.W;
-
-    body += templates.O44.koson(position.x, position.y, 1, title);
-    position.y += templates.O44.kosonParam.H;
+    body += templates.O51.koson(position.x, position.y, 1, title);
+    position.y += templates.O51.kosonParam.H;
 
     handleAppendBody(
       boyNames,
       body,
       position,
-      templates.O44.male,
-      templates.O44.maleParam
+      templates.O51.male,
+      templates.O51.maleParam
     );
 
     handleAppendBody(
       girlNames,
       body,
       position,
-      templates.O44.female,
-      templates.O44.femaleParam
+      templates.O51.female,
+      templates.O51.femaleParam
     );
 
     handleAppendBody(
       catNames,
       body,
       position,
-      templates.O44.cat,
-      templates.O44.catParam
+      templates.O51.cat,
+      templates.O51.catParam
     );
 
     handleAppendBody(
       dogNames,
       body,
       position,
-      templates.O44.dog,
-      templates.O44.dogParam
+      templates.O51.dog,
+      templates.O51.dogParam
     );
 
     return `<svg xmlns="http://www.w3.org/2000/svg">
@@ -382,8 +246,8 @@ const O44 = () => {
         onChange={(e) => onChangeCustomSize(e)}
         value={customSize}
       >
-        <option value={0}>1 - 6 names</option>
-        <option value={1}>7 - 10 names</option>
+        <option value={0}>1 - 5 names</option>
+        <option value={1}>6 - 10 names</option>
       </select>
       <div className="row d-flex flex-row justify-content-between">
         <div className="col g-3 align-items-center mb-3 me-5">
@@ -501,4 +365,4 @@ const O44 = () => {
   );
 };
 
-export default O44;
+export default O51;

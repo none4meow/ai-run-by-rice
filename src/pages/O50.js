@@ -132,13 +132,6 @@ const O50 = () => {
     }
 
     return `<svg xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <style>
-          ${templates.O50.bigHeartStyles}
-          ${templates.O50.smallHeartStyles}
-          ${templates.O50.whiteFlagStyles}
-        </style>
-      </defs>
       ${body}
       ${templates.O50.whiteFlag(0, -30)} 
     </svg>`;

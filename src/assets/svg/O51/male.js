@@ -12,7 +12,8 @@ export const tag = (x, y, text) => {
   if (textLength === 6) fontSize -= 3;
   else if (textLength === 7) fontSize -= 4;
   else if (textLength === 8) fontSize -= 5;
-  else if (textLength >= 9) fontSize -= 6;
+  else if (textLength === 9) fontSize -= 6;
+  else if (textLength >= 10) fontSize -= 7;
 
   return `
 <g transform="translate(${x},${y})">

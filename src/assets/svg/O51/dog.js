@@ -11,7 +11,9 @@ export const tag = (x, y, text) => {
   if (textLength === 6) fontSize -= 1;
   else if (textLength === 7) fontSize -= 2;
   else if (textLength === 8) fontSize -= 3;
-  else if (textLength >= 9) fontSize -= 4;
+  else if (textLength === 9) fontSize -= 4;
+  else if (textLength === 10) fontSize -= 5;
+  else if (textLength >= 11) fontSize -= 6;
 
   return `
 <path transform="translate(${x},${y})" fill="#E2D6C7" stroke="#FDB515" stroke-width="0.25" stroke-miterlimit="10" d="M84.516,37.227

@@ -6,9 +6,15 @@ export const param = {
 export const tag = (x, y, p, text) => {
   let fontSize = 22;
 
-  if (text.length > 15) fontSize = 16;
+  if (text.length > 19) fontSize -= 10;
+  else if (text.length > 17) fontSize -= 8;
+  else if (text.length > 15) fontSize -= 6;
+
+  let size = "1 - 6 names";
+  if (p > 1) size = "7 - 10 names";
 
   return `
+  <text transform="translate(0,-100)" style="font-size:69px; font-family:'#9Slide03QuicksandBold-Bold';" class="st3 st4">${size}</text>
 	<g transform="translate(${x},${y}) scale(${p})">
 		<path fill="#FFFFFF" d="M221.1,304.6c-2-9.4-4.7-19.5-8.5-30.9c3.1-1.7,4.8-3.7,4.7-6c0-2.8-2-4.8-5.5-5.5
 			c1.9-1.7,3.8-3.5,5.6-5.3c22.7-22.7,36.7-54.1,36.7-88.7c0-30.1-10.6-57.8-28.3-79.4c-17.7-21.6-42.5-37.2-70.8-43.3v-9.3v-9.3

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { templates } from "../configs/templates";
 
 const O44 = () => {
@@ -61,7 +61,7 @@ const O44 = () => {
 
   const male = ["boy", "male", "son", "man"];
   const female = ["girl", "female", "daughter", "woman"];
-  const meow = ["cat"];
+  const meow = ["cat", "head"];
   const gaw = ["dog", "bone"];
 
   const sorting = (name, string, boy, girl, cat, dog) => {
@@ -85,7 +85,10 @@ const O44 = () => {
     let isMeow = false;
     console.log("string >>>>", string, ", name >>>>", name);
 
+    let isPushed = false;
     meow.forEach((ele) => {
+      if (isPushed) return;
+
       const meowIndex = string.toLowerCase().indexOf(ele);
       console.log("meowIndex", meowIndex);
       if (meowIndex > -1) {
@@ -107,6 +110,7 @@ const O44 = () => {
                 console.log("just cat", name);
                 cat.push(name);
                 isMeow = true;
+                isPushed = true;
               } else {
                 console.log("if nextChar not prevChar", name);
               }
@@ -114,6 +118,7 @@ const O44 = () => {
               console.log("just cat", name);
               cat.push(name);
               isMeow = true;
+              isPushed = true;
             }
           } else {
             if (prevChar) {
@@ -121,6 +126,7 @@ const O44 = () => {
                 console.log("just cat", name);
                 cat.push(name);
                 isMeow = true;
+                isPushed = true;
               }
             } else {
               console.log("else prevChar", name);
@@ -132,6 +138,7 @@ const O44 = () => {
               console.log("just cat", name);
               cat.push(name);
               isMeow = true;
+              isPushed = true;
             }
           } else {
             console.log("else prevChar", name);
@@ -173,14 +180,62 @@ const O44 = () => {
     name = "";
   };
 
+  const validateTitle = (array, title) => {
+    let isValid = true;
+
+    const numSpaces = (title.match(/ /g) || []).length > 0;
+    if (!numSpaces) return false;
+
+    array.forEach((ele) => {
+      const meowIndex = title.toLowerCase().indexOf(ele);
+      console.log("array.forEach(", title.toLowerCase(), meowIndex);
+
+      if (meowIndex > -1) {
+        const nextChar = title[meowIndex + ele.length];
+        const prevChar = title[meowIndex - 1];
+
+        if (nextChar) {
+          if (isSpecialChars(nextChar)) {
+            if (prevChar) {
+              if (isSpecialChars(prevChar)) {
+                console.log("just male");
+                isValid = false;
+              } else {
+              }
+            } else {
+              console.log("just male");
+              isValid = false;
+            }
+          } else {
+            if (prevChar) {
+              if (isSpecialChars(prevChar)) {
+                console.log("just male");
+                isValid = false;
+              }
+            } else {
+            }
+          }
+        } else {
+          if (prevChar) {
+            if (isSpecialChars(prevChar)) {
+              console.log("just male");
+              isValid = false;
+            }
+          } else {
+          }
+        }
+      }
+    });
+
+    return isValid;
+  };
+
   const sortData = () => {
     let title = "";
     let boy = [];
     let girl = [];
     let cat = [];
     let dog = [];
-
-    let index = 0;
 
     // (personalization.match(/,/g) || []).length > 0;
 
@@ -197,65 +252,14 @@ const O44 = () => {
 
     const newTitle = entry[0];
 
-    let isValidTitle = true;
-
     // console.log("newTitle", newTitle);
 
-    male.forEach((ele) => {
-      const meowIndex = newTitle.toLowerCase().indexOf(ele);
-      console.log("male.forEach(", newTitle.toLowerCase(), meowIndex);
+    let isValidTitle = validateTitle(male, newTitle);
 
-      if (meowIndex > -1) {
-        const nextChar = newTitle[meowIndex + ele.length];
-        const prevChar = newTitle[meowIndex - 1];
+    if (isValidTitle) isValidTitle = validateTitle(female, newTitle);
 
-        if (nextChar) {
-          if (isSpecialChars(nextChar)) {
-            if (prevChar) {
-              if (isSpecialChars(prevChar)) {
-                console.log("just male");
-                isValidTitle = false;
-              } else {
-              }
-            } else {
-              console.log("just male");
-              isValidTitle = false;
-            }
-          } else {
-            if (prevChar) {
-              if (isSpecialChars(prevChar)) {
-                console.log("just male");
-                isValidTitle = false;
-              }
-            } else {
-            }
-          }
-        } else {
-          if (prevChar) {
-            if (isSpecialChars(prevChar)) {
-              console.log("just male");
-              isValidTitle = false;
-            }
-          } else {
-          }
-        }
-      }
-    });
-
-    female.forEach((ele) => {
-      const meowIndex = newTitle.toLowerCase().indexOf(ele);
-      if (meowIndex > -1) {
-        const nextChar = newTitle[meowIndex + ele.length];
-        const prevChar = newTitle[meowIndex - 1];
-
-        if (nextChar || prevChar) {
-          if (isSpecialChars(nextChar) || isSpecialChars(prevChar))
-            isValidTitle = false;
-        }
-      }
-    });
-
-    // console.log("isTitleValid", isTitleValid);
+    console.log("isValidTitle", isValidTitle);
+    let index = 0;
 
     if (isValidTitle) {
       const titleIndex = newTitle.toLowerCase().indexOf("title");
@@ -264,14 +268,13 @@ const O44 = () => {
           if (isSpecialChars(newTitle[i])) continue;
           else {
             title = newTitle.substring(i);
-            index = 1;
+
             break;
           }
         }
-      } else {
-        title = newTitle;
-        index = 1;
-      }
+      } else title = newTitle;
+
+      index = 1;
     }
 
     for (let i = index; i < entryLength; i++) {
@@ -324,31 +327,29 @@ const O44 = () => {
     // console.log(title, boy, girl, cat, dog);
 
     if (title.length > 0) setTitle(title);
+    else setTitle(defaultTitle);
 
     setBoyNames(boy);
     setGirlNames(girl);
     setCatNames(cat);
     setDogNames(dog);
-
-    const numNames = boy.length + girl.length + dog.length + cat.length;
-    console.log("numNames", numNames);
-    if (numNames > 6) setCustomSize("1");
   };
+
+  useEffect(() => {
+    const numNames =
+      boyNames.length + girlNames.length + catNames.length + dogNames.length;
+    // console.log("numNames", numNames);
+
+    if (numNames < 7) setCustomSize("0");
+    else setCustomSize("1");
+  }, [boyNames.length, catNames.length, dogNames.length, girlNames.length]);
 
   const getCode = () => {
     const position = { x: 0, y: 0 };
 
     let body = "";
 
-    console.log(
-      "parseInt customSize",
-      customSize,
-      parseInt(customSize),
-      parseInt(customSize) === 0
-    );
-
     const percent = parseInt(customSize) === 0 ? 1 : 150 / 115;
-    console.log("percent", percent);
 
     body += templates.O44.front(position.x, position.y, percent, title);
     position.x += templates.O44.frontParam.W;
@@ -356,24 +357,81 @@ const O44 = () => {
     body += templates.O44.koson(position.x, position.y, 1, title);
     position.y += templates.O44.kosonParam.H;
 
-    for (let index = 0; index < boyNames.length; index++) {
-      body += templates.O44.male(position.x, position.y, boyNames[index]);
-      position.y += templates.O44.maleParam.H;
+    if (typeof boyNames === "string") {
+      const boyNs =
+        (boyNames.match(/\n/g) || []).length > 1
+          ? boyNames.split("\n")
+          : boyNames.split(",");
+
+      for (let index = 0; index < boyNs.length; index++) {
+        if (boyNs[index].trim().length > 0) {
+          body += templates.O44.male(position.x, position.y, boyNs[index]);
+          position.y += templates.O44.maleParam.H;
+        }
+      }
+    } else {
+      for (let index = 0; index < boyNames.length; index++) {
+        body += templates.O44.male(position.x, position.y, boyNames[index]);
+        position.y += templates.O44.maleParam.H;
+      }
     }
 
-    for (let index = 0; index < girlNames.length; index++) {
-      body += templates.O44.female(position.x, position.y, girlNames[index]);
-      position.y += templates.O44.femaleParam.H;
+    if (typeof girlNames === "string") {
+      const girlNs =
+        (girlNames.match(/\n/g) || []).length > 1
+          ? girlNames.split("\n")
+          : girlNames.split(",");
+
+      console.log("girlNs", girlNs);
+      for (let index = 0; index < girlNs.length; index++) {
+        if (girlNs[index].trim().length > 0) {
+          body += templates.O44.female(position.x, position.y, girlNs[index]);
+          position.y += templates.O44.femaleParam.H;
+        }
+      }
+    } else {
+      for (let index = 0; index < girlNames.length; index++) {
+        body += templates.O44.female(position.x, position.y, girlNames[index]);
+        position.y += templates.O44.femaleParam.H;
+      }
     }
 
-    for (let index = 0; index < catNames.length; index++) {
-      body += templates.O44.cat(position.x, position.y, catNames[index]);
-      position.y += templates.O44.catParam.H;
+    if (typeof catNames === "string") {
+      const catNs =
+        (catNames.match(/\n/g) || []).length > 1
+          ? catNames.split("\n")
+          : catNames.split(",");
+
+      for (let index = 0; index < catNs.length; index++) {
+        if (catNs[index].trim().length > 0) {
+          body += templates.O44.cat(position.x, position.y, catNs[index]);
+          position.y += templates.O44.catParam.H;
+        }
+      }
+    } else {
+      for (let index = 0; index < catNames.length; index++) {
+        body += templates.O44.cat(position.x, position.y, catNames[index]);
+        position.y += templates.O44.catParam.H;
+      }
     }
 
-    for (let index = 0; index < dogNames.length; index++) {
-      body += templates.O44.dog(position.x, position.y, dogNames[index]);
-      position.y += templates.O44.dogParam.H;
+    if (typeof dogNames === "string") {
+      const dogNs =
+        (dogNames.match(/\n/g) || []).length > 1
+          ? dogNames.split("\n")
+          : dogNames.split(",");
+
+      for (let index = 0; index < dogNs.length; index++) {
+        if (dogNs[index].trim().length > 0) {
+          body += templates.O44.dog(position.x, position.y, dogNs[index]);
+          position.y += templates.O44.dogParam.H;
+        }
+      }
+    } else {
+      for (let index = 0; index < dogNames.length; index++) {
+        body += templates.O44.dog(position.x, position.y, dogNames[index]);
+        position.y += templates.O44.dogParam.H;
+      }
     }
 
     return `<svg xmlns="http://www.w3.org/2000/svg">
@@ -389,6 +447,7 @@ const O44 = () => {
     setGirlNames("");
     setCatNames("");
     setDogNames("");
+    setPersonalization("");
   };
 
   return (
@@ -420,7 +479,6 @@ const O44 = () => {
       <button
         className="btn btn-secondary w-100"
         onClick={() => {
-          reset();
           sortData();
         }}
       >
@@ -428,7 +486,7 @@ const O44 = () => {
       </button>
 
       <select
-        className="form-control form-select col-auto"
+        className="form-control form-select col-auto mt-3"
         onChange={(e) => onChangeCustomSize(e)}
         value={customSize}
       >
@@ -446,7 +504,6 @@ const O44 = () => {
             className={`form-control col-auto`}
             autoComplete="off"
             value={year}
-            autoFocus
             placeholder={defaultYear}
             onChange={(e) => onChangeYear(e)}
           />
@@ -462,7 +519,6 @@ const O44 = () => {
             className={`form-control col-auto`}
             autoComplete="off"
             value={title}
-            autoFocus
             placeholder={defaultTitle}
             onChange={(e) => onChangeTitle(e)}
           />

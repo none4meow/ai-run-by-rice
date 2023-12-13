@@ -13,6 +13,19 @@ export const svg = (name, boxColor, nameColor, inch) => {
       break;
   }
 
+  let bar = 15.2787;
+  switch (inch) {
+    case 9:
+      bar = bar / percent;
+      break;
+    case 11:
+      bar = bar / percent;
+      break;
+
+    default:
+      break;
+  }
+
   return `
   <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 1567.251 4147.2" style="enable-background:new 0 0 1567.251 4147.2;" xml:space="preserve">
@@ -25,7 +38,6 @@ export const svg = (name, boxColor, nameColor, inch) => {
 	.st5{fill:${nameColor.hexCode};stroke:${nameColor.hexCode};stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 	.st6{font-family:'WildSageRegular';}
 	.st7{font-size:328.7417px;}
-	.st8{stroke:#FF0000;stroke-width:0.25;stroke-miterlimit:10;}
 </style>
 
 <g transform="scale(${percent})">
@@ -36,14 +48,9 @@ export const svg = (name, boxColor, nameColor, inch) => {
 	<text transform="matrix(1 0 0 1 483.3486 558.9424)" class="st3 st4">${nameColor.name}</text>
 	<text transform="matrix(1 0 0 1 540.0718 307.465)" class="st5 st6 st7">${name}</text>
 </g>
+<rect x="948.67" y="1542.442" width="194.5" height="${bar}"/>
 
-<g>
 	<path class="st0" d="M796.513,2581.722v170.079h481.89v-170.079H796.513z"/>
-	<path class="st8" d="M1275.375,2747.665c-0.21-0.198-0.471-0.297-0.783-0.297h-4.697v-9.396c0-0.312-0.108-0.572-0.324-0.783
-		c-0.216-0.209-0.475-0.314-0.774-0.314c-0.336,0-0.611,0.105-0.828,0.314c-0.216,0.211-0.323,0.472-0.323,0.783v10.404
-		c0,0.312,0.104,0.573,0.314,0.783s0.471,0.314,0.783,0.314h5.85c0.312,0,0.573-0.099,0.783-0.297s0.315-0.447,0.315-0.747
-		C1275.691,2748.118,1275.585,2747.864,1275.375,2747.665z"/>
-</g>
 <rect x="939.962" y="2659.817" width="194.99" height="${gap}"/>
 <g>
 	<path class="st1" d="M643.297,3857.743v-113.514h50.595v-278.92h-50.595v-111.568h263.352v111.568h-50.595v278.92h81.081
@@ -64,7 +71,6 @@ export const svg = (name, boxColor, nameColor, inch) => {
 		943.224,2166.184 892.629,2166.184 892.629,2092.584 947.222,2092.584 947.222,2073.6 873.644,2073.6 873.644,2185.168 
 		924.239,2185.168 924.239,2464.087 873.644,2464.087 873.644,2577.602 1278.402,2577.602 1278.402,2353.169 	"/>
 </g>
-<rect x="948.67" y="1542.442" width="194.5" height="15.032"/>
 <polygon class="st2" points="1248.3,1318.267 1248.3,1542.697 843.54,1542.697 843.54,1429.177 894.13,1429.177 894.13,1150.267 
 	843.54,1150.267 843.54,1038.697 1106.89,1038.697 1106.89,1150.267 1056.3,1150.267 1056.3,1429.177 1137.38,1429.177 
 	1167.86,1318.267 "/>

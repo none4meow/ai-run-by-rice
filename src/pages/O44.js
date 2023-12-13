@@ -4,6 +4,7 @@ import { isSpecialChars } from "../configs/constants";
 
 export const havingWords = (string, word) => {
   const index = string.toLowerCase().indexOf(word);
+  // console.log(string, word, index);
 
   if (index > -1) {
     const nextChar = string[index + word.length];
@@ -20,7 +21,6 @@ export const havingWords = (string, word) => {
 
             return true;
           } else {
-            console.log("if nextChar not prevChar");
           }
         } else {
           console.log("just ", word);
@@ -29,6 +29,7 @@ export const havingWords = (string, word) => {
       } else {
         if (prevChar) {
           if (isSpecialChars(prevChar)) {
+          } else {
             console.log("just ", word);
             return true;
           }
@@ -192,7 +193,7 @@ const O44 = () => {
   };
 
   const [keys] = useState({
-    male: ["boy", "male", "son", "man"],
+    male: ["boy", "male", "son", "man", "human"],
     female: ["girl", "female", "daughter", "woman"],
     meow: ["cat", "head"],
     gaw: ["dog", "bone"],
@@ -219,11 +220,22 @@ const O44 = () => {
     const newTitle = entry[0];
 
     // console.log("newTitle", newTitle);
+    let isInvalidTitle = true;
 
-    let isInvalidTitle = keys.male.some((ele) => havingWords(newTitle, ele));
+    if ((newTitle.match(/ /g) || []).length > 0) {
+      isInvalidTitle = keys.male.some((ele) => havingWords(newTitle, ele));
+      if (!isInvalidTitle) {
+        isInvalidTitle = keys.female.some((ele) => havingWords(newTitle, ele));
 
-    if (!isInvalidTitle)
-      isInvalidTitle = keys.female.some((ele) => havingWords(newTitle, ele));
+        if (!isInvalidTitle) {
+          isInvalidTitle = keys.meow.some((ele) => havingWords(newTitle, ele));
+
+          if (!isInvalidTitle) {
+            isInvalidTitle = keys.gaw.some((ele) => havingWords(newTitle, ele));
+          }
+        }
+      }
+    }
 
     console.log("isInvalidTitle", isInvalidTitle);
     let index = 0;
@@ -251,39 +263,31 @@ const O44 = () => {
     handleSetNames(res);
   };
 
-  useEffect(() => {
-    const numNames =
-      boyNames.length + girlNames.length + catNames.length + dogNames.length;
-    // console.log("numNames", numNames);
-
-    if (numNames < 7) setCustomSize(0);
-    else setCustomSize(1);
-  }, [boyNames.length, catNames.length, dogNames.length, girlNames.length]);
-
-  const handleAppendBody = (names, body, position, tag, param) => {
+  const handleCount = (names) => {
     if (typeof names === "string") {
       const nameArray =
         (names.match(/\n/g) || []).length > 1
           ? names.split("\n")
           : names.split(",");
 
-      for (let index = 0; index < nameArray.length; index++) {
-        if (nameArray[index].trim().length > 0) {
-          body += tag(position.x, position.y, nameArray[index]);
-          position.y += param.H;
-        }
-      }
-    } else {
-      for (let index = 0; index < names.length; index++) {
-        body += tag(position.x, position.y, names[index]);
-        position.y += param.H;
-      }
-    }
+      return nameArray.length;
+    } else return names.length;
   };
 
-  const getCode = () => {
-    const position = { x: 0, y: 0 };
+  useEffect(() => {
+    const numNames =
+      handleCount(boyNames) +
+      handleCount(girlNames) +
+      handleCount(catNames) +
+      handleCount(dogNames);
+    // console.log("numNames", numNames);
 
+    if (numNames < 7) setCustomSize(0);
+    else setCustomSize(1);
+  }, [boyNames, catNames, dogNames, girlNames]);
+
+  const getCode = () => {
+    let position = { x: 0, y: 0 };
     let body = "";
 
     const percent = parseInt(customSize) === 0 ? 1 : 150 / 115;
@@ -291,40 +295,40 @@ const O44 = () => {
     body += templates.O44.front(position.x, position.y, percent, title);
     position.x += templates.O44.frontParam.W;
 
-    body += templates.O44.koson(position.x, position.y, 1, title);
+    body += templates.O44.koson(position.x, position.y - 13);
     position.y += templates.O44.kosonParam.H;
 
-    handleAppendBody(
-      boyNames,
-      body,
-      position,
-      templates.O44.male,
-      templates.O44.maleParam
-    );
+    const handleAppendBody = (names, type) => {
+      if (names.length === 0) return;
 
-    handleAppendBody(
-      girlNames,
-      body,
-      position,
-      templates.O44.female,
-      templates.O44.femaleParam
-    );
+      if (typeof names === "string") {
+        const nameArray =
+          (names.match(/\n/g) || []).length > 1
+            ? names.split("\n")
+            : names.split(",");
 
-    handleAppendBody(
-      catNames,
-      body,
-      position,
-      templates.O44.cat,
-      templates.O44.catParam
-    );
+        for (let index = 0; index < nameArray.length; index++) {
+          if (nameArray[index].trim().length > 0) {
+            body += templates.O44[type](
+              position.x,
+              position.y,
+              nameArray[index]
+            );
+            position.y += templates.O44[`${type}Param`].H;
+          }
+        }
+      } else {
+        for (let index = 0; index < names.length; index++) {
+          body += templates.O44[type](position.x, position.y, names[index]);
+          position.y += templates.O44[`${type}Param`].H;
+        }
+      }
+    };
 
-    handleAppendBody(
-      dogNames,
-      body,
-      position,
-      templates.O44.dog,
-      templates.O44.dogParam
-    );
+    handleAppendBody(boyNames, "male");
+    handleAppendBody(girlNames, "female");
+    handleAppendBody(catNames, "cat");
+    handleAppendBody(dogNames, "dog");
 
     return `<svg xmlns="http://www.w3.org/2000/svg">
       ${body}

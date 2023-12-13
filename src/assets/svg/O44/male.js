@@ -8,8 +8,7 @@ export const tag = (x, y, text) => {
 
   const textLength = text.length;
 
-  if (textLength === 5) fontSize -= 1;
-  if (textLength === 6) fontSize -= 3;
+  if (textLength === 6) fontSize -= 2;
   else if (textLength === 7) fontSize -= 4;
   else if (textLength === 8) fontSize -= 5;
   else if (textLength >= 9) fontSize -= 6;

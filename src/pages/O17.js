@@ -3,29 +3,21 @@ import { templates } from "../configs/templates";
 import { isSpecialChars } from "../configs/constants";
 import { havingWords, sortNames } from "./O44";
 
-const O51 = () => {
+const O17 = () => {
   const [personalization, setPersonalization] = useState("");
   const onChangePersonalization = (e) => {
     const value = e.target.value;
     setPersonalization(value);
   };
 
-  const [sizes] = useState([0, 1]);
+  const [sizes] = useState([0, 1, 2]);
   const [customSize, setCustomSize] = useState(sizes[0]);
   const onChangeCustomSize = (e) => {
     const value = e.target.value;
     setCustomSize(value);
   };
 
-  const [defaultYear] = useState("2023");
   const [defaultTitle] = useState("Merry Christmas");
-
-  const [year, setYear] = useState(defaultYear);
-  const onChangeYear = (e) => {
-    const value = e.target.value;
-    setYear(value);
-  };
-
   const [title, setTitle] = useState(defaultTitle);
   const onChangeTitle = (e) => {
     const value = e.target.value;
@@ -59,7 +51,7 @@ const O51 = () => {
   const [keys] = useState({
     male: ["boy", "male", "son", "man"],
     female: ["girl", "female", "daughter", "woman"],
-    meow: ["cat", "head"],
+    meow: ["cat", "fish"],
     gaw: ["dog", "bone"],
   });
 
@@ -79,11 +71,8 @@ const O51 = () => {
     let entry =
       (pern.match(/\n/g) || []).length > 1 ? pern.split("\n") : pern.split(",");
 
-    console.log("entry", (personalization.match(/\n/g) || []).length, entry);
-
     const newTitle = entry[0];
 
-    // console.log("newTitle", newTitle);
     let isInvalidTitle = true;
 
     // if ((newTitle.match(/ /g) || []).length > 0)
@@ -102,9 +91,7 @@ const O51 = () => {
       }
     }
 
-    console.log("isInvalidTitle", isInvalidTitle);
     let index = 0;
-
     if (!isInvalidTitle) {
       const titleIndex = newTitle.toLowerCase().indexOf("title");
       if (titleIndex > -1) {
@@ -145,23 +132,30 @@ const O51 = () => {
       handleCount(girlNames) +
       handleCount(catNames) +
       handleCount(dogNames);
-    // console.log("numNames", numNames);
 
-    if (numNames < 6) setCustomSize(0);
-    else setCustomSize(1);
+    if (numNames < 5) setCustomSize(0);
+    else if (numNames < 10) setCustomSize(1);
+    else setCustomSize(2);
   }, [boyNames, catNames, dogNames, girlNames]);
 
   const getCode = () => {
     let position = { x: 0, y: 0 };
-
     let body = "";
 
-    // const percent = parseInt(customSize) === 0 ? 1 : 148.638 / 124.723;
-    // body += templates.O51.front(position.x, position.y, percent, title);
-    // position.x += templates.O51.frontParam.W;
+    let percent = 1;
 
-    body += templates.O51.koson(0, -13);
-    position.y += templates.O51.kosonParam.H;
+    const size = parseInt(customSize);
+    if (size === 1) percent = 150 / 120;
+    else if (size === 2) percent = 180 / 120;
+
+    body += templates.O17.roller(position.x, position.y, percent, title);
+    position.x += templates.O17.rollerParam.W;
+
+    body += templates.O17.board(position.x, position.y, percent);
+    position.x += templates.O17.boardParam.W;
+
+    body += templates.O17.vecny(position.x, position.y - 13);
+    position.y += templates.O17.vecnyParam.H;
 
     const handleAppendBody = (names, type) => {
       if (names.length === 0) return;
@@ -174,24 +168,24 @@ const O51 = () => {
 
         for (let index = 0; index < nameArray.length; index++) {
           if (nameArray[index].trim().length > 0) {
-            body += templates.O51[type](
+            body += templates.O17[type](
               position.x,
               position.y,
               nameArray[index]
             );
-            position.y += templates.O51[`${type}Param`].H;
+            position.y += templates.O17[`${type}Param`].H;
           }
         }
       } else {
         for (let index = 0; index < names.length; index++) {
-          body += templates.O51[type](position.x, position.y, names[index]);
-          position.y += templates.O51[`${type}Param`].H;
+          body += templates.O17[type](position.x, position.y, names[index]);
+          position.y += templates.O17[`${type}Param`].H;
         }
       }
     };
 
-    handleAppendBody(boyNames, "male");
-    handleAppendBody(girlNames, "female");
+    handleAppendBody(boyNames, "cookie_1");
+    handleAppendBody(girlNames, "cookie_2");
     handleAppendBody(catNames, "cat");
     handleAppendBody(dogNames, "dog");
 
@@ -202,7 +196,6 @@ const O51 = () => {
 
   const reset = () => {
     setCustomSize(0);
-    setYear(defaultYear);
     setTitle(defaultTitle);
     setBoyNames("");
     setGirlNames("");
@@ -251,25 +244,11 @@ const O51 = () => {
         onChange={(e) => onChangeCustomSize(e)}
         value={customSize}
       >
-        <option value={0}>1 - 5 names</option>
-        <option value={1}>6 - 10 names</option>
+        <option value={0}>1 - 4 names</option>
+        <option value={1}>5 - 9 names</option>
+        <option value={2}>10 - 12 names</option>
       </select>
       <div className="row d-flex flex-row justify-content-between">
-        <div className="col g-3 align-items-center mb-3 me-5">
-          <label htmlFor="year" className="form-label col-auto col-form-label">
-            Year
-          </label>
-          <textarea
-            type="text"
-            id="year"
-            className={`form-control col-auto`}
-            autoComplete="off"
-            value={year}
-            placeholder={defaultYear}
-            onChange={(e) => onChangeYear(e)}
-          />
-        </div>
-
         <div className="col g-3 align-items-center mb-3">
           <label htmlFor="title" className="form-label col-auto col-form-label">
             Title
@@ -370,4 +349,4 @@ const O51 = () => {
   );
 };
 
-export default O51;
+export default O17;

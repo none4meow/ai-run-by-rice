@@ -13,6 +13,19 @@ export const svg = (name, boxColor, nameColor, inch) => {
       break;
   }
 
+  let bar = 15.2787;
+  switch (inch) {
+    case 9:
+      bar = bar / percent;
+      break;
+    case 11:
+      bar = bar / percent;
+      break;
+
+    default:
+      break;
+  }
+
   return `<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 1567.251 4082.087" style="enable-background:new 0 0 1567.251 4082.087;" xml:space="preserve">
 <style type="text/css">
@@ -24,7 +37,6 @@ export const svg = (name, boxColor, nameColor, inch) => {
 	.st5{fill:${nameColor.hexCode};stroke:${nameColor.hexCode};stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 	.st6{font-family:'WildSageRegular';}
 	.st7{font-size:328.7417px;}
-	.st8{stroke:#FF0000;stroke-width:0.25;stroke-miterlimit:10;}
 </style>
 <g transform="scale(${percent})">
 <text transform="translate(900,0)" style="font-size:130px;" class="st3 st4">${inch}'</text>
@@ -34,18 +46,9 @@ export const svg = (name, boxColor, nameColor, inch) => {
 	<text transform="matrix(1 0 0 1 446.3287 557.6616)" class="st3 st4">${nameColor.name}</text>
 	<text transform="matrix(1 0 0 1 503.0503 306.1841)" class="st5 st6 st7">${name}</text>
 </g>
+<rect x="916.622" y="1482.768" width="191.06" height="${bar}"/>
 
-<g>
 	<path class="st0" d="M861.071,2612.481v141.732h396.85v-141.732H861.071z"/>
-	<path class="st8" d="M1251.553,2738.775c-0.192-0.205-0.444-0.307-0.756-0.307c-0.312,0-0.559,0.102-0.738,0.307
-		c-0.18,0.203-0.27,0.467-0.27,0.791v6.517c0,0.575-0.136,1.089-0.405,1.539c-0.271,0.45-0.63,0.795-1.08,1.034
-		c-0.45,0.24-0.934,0.361-1.449,0.361c-0.492,0-0.951-0.121-1.377-0.361c-0.426-0.239-0.765-0.584-1.017-1.034
-		s-0.378-0.964-0.378-1.539v-6.517c0-0.312-0.108-0.572-0.324-0.783c-0.216-0.209-0.468-0.314-0.756-0.314
-		c-0.336,0-0.612,0.105-0.828,0.314c-0.216,0.211-0.324,0.472-0.324,0.783v6.517c0,0.996,0.21,1.878,0.63,2.646
-		c0.42,0.769,1.011,1.368,1.773,1.801c0.762,0.432,1.629,0.647,2.601,0.647c0.973,0,1.836-0.216,2.592-0.647
-		c0.757-0.433,1.345-1.032,1.765-1.801c0.42-0.768,0.63-1.649,0.63-2.646v-6.517
-		C1251.841,2739.242,1251.745,2738.978,1251.553,2738.775z"/>
-</g>
 <rect x="963.351" y="2676.402" width="192.29" height="${gap}"/>
 <g>
 	<path class="st1" d="M555.105,978.896v109.6h50.97v218.54c0,18.27-5.21,32.72-15.61,43.33c-10.41,10.62-24.53,15.93-42.37,15.93
@@ -224,7 +227,6 @@ export const svg = (name, boxColor, nameColor, inch) => {
 		c2.252,0,4.115-0.758,5.59-2.274c1.473-1.516,2.21-3.4,2.21-5.655v-33.28C1230.603,2914.918,1228.912,2907.661,1225.532,2902.417z"
 		/>
 </g>
-<rect x="916.622" y="1482.768" width="191.06" height="15.145"/>
 </g>
 
 </svg>`;

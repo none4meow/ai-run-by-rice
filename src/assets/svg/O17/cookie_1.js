@@ -1,0 +1,46 @@
+export const param = {
+  W: 75,
+  H: 75,
+};
+
+export const tag = (x, y, text) => {
+  let fontSize = 23;
+
+  const textLength = text.length;
+
+  //   if (textLength === 5) fontSize -= 1;
+  //   if (textLength === 6) fontSize -= 3;
+  //   else
+
+  if (textLength === 7) fontSize -= 1;
+  else if (textLength === 8) fontSize -= 2;
+  else if (textLength >= 9) fontSize -= 3;
+
+  return `	
+<g transform="translate(${x},${y})">
+	<path fill="#EACCA7" stroke="#D300FF" stroke-width="0.25" stroke-miterlimit="10" d="M60.5,13.2c2.2-0.7,4.6,0.1,5.8,2.1
+		c1.5,2.5,2.8,5.2,3.9,8c3.1,7.7,4.7,18,1.7,24.6c-4.4,9.6-11.1,17.5-21.7,21.7c-12.8,5.1-26.6,3.8-36.3-4.7
+		C9.7,61.2,5.2,56,3.9,49.6c-1.8-9.4-4.5-17.6-1.6-25.7C5.4,15.3,14.5,7,23.9,3.3c3-1.2,5.9-1.9,8.7-2.3C34.3,0.8,36,1.5,37,2.9
+		c2.1,3,6.4,8,11.5,9C54.3,13.1,56.5,14.4,60.5,13.2z"/>
+	<g>
+		<path stroke="#00FF24" stroke-width="0.25" stroke-miterlimit="10" d="M38.3,58.5c1.2,3-1.5,4.9-4.5,6c-3,1.2-5.1,1.2-6.3-1.8
+			c-1.2-3,0.3-6.3,3.2-7.5S36.6,54.4,38.3,58.5z"/>
+		<path stroke="#00FF24" stroke-width="0.25" stroke-miterlimit="10" d="M34.3,19.9c-2.4,2.2-5.2,0.3-7.4-2.1s-3-4.4-0.6-6.6
+			s6.2-2.1,8.4,0.3S37.7,16.8,34.3,19.9z"/>
+		<path stroke="#00FF24" stroke-width="0.25" stroke-miterlimit="10" d="M55.1,18.9c2.8-0.5,5.2,1.6,5.6,3.8
+			c0.4,2.2-1.3,3.6-4.1,4.1c-2.8,0.5-5.5-0.8-5.9-3S51.2,19.7,55.1,18.9z"/>
+		<path stroke="#00FF24" stroke-width="0.25" stroke-miterlimit="10" d="M15.6,47.4c1.4,2,0.6,4.6-1,5.6c-1.5,1.1-3.2,0.3-4.6-1.7
+			c-1.4-2-1.3-4.5,0.3-5.6C11.8,44.7,13.6,44.7,15.6,47.4z"/>
+		<path stroke="#00FF24" stroke-width="0.25" stroke-miterlimit="10" d="M54,55.5c2.8-0.8,5.4,1.1,6.1,3.3c0.6,2.2-0.9,3.8-3.7,4.6
+			s-5.6-0.3-6.2-2.4C49.4,58.8,50.1,56.6,54,55.5z"/>
+	</g>
+</g>
+
+<g transform="translate(${x},${y}) matrix(0.9801 0.1986 -0.1986 0.9801 25.4316 42.0141)">
+	<text stroke="#002BFF" stroke-width="0.25" stroke-miterlimit="10" 
+		font-family="'AmaticSC-Bold'" font-size="${fontSize}" letter-spacing="0.1">
+		${text}
+	</text>
+</g>
+`;
+};

@@ -1,6 +1,6 @@
 export const param = {
   W: 56,
-  H: 39,
+  H: 13,
 };
 
 export const tag = (x, y) => {

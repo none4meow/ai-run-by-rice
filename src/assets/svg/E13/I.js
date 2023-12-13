@@ -13,6 +13,19 @@ export const svg = (name, boxColor, nameColor, inch) => {
       break;
   }
 
+  let bar = 15.2787;
+  switch (inch) {
+    case 9:
+      bar = bar / percent;
+      break;
+    case 11:
+      bar = bar / percent;
+      break;
+
+    default:
+      break;
+  }
+
   return `
   
 	<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -26,7 +39,6 @@ export const svg = (name, boxColor, nameColor, inch) => {
 	.st5{fill:${nameColor.hexCode};stroke:${nameColor.hexCode};stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 	.st6{font-family:'WildSageRegular';}
 	.st7{font-size:328.7417px;}
-	.st8{stroke:#FF0000;stroke-width:0.25;stroke-miterlimit:10;}
 </style>
 
 <g transform="scale(${percent})">
@@ -38,12 +50,10 @@ export const svg = (name, boxColor, nameColor, inch) => {
 	<text transform="matrix(1 0 0 1 498.7144 374.7921)" class="st5 st6 st7">${name}</text>
 </g>
 
-<g>
+
+  	<rect x="848.54" y="1562.597" width="194.5" height="${bar}"/>
 	<path class="st0" d="M687.569,2695.177v141.732h368.504v-141.732H687.569z"/>
-	<path class="st8" d="M1049.139,2820.75c-0.216-0.21-0.474-0.315-0.773-0.315c-0.336,0-0.612,0.105-0.828,0.315s-0.324,0.471-0.324,0.783v10.403
-		c0,0.312,0.105,0.573,0.315,0.783s0.477,0.315,0.801,0.315c0.3,0,0.563-0.105,0.792-0.315c0.228-0.21,0.342-0.471,0.342-0.783
-		v-10.403C1049.464,2821.221,1049.356,2820.96,1049.139,2820.75z"/>
-</g>
+
 <rect x="774.571" y="2759.103" width="194.5" height="${gap}"/>
 <g>
 	<path class="st1" d="M779.07,1170.229v-111.56H515.71v111.56h50.6v280.87h-50.6v111.57h263.36V1451.1h-50.6v-280.87H779.07z
@@ -65,7 +75,6 @@ export const svg = (name, boxColor, nameColor, inch) => {
 		792.722,2298.148 843.316,2298.148 843.316,2579.013 792.722,2579.013 792.722,2690.582 1056.073,2690.582 1056.073,2579.013 
 		1005.479,2579.013 1005.479,2298.148 	"/>
 </g>
-<rect x="848.54" y="1562.597" width="194.5" height="14.968"/>
 <polygon class="st1" points="1026.87,1170.24 1026.87,1451.1 1077.47,1451.1 1077.47,1562.67 814.11,1562.67 814.11,1451.1 
 	864.71,1451.1 864.71,1170.24 814.11,1170.24 814.11,1058.67 1077.47,1058.67 1077.47,1170.24 "/>
 <g>

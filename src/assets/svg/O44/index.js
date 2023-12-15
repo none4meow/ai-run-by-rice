@@ -1,4 +1,8 @@
 export { tag as front, param as frontParam } from "./front";
+export {
+  tag as front_default,
+  param as front_defaultParam,
+} from "./front_default";
 export { tag as male, param as maleParam } from "./male";
 export { tag as female, param as femaleParam } from "./female";
 export { tag as cat, param as catParam } from "./cat";

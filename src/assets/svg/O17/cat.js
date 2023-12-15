@@ -4,7 +4,7 @@ export const param = {
 };
 
 export const tag = (x, y, text) => {
-  let fontSize = 25;
+  let fontSize = 26;
 
   const textLength = text.length;
 

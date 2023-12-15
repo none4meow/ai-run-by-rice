@@ -14,7 +14,12 @@ export const tag = (x, y, p, text) => {
   else if (textLength === 15) fontSize -= 5;
   else if (textLength >= 16) fontSize -= 6;
 
+  let size = "1 - 4 names";
+  if (p === 150 / 120) size = "5 - 9 names";
+  else if (p === 180 / 120) size = "10 - 12 names";
+
   return `	
+<text transform="translate(0,-100)" style="font-size:69px; font-family:'#9Slide03QuicksandBold-Bold';" class="st3 st4">${size}</text>
 <path transform="translate(${x},${y}) scale(${p})" fill="#E2D6C7" d="M253,17.7c-8.6,0-16.4,2.6-25.8,3.3v-7.4c0-6.4-5.2-11.6-11.6-11.6l-155.8,0c-6.4,0-11.6,5.2-11.6,11.6
 	l0,7.4c-9.4-0.7-17.2-3.3-25.8-3.3c-16.1,0-20.3,4-20.3,9c0,4.9,4.3,9,20.3,8.9c8.5,0,17.4-3,25.8-3.7v5.9c0,6.4,5.2,11.6,11.6,11.6
 	l155.8,0c6.4,0,11.6-5.2,11.6-11.6v-5.9c8.4,0.7,17.3,3.7,25.8,3.7c16.1,0,20.3-4,20.3-8.9C273.3,21.7,269,17.7,253,17.7z"/>

@@ -17,7 +17,7 @@ export const colors = {
   },
   White: {
     hexCode: "#FFFFFF",
-    name: "Trang - White",
+    name: "Trắng - White",
   },
   "Baby Blue": {
     hexCode: "#A4EAE4",
@@ -53,7 +53,7 @@ export const colors = {
   },
   Gold: {
     hexCode: "#EEB453",
-    name: "Nhu vang - Gold",
+    name: "Nhũ vàng - Gold",
   },
   Orange: {
     hexCode: "#FF8A3D",
@@ -61,11 +61,11 @@ export const colors = {
   },
   Red: {
     hexCode: "#F2340F",
-    name: "Do tuoi - Red",
+    name: "Đỏ tươi - Red",
   },
   Silver: {
     hexCode: "#E2DED9",
-    name: "Nhu bac - Silver",
+    name: "Nhũ bạc - Silver",
   },
   Grey: {
     hexCode: "#C6C0BD",
@@ -73,11 +73,47 @@ export const colors = {
   },
   Black: {
     hexCode: "#000000",
-    name: "Den - Black",
+    name: "Đen - Black",
   },
   Brown: {
     hexCode: "#5A4029",
     name: "10 - Brown",
+  },
+  "Do man": {
+    hexCode: "#A0180A",
+    name: "Đỏ mận - B61",
+  },
+  "Classic Gray": {
+    hexCode: "#BDBABC",
+    name: "37 - Classic Gray",
+  },
+  Ebony: {
+    hexCode: "#535458",
+    name: "Ebony",
+  },
+  "Early America": {
+    hexCode: "#9B6E4F",
+    name: "23 - Early America",
+  },
+  Jacobean: {
+    hexCode: "#876E56",
+    name: "19 - Jacobean",
+  },
+  Koson: {
+    hexCode: "#E2D6C7",
+    name: "Ko sơn",
+  },
+  Vecny: {
+    hexCode: "#EACCA7",
+    name: "Vecny - Honey Maple",
+  },
+  "Golden Oak": {
+    hexCode: "#CE925C",
+    name: "15 - Golden Oak",
+  },
+  Candlelite: {
+    hexCode: "#B1592C",
+    name: "07 - Candlelite",
   },
 };
 

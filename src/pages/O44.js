@@ -30,8 +30,8 @@ export const havingWords = (string, word) => {
         if (prevChar) {
           if (isSpecialChars(prevChar)) {
           } else {
-            console.log("just ", word);
-            return true;
+            // console.log("just ", word);
+            // return true;
           }
         } else {
           console.log("else prevChar");
@@ -128,7 +128,7 @@ export const sortNames = (index, entry, keys) => {
       } else {
         if (isSpecialChars(element[o])) continue;
 
-        if (element[o].toUpperCase() === element[o]) {
+        if (element[o].toUpperCase() === element[o] && isNaN(element[o])) {
           name += element[o];
           heading = true;
         }
@@ -137,6 +137,17 @@ export const sortNames = (index, entry, keys) => {
   }
 
   return { boy, girl, cat, dog };
+};
+
+export const handleCount = (names) => {
+  if (typeof names === "string") {
+    const nameArray =
+      (names.trim().match(/\n/g) || []).length > 1
+        ? names.trim().split("\n")
+        : names.trim().split(",");
+
+    return nameArray.filter((ele) => ele.length > 0).length;
+  } else return names.length;
 };
 
 const O44 = () => {
@@ -263,17 +274,6 @@ const O44 = () => {
     handleSetNames(res);
   };
 
-  const handleCount = (names) => {
-    if (typeof names === "string") {
-      const nameArray =
-        (names.match(/\n/g) || []).length > 1
-          ? names.split("\n")
-          : names.split(",");
-
-      return nameArray.length;
-    } else return names.length;
-  };
-
   useEffect(() => {
     const numNames =
       handleCount(boyNames) +
@@ -292,7 +292,15 @@ const O44 = () => {
 
     const percent = parseInt(customSize) === 0 ? 1 : 150 / 115;
 
-    body += templates.O44.front(position.x, position.y, percent, title);
+    if (title.trim() === defaultTitle)
+      body += templates.O44.front_default(position.x, position.y, percent);
+    else
+      body += templates.O44.front(
+        position.x,
+        position.y,
+        percent,
+        title.replace("&", "&amp;")
+      );
     position.x += templates.O44.frontParam.W;
 
     body += templates.O44.koson(position.x, position.y - 13);

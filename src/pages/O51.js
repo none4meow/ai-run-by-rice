@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { templates } from "../configs/templates";
 import { isSpecialChars } from "../configs/constants";
-import { havingWords, sortNames } from "./O44";
+import { handleCount, havingWords, sortNames } from "./O44";
 
 const O51 = () => {
   const [personalization, setPersonalization] = useState("");
@@ -126,17 +126,6 @@ const O51 = () => {
 
     const res = sortNames(index, entry, keys);
     handleSetNames(res);
-  };
-
-  const handleCount = (names) => {
-    if (typeof names === "string") {
-      const nameArray =
-        (names.match(/\n/g) || []).length > 1
-          ? names.split("\n")
-          : names.split(",");
-
-      return nameArray.length;
-    } else return names.length;
   };
 
   useEffect(() => {

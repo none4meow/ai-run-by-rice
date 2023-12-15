@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { templates } from "../configs/templates";
 import { isSpecialChars } from "../configs/constants";
-import { havingWords, sortNames } from "./O44";
+import { handleCount, havingWords, sortNames } from "./O44";
 
 const O17 = () => {
   const [personalization, setPersonalization] = useState("");
@@ -115,17 +115,6 @@ const O17 = () => {
     handleSetNames(res);
   };
 
-  const handleCount = (names) => {
-    if (typeof names === "string") {
-      const nameArray =
-        (names.match(/\n/g) || []).length > 1
-          ? names.split("\n")
-          : names.split(",");
-
-      return nameArray.length;
-    } else return names.length;
-  };
-
   useEffect(() => {
     const numNames =
       handleCount(boyNames) +
@@ -148,7 +137,12 @@ const O17 = () => {
     if (size === 1) percent = 150 / 120;
     else if (size === 2) percent = 180 / 120;
 
-    body += templates.O17.roller(position.x, position.y, percent, title);
+    body += templates.O17.roller(
+      position.x,
+      position.y,
+      percent,
+      title.replace("&", "&amp;")
+    );
     position.x += templates.O17.rollerParam.W;
 
     body += templates.O17.board(position.x, position.y, percent);

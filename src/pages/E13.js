@@ -1,32 +1,7 @@
 import React, { useRef, useState } from "react";
 import { templates } from "../configs/templates";
 import { colors } from "../configs/constants";
-import { Modal } from "@mui/material";
-
-const PickColorModal = ({ open, title, handlePickColor, onClose }) => {
-  return (
-    <Modal open={open} onClose={onClose}>
-      <div className={"custom-modal"}>
-        <h3 className="text-center">{title}</h3>
-        <div className="grid-container">
-          {Object.keys(colors).map((key, index) => (
-            <div
-              key={index}
-              className="grid-item"
-              onClick={() => handlePickColor(key)}
-            >
-              <div
-                className="circle"
-                style={{ background: `${colors[key].hexCode}` }}
-              ></div>
-              <span>{colors[key].name}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </Modal>
-  );
-};
+import { PickColorModal } from "./G87";
 
 const E13 = () => {
   const [customBoxColor, setCustomBoxColor] = useState(null);
@@ -111,15 +86,15 @@ const E13 = () => {
     <div className="w-50">
       <PickColorModal
         open={boxColorModal}
-        title={"Pick your box color"}
-        handlePickColor={handlePickBoxColor}
+        title={"Pick box color"}
+        onPickColor={handlePickBoxColor}
         onClose={handleONCBoxColorModal}
       />
 
       <PickColorModal
         open={nameColorModal}
-        title={"Pick your name color"}
-        handlePickColor={handlePickNameColor}
+        title={"Pick name color"}
+        onPickColor={handlePickNameColor}
         onClose={handleONCNameColorModal}
       />
 

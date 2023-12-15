@@ -2,31 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { templates } from "../configs/templates";
 import { colors, fonts } from "../configs/constants";
 import { Modal } from "@mui/material";
-
-const PickColorModal = ({ open, title, handlePickColor, onClose }) => {
-  return (
-    <Modal open={open} onClose={onClose}>
-      <div className={"custom-modal"}>
-        <h3 className="text-center">{title}</h3>
-        <div className="grid-container">
-          {Object.keys(colors).map((key, index) => (
-            <div
-              key={index}
-              className="grid-item"
-              onClick={() => handlePickColor(key)}
-            >
-              <div
-                className="circle"
-                style={{ background: `${colors[key].hexCode}` }}
-              ></div>
-              <span>{colors[key].name}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </Modal>
-  );
-};
+import { PickColorModal } from "./G87";
 
 const PickFontModal = ({
   fontNumber,
@@ -79,24 +55,24 @@ const E05 = () => {
   const [customBoxColor, setCustomBoxColor] = useState(null);
   const handlePickBoxColor = (color) => {
     setCustomBoxColor(colors[color]);
-    handleONCBoxColorModal();
+    onCloseBoxColor();
 
-    handleONCNameColorModal();
+    onCloseNameColor();
   };
 
   const [customNameColor, setCustomNameColor] = useState(null);
   const handlePickNameColor = (color) => {
     setCustomNameColor(colors[color]);
-    handleONCNameColorModal();
+    onCloseNameColor();
 
     handleONCFontModal();
   };
 
-  const [nameColorModal, setNameColorModal] = useState(false);
-  const handleONCNameColorModal = () => setNameColorModal(!nameColorModal);
+  const [openNameColor, setOpenNameColor] = useState(false);
+  const onCloseNameColor = () => setOpenNameColor(!openNameColor);
 
-  const [boxColorModal, setBoxColorModal] = useState(false);
-  const handleONCBoxColorModal = () => setBoxColorModal(!boxColorModal);
+  const [openBoxColor, setOpenBoxColor] = useState(false);
+  const onCloseBoxColor = () => setOpenBoxColor(!openBoxColor);
 
   const [customName, setCustomName] = useState("");
   const onChangeCustomName = (e) => {
@@ -194,17 +170,17 @@ const E05 = () => {
   return (
     <div className="w-50">
       <PickColorModal
-        open={boxColorModal}
-        title={"Pick your box color"}
-        handlePickColor={handlePickBoxColor}
-        onClose={handleONCBoxColorModal}
+        open={openBoxColor}
+        title={"Pick box color"}
+        onPickColor={handlePickBoxColor}
+        onClose={onCloseBoxColor}
       />
 
       <PickColorModal
-        open={nameColorModal}
-        title={"Pick your name color"}
-        handlePickColor={handlePickNameColor}
-        onClose={handleONCNameColorModal}
+        open={openNameColor}
+        title={"Pick name color"}
+        onPickColor={handlePickNameColor}
+        onClose={onCloseNameColor}
       />
 
       <Modal open={fontModal} onClose={handleONCFontModal}>
@@ -230,15 +206,12 @@ const E05 = () => {
             <input
               value={customBoxColor.name}
               className="form-control pointer"
-              onClick={handleONCBoxColorModal}
+              onClick={onCloseBoxColor}
               onChange={() => {}}
             />
           </>
         ) : (
-          <button
-            className="w-100 btn btn-secondary"
-            onClick={handleONCBoxColorModal}
-          >
+          <button className="w-100 btn btn-secondary" onClick={onCloseBoxColor}>
             Pick Box Color
           </button>
         )}
@@ -256,14 +229,14 @@ const E05 = () => {
             <input
               value={customNameColor.name}
               className="form-control pointer"
-              onClick={handleONCNameColorModal}
+              onClick={onCloseNameColor}
               onChange={() => {}}
             />
           </>
         ) : (
           <button
             className="w-100 btn btn-secondary"
-            onClick={handleONCNameColorModal}
+            onClick={onCloseNameColor}
           >
             Pick Name Color
           </button>

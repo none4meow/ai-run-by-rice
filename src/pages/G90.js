@@ -2,88 +2,9 @@ import React, { useEffect, useRef, useState } from "react";
 import { templates } from "../configs/templates";
 import { colors } from "../configs/constants";
 import { Modal } from "@mui/material";
+import { PickAnimalModal, PickColorModal } from "./G87";
 
-export const PickColorModal = ({ open, title, onPickColor, onClose }) => {
-  return (
-    <Modal open={open} onClose={onClose}>
-      <div className={"custom-modal"}>
-        <h3 className="text-center">{title}</h3>
-        <div className="grid-container">
-          {Object.keys(colors).map((key, index) => (
-            <div
-              key={index}
-              className="grid-item"
-              onClick={() => onPickColor(key)}
-            >
-              <div
-                className="circle"
-                style={{ background: `${colors[key].hexCode}` }}
-              ></div>
-              <span>{colors[key].name}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </Modal>
-  );
-};
-
-export const PickAnimalModal = ({
-  open,
-  animalNumber,
-  onChangeAnimal,
-  onPickAnimal,
-  onClose,
-}) => {
-  const onEnter = (e) => {
-    if (e.key === "Enter") {
-      onClose();
-    }
-  };
-
-  const numberRef = useRef(null);
-
-  useEffect(() => {
-    // inputRef.current?.focus();
-    numberRef.current?.select();
-  }, [open]);
-
-  return (
-    <div className={"custom-modal"}>
-      <input
-        type="number"
-        autoFocus={true}
-        ref={numberRef}
-        autoComplete="off"
-        className="form-control dark-input mt-3 mb-3"
-        value={animalNumber}
-        onKeyDown={(e) => onEnter(e)}
-        onChange={(e) => onChangeAnimal(e)}
-      />
-      <div className="grid-container">
-        {Object.keys(templates.G87.animals).map((key, index) => (
-          <div
-            key={index}
-            className="grid-item"
-            onClick={() => onPickAnimal(key)}
-          >
-            <div className="d-block m-auto">
-              <svg
-                style={{ width: "182px" }}
-                dangerouslySetInnerHTML={{
-                  __html: templates.G87.animals[key].tag(23, 0, 0.8),
-                }}
-              ></svg>
-            </div>
-            <span>{key}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
-
-const G87 = () => {
+const G90 = () => {
   const [customColor, setCustomColor] = useState(null);
   const onPickColor = (color) => {
     setCustomColor(colors[color]);
@@ -149,69 +70,51 @@ const G87 = () => {
   const getCode = () => {
     if (!customColor) return;
 
-    const styling = () => {
-      switch (customSize) {
-        case "S":
-          return templates.G87.sizeSStyles;
-        case "M":
-          return templates.G87.sizeMStyles;
-        case "L":
-          return templates.G87.sizeLStyles;
-        default:
-          break;
-      }
-    };
+    // if (animalNumber.length <= 0) {
+    //   if (Math.round(Math.random()) === 0) setAnimalNumber("12");
+    //   else setAnimalNumber("14");
+    // }
 
-    const sizing = () => {
-      // if (animalNumber.length <= 0) {
-      //   if (Math.round(Math.random()) === 0) setAnimalNumber("12");
-      //   else setAnimalNumber("14");
-      // }
+    let body = "";
 
-      switch (customSize) {
-        case "S":
-          return (
-            templates.G87.animals[animalNumber].tag(900, 360, 1) +
-            templates.G87.sizeS(
-              customName,
-              customText,
-              `# ${animalNumber}`,
-              customColor
-            )
-          );
+    switch (customSize) {
+      case "S":
+        body += templates.G87.animals[animalNumber].tag(0, 0, 1);
+        body += templates.G90.sizeS(
+          customName,
+          customText,
+          `# ${animalNumber}`,
+          customColor
+        );
 
-        case "M":
-          return (
-            templates.G87.animals[animalNumber].tag(860, 500, 1.4) +
-            templates.G87.sizeM(
-              customName,
-              customText,
-              `# ${animalNumber}`,
-              customColor
-            )
-          );
-        case "L":
-          return (
-            templates.G87.animals[animalNumber].tag(800, 600, 1.69) +
-            templates.G87.sizeL(
-              customName,
-              customText,
-              `# ${animalNumber}`,
-              customColor
-            )
-          );
-        default:
-          break;
-      }
-    };
+        break;
+
+      case "M":
+        body += templates.G87.animals[animalNumber].tag(0, 0, 1.4);
+        body += templates.G90.sizeM(
+          customName,
+          customText,
+          `# ${animalNumber}`,
+          customColor
+        );
+
+        break;
+      case "L":
+        body += templates.G87.animals[animalNumber].tag(0, 0, 1.69);
+        body += templates.G90.sizeL(
+          customName,
+          customText,
+          `# ${animalNumber}`,
+          customColor
+        );
+
+        break;
+      default:
+        break;
+    }
 
     return `<svg xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <style>
-          ${styling()}
-        </style>
-      </defs>
-      ${sizing()}
+      ${body}
     </svg>`;
   };
 
@@ -220,7 +123,7 @@ const G87 = () => {
       <Modal open={openAnimal} onClose={onCloseAnimal}>
         <div>
           <PickAnimalModal
-            open={openAnimal}
+            animalModal={openAnimal}
             animalNumber={animalNumber}
             onChangeAnimal={onChangeCustomAnimal}
             onPickAnimal={handlePickAnimal}
@@ -332,4 +235,4 @@ const G87 = () => {
   );
 };
 
-export default G87;
+export default G90;

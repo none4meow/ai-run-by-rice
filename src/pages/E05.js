@@ -4,7 +4,7 @@ import { colors, fonts } from "../configs/constants";
 import { Modal } from "@mui/material";
 import { PickColorModal } from "./G87";
 
-const PickFontModal = ({
+export const PickFontModal = ({
   fontNumber,
   handlePickFont,
   onChangeCustomFont,

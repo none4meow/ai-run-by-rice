@@ -9,7 +9,7 @@ export const tag = (x, y, text) => {
   const textLength = text.length;
 
   let xMatrix = 15.77;
-  let yMatrix = 28.38;
+  let yMatrix = 30;
 
   if (textLength >= 11) {
     fontSize -= 7;

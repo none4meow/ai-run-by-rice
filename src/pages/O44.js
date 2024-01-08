@@ -53,7 +53,10 @@ export const havingWords = (string, word) => {
 };
 
 export const handleSort = (name, string, keys, boy, girl, cat, dog) => {
+  const blacklist = ["name", "names","year"]
+
   if (
+    blacklist.indexOf(name.toLowerCase()) > -1 ||
     keys.meow.indexOf(name.toLowerCase()) > -1 ||
     keys.gaw.indexOf(name.toLowerCase()) > -1 ||
     keys.male.indexOf(name.toLowerCase()) > -1 ||
@@ -164,10 +167,10 @@ const O44 = () => {
     setCustomSize(value);
   };
 
-  const [defaultYear] = useState("2023");
+  const [defaultYear] = useState(new Date().getFullYear());
   const [defaultTitle] = useState("Merry Christmas");
 
-  const [year, setYear] = useState(defaultYear);
+  const [year, setYear] = useState("");
   const onChangeYear = (e) => {
     const value = e.target.value;
     setYear(value);
@@ -204,10 +207,10 @@ const O44 = () => {
   };
 
   const [keys] = useState({
-    male: ["boy", "male", "son", "man", "human"],
-    female: ["girl", "female", "daughter", "woman"],
-    meow: ["cat", "head"],
-    gaw: ["dog", "bone"],
+    male: ["boy", "boys", "male", "son", "man", "men", "human"],
+    female: ["girl", "girls", "female", "daughter", "woman", "women"],
+    meow: ["cat", "cats", "head", "heads"],
+    gaw: ["dog", "dogs", "bone", "bones"],
   });
 
   const handleSetNames = (res) => {
@@ -292,15 +295,15 @@ const O44 = () => {
 
     const percent = parseInt(customSize) === 0 ? 1 : 150 / 115;
 
-    if (title.trim() === defaultTitle)
-      body += templates.O44.front_default(position.x, position.y, percent);
-    else
-      body += templates.O44.front(
-        position.x,
-        position.y,
-        percent,
-        title.replace("&", "&amp;")
-      );
+
+    body += templates.O44.front(
+      position.x,
+      position.y,
+      percent,
+      title.replace("&", "&amp;"),
+      year
+    );
+
     position.x += templates.O44.frontParam.W;
 
     body += templates.O44.koson(position.x, position.y - 13);
@@ -345,7 +348,7 @@ const O44 = () => {
 
   const reset = () => {
     setCustomSize(0);
-    setYear(defaultYear);
+    setYear("");
     setTitle(defaultTitle);
     setBoyNames("");
     setGirlNames("");
@@ -408,7 +411,7 @@ const O44 = () => {
             className={`form-control col-auto`}
             autoComplete="off"
             value={year}
-            placeholder={defaultYear}
+            // placeholder={defaultYear}
             onChange={(e) => onChangeYear(e)}
           />
         </div>

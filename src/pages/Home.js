@@ -7,7 +7,7 @@ const Home = () => {
     setJustInput(value);
   };
 
-  const [splitByWhom, setSplitByWhom] = useState("");
+  const [splitByWhom, setSplitByWhom] = useState(0);
   const onChangeSplitByWhom = (e) => {
     setSplitByWhom(parseInt(e.target.value));
   };

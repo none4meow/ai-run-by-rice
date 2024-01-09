@@ -61,87 +61,105 @@ const G98 = () => {
   };
 
   return (
-    <div className="w-50">
-      <Modal open={fontModal} onClose={handleONCFontModal}>
+    <div className="d-flex justify-content-center w-100">
+      <div className="w-50">
         <div>
-          <PickFontModal
-            fontNumber={fontNumber}
-            handlePickFont={handlePickFont}
-            onChangeCustomFont={onChangeCustomFont}
-            onClose={handleONCFontModal}
-          />
+          <Modal open={fontModal} onClose={handleONCFontModal}>
+            <div>
+              <PickFontModal
+                fontNumber={fontNumber}
+                handlePickFont={handlePickFont}
+                onChangeCustomFont={onChangeCustomFont}
+                onClose={handleONCFontModal}
+              />
+            </div>
+          </Modal>
+
+          <div
+            className="w-100 d-flex mb-3 pointer"
+            onClick={handleONCFontModal}
+          >
+            <label htmlFor="font-number" className="form-label pointer">
+              Font number
+            </label>
+            <div className="d-flex ms-3">
+              <span># </span>
+              <input
+                value={fontNumber}
+                className="ms-2 form-control pointer"
+                onChange={() => {}}
+              />
+            </div>
+          </div>
+
+          <div className="d-flex">
+            <label htmlFor="sku" className="form-label col-form-label me-3">
+              Style
+            </label>
+            <select
+              ref={sizeRef}
+              className="form-control form-select"
+              value={customStyle}
+              onChange={(e) => onChangeCustomStyle(e)}
+            >
+              {styles.map((ele) => (
+                <option key={ele} value={ele}>
+                  {ele}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="w-100 d-flex flex-column mt-3 mb-3">
+            <label htmlFor="Name" className="form-label text-start">
+              Name
+            </label>
+            <textarea
+              type="text"
+              id="Name"
+              className={`form-control`}
+              autoComplete="off"
+              value={customName}
+              onChange={(e) => onChangeCustomName(e)}
+            />
+          </div>
+
+          <div className="w-100 d-flex flex-column mt-3 mb-3">
+            <label htmlFor="Quote" className="form-label text-start">
+              Quote
+            </label>
+            <textarea
+              type="text"
+              id="Quote"
+              className={`form-control`}
+              autoComplete="off"
+              value={customQuote}
+              onChange={(e) => onChangeCustomQuote(e)}
+            />
+          </div>
+
+          <button
+            className="btn btn-secondary mb-5 w-100"
+            onClick={() => {
+              navigator.clipboard.writeText(getCode());
+              resetCustom();
+            }}
+          >
+            Get code
+          </button>
         </div>
-      </Modal>
-
-      <div className="w-100 d-flex mb-3 pointer" onClick={handleONCFontModal}>
-        <label htmlFor="font-number" className="form-label pointer">
-          Font number
-        </label>
-        <div className="d-flex ms-3">
-          <span># </span>
-          <input
-            value={fontNumber}
-            className="ms-2 form-control pointer"
-            onChange={() => {}}
-          />
-        </div>
       </div>
 
-      <div className="d-flex">
-        <label htmlFor="sku" className="form-label col-form-label me-3">
-          Style
-        </label>
-        <select
-          ref={sizeRef}
-          className="form-control form-select"
-          value={customStyle}
-          onChange={(e) => onChangeCustomStyle(e)}
-        >
-          {styles.map((ele) => (
-            <option key={ele} value={ele}>
-              {ele}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div className="w-100 d-flex flex-column mt-3 mb-3">
-        <label htmlFor="name" className="form-label text-start">
-          Name
-        </label>
-        <textarea
-          type="text"
-          id="name"
-          className={`form-control`}
-          autoComplete="off"
-          value={customName}
-          onChange={(e) => onChangeCustomName(e)}
-        />
-      </div>
-
-      <div className="w-100 d-flex flex-column mt-3 mb-3">
-        <label htmlFor="name" className="form-label text-start">
-          Quote
-        </label>
-        <textarea
-          type="text"
-          id="quote"
-          className={`form-control`}
-          autoComplete="off"
-          value={customQuote}
-          onChange={(e) => onChangeCustomQuote(e)}
-        />
-      </div>
-
-      <button
-        className="btn btn-secondary mb-5 w-100"
-        onClick={() => {
-          navigator.clipboard.writeText(getCode());
-          resetCustom();
+      <img
+        src="https://minhbros.com/upload/product/862/5ec91aac30eae62f4140325d09b9afd0657d4df53e636.jpg"
+        alt=""
+        style={{
+          height: "fit-content",
+          width: "300px",
+          marginLeft: "60px",
+          borderRadius: "12px",
         }}
-      >
-        Get code
-      </button>
+      />
     </div>
   );
 };

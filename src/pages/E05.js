@@ -168,147 +168,163 @@ const E05 = () => {
   };
 
   return (
-    <div className="w-50">
-      <PickColorModal
-        open={openBoxColor}
-        title={"Pick box color"}
-        onPickColor={handlePickBoxColor}
-        onClose={onCloseBoxColor}
-      />
+    <div className="d-flex justify-content-center w-100">
+      <div className="w-50">
+        <PickColorModal
+          open={openBoxColor}
+          title={"Pick box color"}
+          onPickColor={handlePickBoxColor}
+          onClose={onCloseBoxColor}
+        />
 
-      <PickColorModal
-        open={openNameColor}
-        title={"Pick name color"}
-        onPickColor={handlePickNameColor}
-        onClose={onCloseNameColor}
-      />
+        <PickColorModal
+          open={openNameColor}
+          title={"Pick name color"}
+          onPickColor={handlePickNameColor}
+          onClose={onCloseNameColor}
+        />
 
-      <Modal open={fontModal} onClose={handleONCFontModal}>
-        <div>
-          <PickFontModal
-            fontNumber={fontNumber}
-            handlePickFont={handlePickFont}
-            onChangeCustomFont={onChangeCustomFont}
-            onClose={handleONCFontModal}
-          />
-        </div>
-      </Modal>
+        <Modal open={fontModal} onClose={handleONCFontModal}>
+          <div>
+            <PickFontModal
+              fontNumber={fontNumber}
+              handlePickFont={handlePickFont}
+              onChangeCustomFont={onChangeCustomFont}
+              onClose={handleONCFontModal}
+            />
+          </div>
+        </Modal>
 
-      <div className="w-100 d-flex mb-3 pointer">
-        {customBoxColor ? (
-          <>
-            <label
-              htmlFor="color"
-              className="form-label col-auto col-form-label pointer me-3"
-            >
-              Box Color
-            </label>
-            <input
-              value={customBoxColor.name}
-              className="form-control pointer"
+        <div className="w-100 d-flex mb-3 pointer">
+          {customBoxColor ? (
+            <>
+              <label
+                htmlFor="color"
+                className="form-label col-auto col-form-label pointer me-3"
+              >
+                Box Color
+              </label>
+              <input
+                value={customBoxColor.name}
+                className="form-control pointer"
+                onClick={onCloseBoxColor}
+                onChange={() => {}}
+              />
+            </>
+          ) : (
+            <button
+              className="w-100 btn btn-secondary"
               onClick={onCloseBoxColor}
-              onChange={() => {}}
-            />
-          </>
-        ) : (
-          <button className="w-100 btn btn-secondary" onClick={onCloseBoxColor}>
-            Pick Box Color
-          </button>
-        )}
-      </div>
-
-      <div className="w-100 d-flex mb-3 pointer">
-        {customNameColor ? (
-          <>
-            <label
-              htmlFor="color"
-              className="form-label col-auto col-form-label pointer me-3"
             >
-              Name Color
-            </label>
-            <input
-              value={customNameColor.name}
-              className="form-control pointer"
+              Pick Box Color
+            </button>
+          )}
+        </div>
+
+        <div className="w-100 d-flex mb-3 pointer">
+          {customNameColor ? (
+            <>
+              <label
+                htmlFor="color"
+                className="form-label col-auto col-form-label pointer me-3"
+              >
+                Name Color
+              </label>
+              <input
+                value={customNameColor.name}
+                className="form-control pointer"
+                onClick={onCloseNameColor}
+                onChange={() => {}}
+              />
+            </>
+          ) : (
+            <button
+              className="w-100 btn btn-secondary"
               onClick={onCloseNameColor}
+            >
+              Pick Name Color
+            </button>
+          )}
+        </div>
+
+        <div className="w-100 d-flex mb-3 pointer" onClick={handleONCFontModal}>
+          <label htmlFor="font-number" className="form-label pointer">
+            Font number
+          </label>
+          <div className="d-flex ms-3">
+            <span># </span>
+            <input
+              value={fontNumber}
+              className="ms-2 form-control pointer"
               onChange={() => {}}
             />
-          </>
-        ) : (
-          <button
-            className="w-100 btn btn-secondary"
-            onClick={onCloseNameColor}
-          >
-            Pick Name Color
-          </button>
-        )}
-      </div>
+          </div>
+        </div>
 
-      <div className="w-100 d-flex mb-3 pointer" onClick={handleONCFontModal}>
-        <label htmlFor="font-number" className="form-label pointer">
-          Font number
-        </label>
-        <div className="d-flex ms-3">
-          <span># </span>
-          <input
-            value={fontNumber}
-            className="ms-2 form-control pointer"
-            onChange={() => {}}
+        <div className="d-flex">
+          <label htmlFor="sku" className="form-label col-form-label me-3">
+            Size
+          </label>
+          <select
+            ref={sizeRef}
+            className="form-control form-select"
+            value={customSize}
+            onChange={(e) => onChangeCustomSize(e)}
+          >
+            {sizes.map((ele) => (
+              <option key={ele} value={ele}>
+                {ele}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="w-100 d-flex flex-column mt-3 mb-3">
+          <label htmlFor="name" className="form-label text-start">
+            Name
+          </label>
+          <textarea
+            type="text"
+            id="name"
+            className={`form-control`}
+            autoComplete="off"
+            value={customName}
+            onChange={(e) => onChangeCustomName(e)}
           />
         </div>
+        <div className="w-100 d-flex flex-column mt-3 mb-3">
+          <label htmlFor="custom-text" className="text-start form-label">
+            Text
+          </label>
+          <textarea
+            type="text"
+            id="custom-text"
+            className={`form-control`}
+            autoComplete="off"
+            value={customText}
+            onChange={(e) => onChangeCustomText(e)}
+          />
+        </div>
+        <button
+          className="btn btn-secondary mb-5 w-100"
+          onClick={() => {
+            navigator.clipboard.writeText(getCode());
+            resetCustom();
+          }}
+        >
+          Get code
+        </button>
       </div>
 
-      <div className="d-flex">
-        <label htmlFor="sku" className="form-label col-form-label me-3">
-          Size
-        </label>
-        <select
-          ref={sizeRef}
-          className="form-control form-select"
-          value={customSize}
-          onChange={(e) => onChangeCustomSize(e)}
-        >
-          {sizes.map((ele) => (
-            <option key={ele} value={ele}>
-              {ele}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div className="w-100 d-flex flex-column mt-3 mb-3">
-        <label htmlFor="name" className="form-label text-start">
-          Name
-        </label>
-        <textarea
-          type="text"
-          id="name"
-          className={`form-control`}
-          autoComplete="off"
-          value={customName}
-          onChange={(e) => onChangeCustomName(e)}
-        />
-      </div>
-      <div className="w-100 d-flex flex-column mt-3 mb-3">
-        <label htmlFor="custom-text" className="text-start form-label">
-          Text
-        </label>
-        <textarea
-          type="text"
-          id="custom-text"
-          className={`form-control`}
-          autoComplete="off"
-          value={customText}
-          onChange={(e) => onChangeCustomText(e)}
-        />
-      </div>
-      <button
-        className="btn btn-secondary mb-5 w-100"
-        onClick={() => {
-          navigator.clipboard.writeText(getCode());
-          resetCustom();
+      <img
+        src="https://i.etsystatic.com/28538313/r/il/20c958/5465082206/il_794xN.5465082206_qsw8.jpg"
+        alt=""
+        style={{
+          height: "fit-content",
+          width: "300px",
+          marginLeft: "60px",
+          borderRadius: "12px",
         }}
-      >
-        Get code
-      </button>
+      />
     </div>
   );
 };

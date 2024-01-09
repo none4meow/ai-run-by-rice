@@ -199,147 +199,163 @@ const O17 = () => {
   };
 
   return (
-    <div style={{ width: "80vw", paddingTop: "234px" }}>
-      <div className="row g-3 align-items-center mb-3">
-        <label
-          htmlFor="personalization"
-          className="form-label col-auto col-form-label"
-        >
-          Personalization
-        </label>
-        <textarea
-          style={{
-            height: "234px",
-            position: "fixed",
-            width: "80vw",
-            top: "60px",
+    <>
+      <img
+        src="https://i.etsystatic.com/28538313/r/il/519fbc/5461442463/il_794xN.5461442463_nzgo.jpg"
+        alt=""
+        style={{
+          height: "fit-content",
+          width: "280px",
+          marginTop: "12px",
+          borderRadius: "12px",
+          // paddingTop: "234px",
+        }}
+      />
+      <div style={{ width: "80vw" }}>
+        <div className="row g-3 align-items-center mb-3">
+          <label
+            htmlFor="personalization"
+            className="form-label col-auto col-form-label"
+          >
+            Personalization
+          </label>
+          <textarea
+            style={{
+              height: "160px",
+              position: "fixed",
+              width: "80vw",
+              top: "60px",
+            }}
+            type="text"
+            id="personalization"
+            className={`form-control col-auto`}
+            autoComplete="off"
+            value={personalization}
+            autoFocus
+            onChange={(e) => onChangePersonalization(e)}
+          />
+        </div>
+
+        <button
+          className="btn btn-secondary w-100"
+          onClick={() => {
+            sortData();
           }}
-          type="text"
-          id="personalization"
-          className={`form-control col-auto`}
-          autoComplete="off"
-          value={personalization}
-          autoFocus
-          onChange={(e) => onChangePersonalization(e)}
-        />
+        >
+          Sort personalization
+        </button>
+
+        <select
+          className="form-control form-select col-auto mt-3"
+          onChange={(e) => onChangeCustomSize(e)}
+          value={customSize}
+        >
+          <option value={0}>1 - 4 names</option>
+          <option value={1}>5 - 9 names</option>
+          <option value={2}>10 - 12 names</option>
+        </select>
+        <div className="row d-flex flex-row justify-content-between">
+          <div className="col g-3 align-items-center mb-3">
+            <label
+              htmlFor="title"
+              className="form-label col-auto col-form-label"
+            >
+              Title
+            </label>
+            <textarea
+              type="text"
+              id="title"
+              className={`form-control col-auto`}
+              autoComplete="off"
+              value={title}
+              placeholder={defaultTitle}
+              onChange={(e) => onChangeTitle(e)}
+            />
+          </div>
+        </div>
+
+        <div className="row d-flex flex-row justify-content-between">
+          <div className="col g-3 align-items-center mb-3 me-5">
+            <label
+              htmlFor="boy-names"
+              className="form-label col-auto col-form-label"
+            >
+              Boy names
+            </label>
+            <textarea
+              type="text"
+              id="boy-names"
+              className={`form-control col-auto`}
+              autoComplete="off"
+              value={boyNames}
+              onChange={(e) => onChangeBoyNames(e)}
+            />
+          </div>
+
+          <div className="col g-3 align-items-center mb-3">
+            <label
+              htmlFor="girl-names"
+              className="form-label col-auto col-form-label"
+            >
+              Girl names
+            </label>
+            <textarea
+              type="text"
+              id="girl-names"
+              className={`form-control col-auto`}
+              autoComplete="off"
+              value={girlNames}
+              onChange={(e) => onChangeGirlNames(e)}
+            />
+          </div>
+        </div>
+
+        <div className="row d-flex flex-row justify-content-between">
+          <div className="col g-3 align-items-center mb-3 me-5">
+            <label
+              htmlFor="cat-names"
+              className="form-label col-auto col-form-label"
+            >
+              Cat names
+            </label>
+            <textarea
+              type="text"
+              id="cat-names"
+              className={`form-control col-auto`}
+              autoComplete="off"
+              value={catNames}
+              onChange={(e) => onChangeCatNames(e)}
+            />
+          </div>
+          <div className="col g-3 align-items-center mb-3">
+            <label
+              htmlFor="dog-names"
+              className="form-label col-auto col-form-label"
+            >
+              Dog names
+            </label>
+            <textarea
+              type="text"
+              id="dog-names"
+              className={`form-control col-auto`}
+              autoComplete="off"
+              value={dogNames}
+              onChange={(e) => onChangeDogNames(e)}
+            />
+          </div>
+        </div>
+
+        <button
+          className="btn btn-secondary mb-5 w-100"
+          onClick={() => {
+            navigator.clipboard.writeText(getCode());
+            reset();
+          }}
+        >
+          Get code
+        </button>
       </div>
-
-      <button
-        className="btn btn-secondary w-100"
-        onClick={() => {
-          sortData();
-        }}
-      >
-        Sort personalization
-      </button>
-
-      <select
-        className="form-control form-select col-auto mt-3"
-        onChange={(e) => onChangeCustomSize(e)}
-        value={customSize}
-      >
-        <option value={0}>1 - 4 names</option>
-        <option value={1}>5 - 9 names</option>
-        <option value={2}>10 - 12 names</option>
-      </select>
-      <div className="row d-flex flex-row justify-content-between">
-        <div className="col g-3 align-items-center mb-3">
-          <label htmlFor="title" className="form-label col-auto col-form-label">
-            Title
-          </label>
-          <textarea
-            type="text"
-            id="title"
-            className={`form-control col-auto`}
-            autoComplete="off"
-            value={title}
-            placeholder={defaultTitle}
-            onChange={(e) => onChangeTitle(e)}
-          />
-        </div>
-      </div>
-
-      <div className="row d-flex flex-row justify-content-between">
-        <div className="col g-3 align-items-center mb-3 me-5">
-          <label
-            htmlFor="boy-names"
-            className="form-label col-auto col-form-label"
-          >
-            Boy names
-          </label>
-          <textarea
-            type="text"
-            id="boy-names"
-            className={`form-control col-auto`}
-            autoComplete="off"
-            value={boyNames}
-            onChange={(e) => onChangeBoyNames(e)}
-          />
-        </div>
-
-        <div className="col g-3 align-items-center mb-3">
-          <label
-            htmlFor="girl-names"
-            className="form-label col-auto col-form-label"
-          >
-            Girl names
-          </label>
-          <textarea
-            type="text"
-            id="girl-names"
-            className={`form-control col-auto`}
-            autoComplete="off"
-            value={girlNames}
-            onChange={(e) => onChangeGirlNames(e)}
-          />
-        </div>
-      </div>
-
-      <div className="row d-flex flex-row justify-content-between">
-        <div className="col g-3 align-items-center mb-3 me-5">
-          <label
-            htmlFor="cat-names"
-            className="form-label col-auto col-form-label"
-          >
-            Cat names
-          </label>
-          <textarea
-            type="text"
-            id="cat-names"
-            className={`form-control col-auto`}
-            autoComplete="off"
-            value={catNames}
-            onChange={(e) => onChangeCatNames(e)}
-          />
-        </div>
-        <div className="col g-3 align-items-center mb-3">
-          <label
-            htmlFor="dog-names"
-            className="form-label col-auto col-form-label"
-          >
-            Dog names
-          </label>
-          <textarea
-            type="text"
-            id="dog-names"
-            className={`form-control col-auto`}
-            autoComplete="off"
-            value={dogNames}
-            onChange={(e) => onChangeDogNames(e)}
-          />
-        </div>
-      </div>
-
-      <button
-        className="btn btn-secondary mb-5 w-100"
-        onClick={() => {
-          navigator.clipboard.writeText(getCode());
-          reset();
-        }}
-      >
-        Get code
-      </button>
-    </div>
+    </>
   );
 };
 

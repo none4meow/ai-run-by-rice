@@ -143,46 +143,58 @@ const O50 = () => {
   };
 
   return (
-    <div style={{ width: "80vw" }}>
-      <div className="row g-3 align-items-center mb-3">
-        <label
-          htmlFor="big-hearts"
-          className="form-label col-auto col-form-label"
-        >
-          Big hearts
-        </label>
-        <textarea
-          type="text"
-          id="big-hearts"
-          className={`form-control col-auto`}
-          autoComplete="off"
-          value={bigInput}
-          autoFocus
-          style={{ height: "90px" }}
-          onChange={(e) => onChangeBigInput(e)}
-        />
-      </div>
-      <div className="row g-3 align-items-center mb-3">
-        <label
-          htmlFor="small-hearts"
-          className="form-label col-auto col-form-label"
-        >
-          Small hearts
-        </label>
-        <textarea
-          type="text"
-          id="small-hearts"
-          className={`form-control col-auto`}
-          autoComplete="off"
-          value={smallInput}
-          onChange={(e) => onChangeSmallInput(e)}
-          style={{ height: "220px" }}
-        />
-        {hasSpecialChars && (
-          <small className="text-danger">* special chars</small>
-        )}
+    <>
+      <img
+        src="https://i.etsystatic.com/28538313/r/il/8fe7c5/5381785476/il_794xN.5381785476_16a8.jpg"
+        alt=""
+        style={{
+          height: "fit-content",
+          width: "280px",
+          marginTop: "12px",
+          borderRadius: "12px",
+          // paddingTop: "234px",
+        }}
+      />
+      <div style={{ width: "80vw" }}>
+        <div className="row g-3 align-items-center mb-3">
+          <label
+            htmlFor="big-hearts"
+            className="form-label col-auto col-form-label"
+          >
+            Big hearts
+          </label>
+          <textarea
+            type="text"
+            id="big-hearts"
+            className={`form-control col-auto`}
+            autoComplete="off"
+            value={bigInput}
+            autoFocus
+            style={{ height: "90px" }}
+            onChange={(e) => onChangeBigInput(e)}
+          />
+        </div>
+        <div className="row g-3 align-items-center mb-3">
+          <label
+            htmlFor="small-hearts"
+            className="form-label col-auto col-form-label"
+          >
+            Small hearts
+          </label>
+          <textarea
+            type="text"
+            id="small-hearts"
+            className={`form-control col-auto`}
+            autoComplete="off"
+            value={smallInput}
+            onChange={(e) => onChangeSmallInput(e)}
+            style={{ height: "220px" }}
+          />
+          {hasSpecialChars && (
+            <small className="text-danger">* special chars</small>
+          )}
 
-        {/* <select
+          {/* <select
           className="form-control form-select col-auto"
           onChange={(e) => onChangeSplitByWhom(e)}
           value={splitByWhom}
@@ -190,18 +202,19 @@ const O50 = () => {
           <option value={0}>Split by Comma</option>
           <option value={1}>Split by New line</option>
         </select> */}
-      </div>
+        </div>
 
-      <button
-        className="btn btn-secondary mb-5 w-100"
-        onClick={() => {
-          navigator.clipboard.writeText(getCode());
-          reset();
-        }}
-      >
-        Get code
-      </button>
-    </div>
+        <button
+          className="btn btn-secondary mb-5 w-100"
+          onClick={() => {
+            navigator.clipboard.writeText(getCode());
+            reset();
+          }}
+        >
+          Get code
+        </button>
+      </div>
+    </>
   );
 };
 

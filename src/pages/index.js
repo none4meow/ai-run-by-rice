@@ -4,6 +4,7 @@ export { default as G90 } from "./G90";
 export { default as G98 } from "./G98";
 export { default as E05 } from "./E05";
 export { default as E13 } from "./E13";
+export { default as E16 } from "./E16";
 export { default as O17 } from "./O17";
 export { default as O44 } from "./O44";
 export { default as O50 } from "./O50";

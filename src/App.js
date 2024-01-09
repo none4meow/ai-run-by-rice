@@ -1,6 +1,18 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import { O50, G87, E05, Home, E13, O44, O51, O17, G90,G98 } from "./pages";
+import {
+  O50,
+  G87,
+  E05,
+  Home,
+  E13,
+  O44,
+  O51,
+  O17,
+  G90,
+  G98,
+  E16,
+} from "./pages";
 import Layout from "./hocs/Layout";
 
 const App = () => {
@@ -13,6 +25,7 @@ const App = () => {
         <Route path={`G98/`} element={<G98 />} />
         <Route path={`E05/`} element={<E05 />} />
         <Route path={`E13/`} element={<E13 />} />
+        <Route path={`E16/`} element={<E16 />} />
         <Route path={`O17/`} element={<O17 />} />
         <Route path={`O44/`} element={<O44 />} />
         <Route path={`O50/`} element={<O50 />} />

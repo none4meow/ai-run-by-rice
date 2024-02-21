@@ -20,14 +20,13 @@ export const svg = (fontNumber, style, name, quote) => {
         .st0{fill:#FFFFFF;}
         .st1{fill:#606161;}
         .st2{fill:#181717;stroke:#6BBE45;stroke-width:0.25;stroke-miterlimit:10;}
-        .st3{fill:#010101;}
+        .st3{fill:#000000;}
         .st4{fill:#5B412A;stroke:#5B412A;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
         .st5{font-family:'${fontName}';${isBold ? `font-weight:bold;` : ""}}
         .st6{font-size:123px;}
         .st7{font-family:'#9Slide03NanamiRoundedLight';}
         .st8{font-size:30px;}
         .st9{fill:#231F20;}
-        .st10{fill:none;stroke:#010101;stroke-width:7;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
         .st11{font-size:69px;}
     </style>
 
@@ -196,7 +195,6 @@ export const svg = (fontNumber, style, name, quote) => {
             <path class="st9" d="M55.8,28.7v734.9h566.9V28.7H55.8z M594.7,735.6H83.8V56.7h510.9V735.6z"/>
         </g>
     </g>
-    <path class="st10" d="M323.3,20.1"/>
 </svg>
 `;
 };

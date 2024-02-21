@@ -13,8 +13,10 @@ const Home = () => {
   };
 
   const handleSort = useCallback(() => {
+    let value = [];
+
     if (splitByWhom === 0) {
-      const value = justInput
+      value = justInput
         .trim()
         .replace(/\s/g, "")
         .split(",")
@@ -23,7 +25,7 @@ const Home = () => {
 
       setJustOutput(value);
     } else if (splitByWhom === 1) {
-      const value = justInput
+      value = justInput
         .trim()
         .split("\n")
         .sort((a, b) => a.localeCompare(b))
@@ -31,14 +33,14 @@ const Home = () => {
 
       setJustOutput(value);
     } else if (splitByWhom === 2) {
-      const value = justInput
+      value = justInput
         .trim()
         .split(" ")
         .sort((a, b) => a.localeCompare(b))
         .sort((a, b) => a.length - b.length);
-
-      setJustOutput(value);
     }
+
+    setJustOutput(value.filter((ele) => ele.length > 0));
   }, [justInput, splitByWhom]);
 
   useEffect(() => {

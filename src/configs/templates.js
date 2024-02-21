@@ -1,4 +1,5 @@
 // import * as O78 from "../assets/svg/O78";
+import * as G71 from "../assets/svg/G71";
 import * as G87 from "../assets/svg/G87";
 import * as G90 from "../assets/svg/G90";
 import * as G98 from "../assets/svg/G98";
@@ -14,6 +15,7 @@ export const templates = {
   E05,
   E13,
   E16,
+  G71,
   G87,
   G90,
   G98,

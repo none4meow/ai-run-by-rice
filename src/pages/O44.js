@@ -207,8 +207,16 @@ const O44 = () => {
   };
 
   const [keys] = useState({
-    male: ["boy", "boys", "male", "son", "man", "men", "human"],
-    female: ["girl", "girls", "female", "daughter", "woman", "women"],
+    male: ["boy", "boys", "male", "males", "son", "man", "men", "human"],
+    female: [
+      "girl",
+      "girls",
+      "female",
+      "females",
+      "daughter",
+      "woman",
+      "women",
+    ],
     meow: ["cat", "cats", "head", "heads"],
     gaw: ["dog", "dogs", "bone", "bones"],
   });

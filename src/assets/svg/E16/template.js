@@ -50,7 +50,9 @@ export const svg = (color, fontNumber, name, year) => {
     `
     <polygon class="st2" points="377.6,802.8 394.6,824 237.6,824 254.5,802.8 237.6,781.5 394.6,781.5 	"/>
     <polygon class="st2" points="1544.7,842.2 1561.7,863.4 1404.7,863.4 1421.7,842.2 1404.7,820.9 1561.7,820.9 	"/>
-    <text transform="matrix(0.9872 0 0 1 1462.6466 849.4733)" class="st3 st4 st5">${year}</text>
+    <g>
+        <text transform="matrix(0.9872 0 0 1 1462.6466 849.4733)" class="st3 st4 st5">${year}</text>
+    </g>
     `
   }
   <path class="st2" d="M928.5,192.1c-48.2,0-87.2,10.7-87.2,24c0,13.2,39.1,24,87.2,24s87.2-10.7,87.2-24
@@ -116,12 +118,14 @@ export const svg = (color, fontNumber, name, year) => {
               c0.9-0.9,1.3-2,1.3-3.4v-19.8C412,962,411,957.7,409,954.6z"/>
       </g>
   </g>
-  <g>
-      <text transform="matrix(0.9469 0 0 1 160.5581 723.2021)" class="st6 st7 st8">${name}</text>
+
+    <g>
+        <text transform="matrix(0.9469 0 0 1 160.5581 723.2021)" class="st6 st7 st8">${name}</text>
+    </g>
       <text transform="matrix(1 0 0 1 89.0257 1105.3456)" class="st9 st10">${
         color.name
       }</text>
-  </g>
+ 
   </svg>
   `;
 };

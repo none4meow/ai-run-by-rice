@@ -43,7 +43,7 @@ export const svg = (name, boxColor, nameColor, inch) => {
 
 <g>
 	<text transform="matrix(1 0 0 1 467.5195 1721.8849)" class="st3 st4">5mm - ${boxColor.name}</text>
-	<text transform="matrix(1 0 0 1 398.5635 567.6431)" class="st3 st4">${nameColor.name}</text>
+	<text transform="matrix(1 0 0 1 398.5635 567.6431)" class="st3 st4">5mm - ${nameColor.name}</text>
 	<text transform="matrix(1 0 0 1 455.2847 316.1656)" class="st5 st6 st7">${name}</text>
 </g>
 

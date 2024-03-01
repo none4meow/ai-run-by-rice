@@ -1,14 +1,25 @@
-export const tag = (name, text, animal, color) => {
+import { templates } from "../../../configs/templates";
+
+export const svg = (name, color, animalNumber, text) => {
   const hex = color.hexCode;
+  const customText =
+    text.length > 0
+      ? `<text transform="matrix(1 0 0 1 783.2526 740.6307)" font-family="'AmaticSC-Bold'" 
+	font-size="22px">${text}</text>`
+      : "";
+
+  const animalTag = templates.G87.animals[animalNumber].tag(0, 0, 1);
 
   return `
+<svg version="1.1">
+
+${animalTag}
+
 <text transform="matrix(1 0 0 1 18.6631 562.8135)" font-family="'#9Slide03QuicksandBold-Bold'" font-size="480px">S</text>
-<text transform="matrix(1 0 0 1 -16 -39)" font-family="'#9Slide03QuicksandBold-Bold'" font-size="98px">${animal}</text>
+<text transform="matrix(1 0 0 1 -16 -39)" font-family="'#9Slide03QuicksandBold-Bold'" font-size="98px"># ${animalNumber}</text>
 
 <g>
-	<text transform="matrix(1 0 0 1 726.101 966.1508)" font-family="'#9Slide03QuicksandBold-Bold'" font-size="98px">${
-    color.name
-  }</text>
+	<text transform="matrix(1 0 0 1 726.101 966.1508)" font-family="'#9Slide03QuicksandBold-Bold'" font-size="98px">${color.name}</text>
   	<g>
 		<text transform="matrix(0.9843 -0.1763 0.1763 0.9843 753.8664 157.1114)"
 		fill="${hex}" stroke="${hex}" stroke-width="2" stroke-linecap="round" 
@@ -851,10 +862,6 @@ export const tag = (name, text, animal, color) => {
 </g>
 
 
-${
-  text.length > 0 &&
-  `<text transform="matrix(1 0 0 1 783.2526 740.6307)" font-family="'AmaticSC-Bold'" 
-	font-size="22px">${text}</text>`
-}
-  `;
+${customText}
+</svg>`;
 };

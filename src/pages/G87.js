@@ -149,70 +149,37 @@ const G87 = () => {
   const getCode = () => {
     if (!customColor) return;
 
-    const styling = () => {
-      switch (customSize) {
-        case "S":
-          return templates.G87.sizeSStyles;
-        case "M":
-          return templates.G87.sizeMStyles;
-        case "L":
-          return templates.G87.sizeLStyles;
-        default:
-          break;
-      }
-    };
+    // if (animalNumber.length <= 0) {
+    //   if (Math.round(Math.random()) === 0) setAnimalNumber("12");
+    //   else setAnimalNumber("14");
+    // }
 
-    const sizing = () => {
-      // if (animalNumber.length <= 0) {
-      //   if (Math.round(Math.random()) === 0) setAnimalNumber("12");
-      //   else setAnimalNumber("14");
-      // }
+    switch (customSize) {
+      case "S":
+        return templates.G87.sizeS(
+          customName,
+          customColor,
+          animalNumber,
+          customText
+        );
 
-      switch (customSize) {
-        case "S":
-          return (
-            templates.G87.animals[animalNumber].tag(900, 360, 1) +
-            templates.G87.sizeS(
-              customName,
-              customText,
-              `# ${animalNumber}`,
-              customColor
-            )
-          );
-
-        case "M":
-          return (
-            templates.G87.animals[animalNumber].tag(860, 500, 1.4) +
-            templates.G87.sizeM(
-              customName,
-              customText,
-              `# ${animalNumber}`,
-              customColor
-            )
-          );
-        case "L":
-          return (
-            templates.G87.animals[animalNumber].tag(800, 600, 1.69) +
-            templates.G87.sizeL(
-              customName,
-              customText,
-              `# ${animalNumber}`,
-              customColor
-            )
-          );
-        default:
-          break;
-      }
-    };
-
-    return `<svg xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <style>
-          ${styling()}
-        </style>
-      </defs>
-      ${sizing()}
-    </svg>`;
+      case "M":
+        return templates.G87.sizeM(
+          customName,
+          customColor,
+          animalNumber,
+          customText
+        );
+      case "L":
+        return templates.G87.sizeL(
+          customName,
+          customColor,
+          animalNumber,
+          customText
+        );
+      default:
+        break;
+    }
   };
 
   return (

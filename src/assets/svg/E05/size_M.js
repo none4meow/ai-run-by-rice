@@ -22,14 +22,13 @@ export const svg = (
             ${text}
         </text>`
       : "";
-  const fillStyle = `style="fill:${boxColor.hexCode};"`;
 
   return `
 <svg xmlns="http://www.w3.org/2000/svg">
 <style>
     .st0{font-family:'#9Slide03QuicksandBold-Bold';}
 	.st1{font-size:480px;}
-	.st2{fill:#EDD2CE;}
+	.st2{fill:${nameColor.hexCode === "#FFFFFF" ? "#000000" : nameColor.hexCode};}
 	.st3{font-family:'AmaticSC-Bold';}
 	.st4{font-size:30.7459px;}
 	.st5{fill:#FFFFFF;}
@@ -42,6 +41,7 @@ export const svg = (
 	.st12{font-size:98px;}
 	.st13{font-size:69px;}
 	.st14{stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st15{fill:${boxColor.hexCode};}
 </style>
 
 <text transform="matrix(1 0 0 1 3.1617 701.0704)" class="st0 st1">M</text>
@@ -58,12 +58,12 @@ export const svg = (
     <text transform="matrix(1 0 0 1 34.6187 240.7532)" class="st0 st13">${nameColor.name}</text>
 </g>
 
-<path ${fillStyle} class="st2" d="M1487.1,551.6v-28.3h-8.5v-13c0-31-12.3-60.7-34.2-82.6c-21.9-21.9-51.6-34.2-82.6-34.2h-197.4v-8.5h-28.3v8.5
+<path class="st15" d="M1487.1,551.6v-28.3h-8.5v-13c0-31-12.3-60.7-34.2-82.6c-21.9-21.9-51.6-34.2-82.6-34.2h-197.4v-8.5h-28.3v8.5
 	H938.8c-31,0-60.7,12.3-82.6,34.2c-21.9,21.9-34.2,51.6-34.2,82.6v13h-8.4v28.3h8.4v48.8h-8.4v28.3h8.4v13c0,31,12.3,60.7,34.2,82.6
 	c21.9,21.9,51.6,34.2,82.6,34.2h80.2v8.5h22.6v-8.5H1259v8.5h22.6v-8.5h80.2c31,0,60.7-12.2,82.6-34.1
 	c21.9-21.9,34.2-51.6,34.1-82.6v-13h8.5v-28.3h-8.5v-48.8H1487.1z M1423.9,638.1c0,36.3-29.4,65.7-65.7,65.7H942.4
 	c-36.3,0-65.7-29.4-65.7-65.7V514c0-36.3,29.4-65.6,65.7-65.6h415.8c36.3,0,65.7,29.4,65.7,65.6V638.1z"/>
-<path ${fillStyle} class="st2" d="M1487.1,176.7v-28.3h-8.5v-13c0-31-12.3-60.7-34.2-82.6c-21.9-21.9-51.6-34.2-82.6-34.2h-197.4v-8.5h-28.3v8.5
+<path class="st15" d="M1487.1,176.7v-28.3h-8.5v-13c0-31-12.3-60.7-34.2-82.6c-21.9-21.9-51.6-34.2-82.6-34.2h-197.4v-8.5h-28.3v8.5
 	H938.8c-31,0-60.7,12.3-82.6,34.2c-21.9,21.9-34.2,51.6-34.2,82.6v13h-8.4v28.3h8.4v48.8h-8.4v28.3h8.4v13c0,31,12.3,60.7,34.2,82.6
 	c21.9,21.9,51.6,34.2,82.6,34.2h80.2v8.5h22.6v-8.5H1259v8.5h22.6v-8.5h80.2c31,0,60.7-12.2,82.6-34.1
 	c21.9-21.9,34.2-51.6,34.1-82.6v-13h8.5v-28.3h-8.5v-48.8H1487.1z M1423.9,263.1c0,36.3-29.4,65.7-65.7,65.7H942.4

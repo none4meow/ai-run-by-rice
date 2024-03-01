@@ -75,47 +75,34 @@ const G90 = () => {
     //   else setAnimalNumber("14");
     // }
 
-    let body = "";
-
     switch (customSize) {
       case "S":
-        body += templates.G87.animals[animalNumber].tag(0, 0, 1);
-        body += templates.G90.sizeS(
+        return templates.G90.sizeS(
           customName,
-          customText,
-          `# ${animalNumber}`,
-          customColor
+          customColor,
+          animalNumber,
+          customText
         );
-
-        break;
 
       case "M":
-        body += templates.G87.animals[animalNumber].tag(0, 0, 1.4);
-        body += templates.G90.sizeM(
+        return templates.G90.sizeM(
           customName,
-          customText,
-          `# ${animalNumber}`,
-          customColor
+          customColor,
+          animalNumber,
+          customText
         );
 
-        break;
       case "L":
-        body += templates.G87.animals[animalNumber].tag(0, 0, 1.69);
-        body += templates.G90.sizeL(
+        return templates.G90.sizeL(
           customName,
-          customText,
-          `# ${animalNumber}`,
-          customColor
+          customColor,
+          animalNumber,
+          customText
         );
 
-        break;
       default:
         break;
     }
-
-    return `<svg xmlns="http://www.w3.org/2000/svg">
-      ${body}
-    </svg>`;
   };
 
   return (

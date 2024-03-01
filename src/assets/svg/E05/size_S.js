@@ -23,8 +23,6 @@ export const svg = (
 		</text>`
       : "";
 
-  const fillStyle = `style="fill:${boxColor.hexCode};"`;
-
   return `
 <svg xmlns="http://www.w3.org/2000/svg">
 <style>
@@ -33,7 +31,7 @@ export const svg = (
 	.st10{font-size:69px;}
 	.st2{stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 	.st3{font-size:480px;}
-	.st4{fill:#EDD2CE;}
+	.st4{fill:${nameColor.hexCode === "#FFFFFF" ? "#000000" : nameColor.hexCode};}
 	.st5{font-family:'AmaticSC-Bold';}
 	.st6{font-size:22px;}
 	.st7{fill:#FFFFFF;}
@@ -42,14 +40,19 @@ export const svg = (
 	.st11{font-size:69.2989px;}
 	.st12{fill:none;stroke:#FFFFFF;stroke-width:13;stroke-linecap:round;stroke-linejoin:round;}
 	.st13{fill:none;stroke:#FFFFFF;stroke-width:0.931;stroke-linecap:round;stroke-linejoin:round;}
+	.st15{fill:${boxColor.hexCode};}
 </style>
 
 <text transform="matrix(1 0 0 1 12.7615 674.174)" class="st0 st3">S</text>
 <text style="font-family: '${fontFamily}'" transform="matrix(1 0 0 1 34.7751 889.5459)" class="st0 st10">${fontNumberNName}</text>
 
 <g>
-    <text transform="matrix(1 0 0 1 943.9006 985.0399)" class="st0 st1">${boxColor.name}</text>
-    <text transform="matrix(1 0 0 1 37.6979 253.8278)" class="st0 st10">${nameColor.name}</text>
+    <text transform="matrix(1 0 0 1 943.9006 985.0399)" class="st0 st1">${
+      boxColor.name
+    }</text>
+    <text transform="matrix(1 0 0 1 37.6979 253.8278)" class="st0 st10">${
+      nameColor.name
+    }</text>
 
     <g>
         <text ${extra} transform="matrix(0.9469 0 0 1 957.2794 485.5527)" class="st9 st11">${name}</text>
@@ -59,12 +62,12 @@ export const svg = (
     </g>
  </g>
 
-<path ${fillStyle} class="st4" d="M1176.6,404.3v-20.2h-8.5v-9.3c0-22.2-8.8-43.4-24.4-59.1c-15.7-15.7-36.9-24.5-59.1-24.4H943.3v-8.5h-20.2v8.5
+<path class="st15" d="M1176.6,404.3v-20.2h-8.5v-9.3c0-22.2-8.8-43.4-24.4-59.1c-15.7-15.7-36.9-24.5-59.1-24.4H943.3v-8.5h-20.2v8.5
 	H781.9c-22.2,0-43.4,8.8-59.1,24.4c-15.7,15.7-24.5,36.9-24.4,59.1v9.3h-8.5v20.2h8.5v34.9h-8.5v20.2h8.5v9.3
 	c0,22.2,8.8,43.4,24.4,59.1c15.7,15.7,36.9,24.5,59.1,24.4h57.4v8.5h16.2v-8.5H1011v8.5h16.2v-8.5h57.4c22.2,0,43.4-8.8,59.1-24.4
 	c15.7-15.7,24.5-36.9,24.4-59.1v-9.3h8.5v-20.2h-8.5v-34.9H1176.6z M1129,466.1c0,25.9-21,47-47,47H784.5c-25.9,0-47-21-47-47v-88.7
 	c0-25.9,21-47,47-47H1082c25.9,0,47,21,47,47V466.1z"/>
-<path ${fillStyle} class="st4" d="M1176.6,132.3v-20.2h-8.5v-9.3c0-22.2-8.8-43.4-24.4-59.1c-15.7-15.7-36.9-24.5-59.1-24.4H943.3v-8.5h-20.2v8.5
+<path class="st15" d="M1176.6,132.3v-20.2h-8.5v-9.3c0-22.2-8.8-43.4-24.4-59.1c-15.7-15.7-36.9-24.5-59.1-24.4H943.3v-8.5h-20.2v8.5
 	H781.9c-22.2,0-43.4,8.8-59.1,24.4c-15.7,15.7-24.5,36.9-24.4,59.1v9.3h-8.5v20.2h8.5v34.9h-8.5v20.2h8.5v9.3
 	c0,22.2,8.8,43.4,24.4,59.1c15.7,15.7,36.9,24.5,59.1,24.4h57.4v8.5h16.2v-8.5H1011v8.5h16.2v-8.5h57.4c22.2,0,43.4-8.8,59.1-24.4
 	c15.7-15.7,24.5-36.9,24.4-59.1v-9.3h8.5v-20.2h-8.5v-34.9H1176.6z M1129,194.2c0,25.9-21,47-47,47H784.5c-25.9,0-47-21-47-47v-88.7

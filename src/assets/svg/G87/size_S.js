@@ -1,38 +1,45 @@
-export const styles = `
-	.st0{font-family:'#9Slide03QuicksandBold-Bold';}
-	.st1{font-size:98px;}
-	.st2{stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
-	.st3{font-size:480px;}
-	.st4{fill:#EDD2CE;}
-	.st5{font-family:'AmaticSC-Bold';}
-	.st6{font-size:22px;}
-	.st7{font-family:'SharkBlindateRegular';}
-	.st8{font-size:132.0153px;}
-	.st9{fill:#FFFFFF;}
-`;
+import { templates } from "../../../configs/templates";
 
-export const tag = (name, text, animal, color) => {
-  const hex = color.hexCode;
-
-  const fillStyle = `style="fill:${hex};"`;
-  const colorStyle = `style="fill:${hex};stroke:${hex};"`;
+export const svg = (name, color, animalNumber, text) => {
+  const animalTag = templates.G87.animals[animalNumber].tag(900, 360, 1);
+  const customText =
+    text.length > 0
+      ? `<text transform="matrix(1 0 0 1 951.7607 270.5911)" class="st5 st6">${text}</text>`
+      : "";
 
   return `
+  <svg version="1.1" id="Layer_2_00000062878127446892349830000017115364737972546478_"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 2290.1 1442.8"
+  style="enable-background:new 0 0 2290.1 1442.8;" xml:space="preserve">
+
+  <style type="text/css">
+  .st0{font-family:'#9Slide03QuicksandBold-Bold';}
+  .st1{font-size:98px;}
+  .st2{${color.hexCode};stroke:${color.hexCode};stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+  .st3{font-size:480px;}
+  .st4{fill:${color.hexCode};}
+  .st5{font-family:'AmaticSC-Bold';}
+  .st6{font-size:22px;}
+  .st7{font-family:'SharkBlindateRegular';}
+  .st8{font-size:132.0153px;}
+  .st9{fill:#FFFFFF;}
+  </style>
+
+${animalTag}
+
 <text transform="matrix(1 0 0 1 16.1219 441.3087)" class="st0 st3">S</text>
-<text transform="matrix(1 0 0 1 600 886.4353)" class="st0 st1 st2">${animal}</text>
+<text transform="matrix(1 0 0 1 600 886.4353)" class="st0 st1"># ${animalNumber}</text>
 <g>
-	<text transform="matrix(1 0 0 1 1153.8502 886.4353)" class="st0 st1 st2">${
-    color.name
-  }</text>
-	<text transform="matrix(0.9945 -0.1045 0.1045 0.9945 1068.6095 471.4904)" ${colorStyle} class="st2 st4 st7 st8">${name}</text>
+	<text transform="matrix(1 0 0 1 1153.8502 886.4353)" class="st0 st1">${color.name}</text>
+	<text transform="matrix(0.9945 -0.1045 0.1045 0.9945 1068.6095 471.4904)" class="st2 st4 st7 st8">${name}</text>
 </g>
 
-<path ${fillStyle} class="st4" d="M1329.4,406.4v-20.2h-8.5v-9.3c0-22.2-8.8-43.4-24.4-59.1c-15.7-15.7-36.9-24.5-59.1-24.4h-141.2v-8.5h-20.2
+<path class="st4" d="M1329.4,406.4v-20.2h-8.5v-9.3c0-22.2-8.8-43.4-24.4-59.1c-15.7-15.7-36.9-24.5-59.1-24.4h-141.2v-8.5h-20.2
 	v8.5H934.7c-22.2,0-43.4,8.8-59.1,24.4c-15.7,15.7-24.5,36.9-24.4,59.1v9.3h-8.5v20.2h8.5v34.9h-8.5v20.2h8.5v9.3
 	c0,22.2,8.8,43.4,24.4,59.1c15.7,15.7,36.9,24.5,59.1,24.4h57.4v8.5h16.2v-8.5h155.5v8.5h16.2v-8.5h57.4c22.2,0,43.4-8.8,59.1-24.4
 	c15.7-15.7,24.5-36.9,24.4-59.1v-9.3h8.5v-20.2h-8.5v-34.9H1329.4z M1281.8,468.2c0,25.9-21,47-47,47H937.3c-25.9,0-47-21-47-47
 	v-88.7c0-25.9,21-47,47-47h297.5c25.9,0,47,21,47,47V468.2z"/>
-<path ${fillStyle} class="st4" d="M1329.4,134.4v-20.2h-8.5v-9.3c0-22.2-8.8-43.4-24.4-59.1c-15.7-15.7-36.9-24.5-59.1-24.4h-141.2v-8.5h-20.2
+<path class="st4" d="M1329.4,134.4v-20.2h-8.5v-9.3c0-22.2-8.8-43.4-24.4-59.1c-15.7-15.7-36.9-24.5-59.1-24.4h-141.2v-8.5h-20.2
 	v8.5H934.7c-22.2,0-43.4,8.8-59.1,24.4c-15.7,15.7-24.5,36.9-24.4,59.1v9.3h-8.5v20.2h8.5v34.9h-8.5v20.2h8.5v9.3
 	c0,22.2,8.8,43.4,24.4,59.1c15.7,15.7,36.9,24.5,59.1,24.4h57.4v8.5h16.2v-8.5h155.5v8.5h16.2v-8.5h57.4c22.2,0,43.4-8.8,59.1-24.4
 	c15.7-15.7,24.5-36.9,24.4-59.1v-9.3h8.5v-20.2h-8.5v-34.9H1329.4z M1281.8,196.2c0,25.9-21,47-47,47H937.3c-25.9,0-47-21-47-47
@@ -842,11 +849,6 @@ export const tag = (name, text, animal, color) => {
 	</g>
 </g>
 
-${
-  text.length > 0 &&
-  `<text transform="matrix(1 0 0 1 951.7607 270.5911)" class="st5 st6">
-      ${text}
-    </text>`
-}
-  `;
+${customText}
+  </svg>`;
 };

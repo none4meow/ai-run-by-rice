@@ -1,4 +1,4 @@
-export { default as Home } from "./Home";
+export { default as Home } from "./Home/Home";
 export { default as G71 } from "./G71";
 export { default as G87 } from "./G87";
 export { default as G90 } from "./G90";

@@ -20,8 +20,21 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  /* font-size: calc(10px + 2vmin); */
   color: white;
+}
+
+.modalG98 {
+  width: 80vw;
+  height: 80vh;
+  max-height: 800px;
+  overflow-y: scroll;
+  background-color: rgb(52 53 56);
+  margin: auto;
+  margin-top: 5%;
+  color: white;
+  padding: 20px;
+  border-radius: 34px;
 }
 
 .App-link {

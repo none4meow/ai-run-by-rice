@@ -1,0 +1,11 @@
+.row {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 13px;
+    max-width: 100%;
+}
+
+.item {
+    cursor: pointer;
+    margin-left: 20px;
+}

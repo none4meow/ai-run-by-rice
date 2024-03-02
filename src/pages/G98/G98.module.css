@@ -1,0 +1,12 @@
+.modal {
+  width: 80vw;
+  height: 80vh;
+  max-height: 800px;
+  overflow-y: scroll;
+  background-color: #5a5d64;
+  margin: auto;
+  margin-top: 5%;
+  color: white;
+  padding: 20px;
+  border-radius: 34px;
+}

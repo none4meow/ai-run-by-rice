@@ -1,7 +1,8 @@
 import React, { useRef, useState } from "react";
-import { templates } from "../configs/templates";
+import { templates } from "../../configs/templates";
 import { Modal } from "@mui/material";
-import { PickFontModal } from "./E05";
+import { PickFontModal } from "../E05";
+import styles from "./G98.module.css";
 
 const G98 = ({ order }) => {
   const [customName, setCustomName] = useState("");
@@ -21,7 +22,7 @@ const G98 = ({ order }) => {
     setCustomQuote(value.replace(/[&<]/g, (c) => specialChars[c]));
   };
 
-  const [fontNumber, setFontNumber] = useState(order.properties.font);
+  const [fontNumber, setFontNumber] = useState(order?.properties.font ?? "");
   const handlePickFont = (fontNumber) => {
     setFontNumber(fontNumber);
     handleONCFontModal();
@@ -41,15 +42,17 @@ const G98 = ({ order }) => {
     setFontModal(!fontModal);
   };
 
-  const [styles] = useState([1, 2]);
-  const [customStyle, setCustomStyle] = useState(order.properties.style);
+  const [defaultStyles] = useState([1, 2]);
+  const [customStyle, setCustomStyle] = useState(
+    order?.properties.style ?? defaultStyles[0]
+  );
   const onChangeCustomStyle = (e) => {
     setCustomStyle(parseInt(e.target.value));
   };
 
   const resetCustom = () => {
     setFontNumber("");
-    setCustomStyle(styles[0]);
+    setCustomStyle(defaultStyles[0]);
     setCustomName("");
     setCustomQuote("");
   };
@@ -61,51 +64,56 @@ const G98 = ({ order }) => {
   };
 
   return (
-    <div className="modalG98 d-flex flex-column">
-      <div className="d-flex justify-content-between flex-column">
-        <div className="d-flex justify-content-between flex-wrap">
-          <small className={`${styles.item}`}>{order.id}</small>
-          <small className={`${styles.quantity}`}>
-            Quantity: {order.quantity}
-          </small>
-          <small className={`${styles.item}`}>
-            Font #{order.properties.font}
-          </small>
-          <small className={`${styles.item}`}>
-            Style {order.properties.style}
-          </small>
-          <span
-            className={`${styles.item}`}
-            dangerouslySetInnerHTML={{
-              __html: order.properties.personalization,
-            }}
-          ></span>
-        </div>
+    <div className={`${styles.modal} d-flex flex-column`}>
+      {order && (
+        <>
+          <div className="d-flex justify-content-between flex-column">
+            <div className="d-flex justify-content-between flex-wrap">
+              <small className={`${styles.item}`}>{order.id}</small>
+              <small className={`${styles.quantity}`}>
+                Quantity: {order.quantity}
+              </small>
+              <small className={`${styles.item}`}>
+                Font #{order.properties.font}
+              </small>
+              <small className={`${styles.item}`}>
+                Style {order.properties.style}
+              </small>
+              <span
+                className={`${styles.item}`}
+                dangerouslySetInnerHTML={{
+                  __html: order.properties.personalization,
+                }}
+              ></span>
+            </div>
 
-        <hr />
+            <hr />
 
-        <small>
-          Buyer note
-          <span
-            className={`${styles.item}`}
-            dangerouslySetInnerHTML={{
-              __html: order.properties.personalization,
-            }}
-          ></span>
-        </small>
-        <hr />
+            <small>
+              Buyer note
+              <span
+                className={`${styles.item}`}
+                dangerouslySetInnerHTML={{
+                  __html: order.properties.personalization,
+                }}
+              ></span>
+            </small>
+            <hr />
 
-        <small>
-          Shop note
-          <span
-            className={`${styles.item}`}
-            dangerouslySetInnerHTML={{
-              __html: order.properties.personalization,
-            }}
-          ></span>
-        </small>
-      </div>
-      <hr />
+            <small>
+              Shop note
+              <span
+                className={`${styles.item}`}
+                dangerouslySetInnerHTML={{
+                  __html: order.properties.personalization,
+                }}
+              ></span>
+            </small>
+          </div>
+          <hr />
+        </>
+      )}
+
       <div className="d-flex justify-content-center flex-row">
         <div className="w-50">
           <div>
@@ -147,7 +155,7 @@ const G98 = ({ order }) => {
                 value={customStyle}
                 onChange={(e) => onChangeCustomStyle(e)}
               >
-                {styles.map((ele) => (
+                {defaultStyles.map((ele) => (
                   <option key={ele} value={ele}>
                     {ele}
                   </option>

@@ -1,8 +1,8 @@
-import axios from "axios";
+// import axios from "axios";
 import styles from "./Home.module.css";
 import React, { useCallback, useEffect, useState } from "react";
 import { Modal } from "@mui/material";
-import G98 from "../G98";
+import G98 from "../G98/G98";
 
 const Home = () => {
   const [justInput, setJustInput] = useState("");

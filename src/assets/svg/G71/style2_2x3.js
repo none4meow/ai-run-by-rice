@@ -24,9 +24,12 @@ export const svg = (style, fontNumber, color, name) => {
 	.st8{font-family:'${fontName}';${isBold ? `font-weight:bold;` : ""}}
 	.st9{font-size:173px;}
     .st11{font-size:69px;}
+	.st12{fill:${color.hexCode};}
 </style>
 
 <text transform="matrix(1 0 0 1 20 -200)" class="st8 st11">${info}</text>
+
+<g transform="matrix(1 0 0 1 900 800)" class="st12">${color.tag}</g>
 
 <path class="st0" d="M695.7,1150.5H106.1c-32.9,0-59.5-26.7-59.5-59.5V76.1c0-32.9,26.7-59.5,59.5-59.5h589.6
 	c32.9,0,59.5,26.7,59.5,59.5v1014.8C755.3,1123.8,728.6,1150.5,695.7,1150.5z"/>
@@ -563,9 +566,6 @@ export const svg = (style, fontNumber, color, name) => {
 	</g>
 </g>
 
-	<text transform="matrix(1 0 0 1 1115.0425 879.4294)" class="st5 st6">${
-		color.name
-	  }</text>
 	<g>
 		<text transform="matrix(1 0 0 1 260.038 299.2832)" class="st7 st8 st9">${name}</text>
 	</g>

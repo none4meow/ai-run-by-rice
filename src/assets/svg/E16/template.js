@@ -29,6 +29,7 @@ export const svg = (color, fontNumber, name, year) => {
   </style>
 
   <text transform="matrix(1 0 0 1 20 1300)" class="st7 st11">${font}</text>
+  <g transform="matrix(1 0 0 1 0 1010)">${color.tag}</g>
 
   <g>
       <rect class="st00" x="32.6" y="20.9" width="566.9" height="850.4"/>
@@ -122,10 +123,7 @@ export const svg = (color, fontNumber, name, year) => {
     <g>
         <text transform="matrix(0.9469 0 0 1 160.5581 723.2021)" class="st6 st7 st8">${name}</text>
     </g>
-      <text transform="matrix(1 0 0 1 89.0257 1105.3456)" class="st9 st10">${
-        color.name
-      }</text>
- 
+      
   </svg>
   `;
 };

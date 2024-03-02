@@ -28,10 +28,11 @@ export const svg = (name, color, animalNumber, text) => {
 ${animalTag}
 <text transform="matrix(1 0 0 1 1.5922 641.6838)" class="st0 st1">M</text>
 <text transform="matrix(1 0 0 1 600 1188.1956)" class="st0 st9"># ${animalNumber}</text>
-<g>
-	<text transform="matrix(1 0 0 1 1346.5625 1188.1956)" class="st0 st9">${color.name}</text>
-	<text transform="matrix(0.9945 -0.1045 0.1045 0.9945 1069.0177 647.7724)" class="st4 st5 st6 st10">${name}</text>
-</g>
+
+	<g transform="matrix(1 0 0 1 1000 1100)">${color.tag}</g>
+	<g>
+		<text transform="matrix(0.9945 -0.1045 0.1045 0.9945 1069.0177 647.7724)" class="st4 st5 st6 st10">${name}</text>
+	</g>
 
 <path class="st6" d="M1445.5,545.3V517h-8.5v-13c0-31-12.3-60.7-34.2-82.6c-21.9-21.9-51.6-34.2-82.6-34.2h-197.4v-8.5h-28.3v8.5
 	H897.2c-31,0-60.7,12.3-82.6,34.2c-21.9,21.9-34.2,51.6-34.2,82.6v13H772v28.3h8.4v48.8H772v28.3h8.4v13c0,31,12.3,60.7,34.2,82.6

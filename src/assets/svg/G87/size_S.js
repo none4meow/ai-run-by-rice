@@ -29,11 +29,11 @@ ${animalTag}
 
 <text transform="matrix(1 0 0 1 16.1219 441.3087)" class="st0 st3">S</text>
 <text transform="matrix(1 0 0 1 600 886.4353)" class="st0 st1"># ${animalNumber}</text>
-<g>
-	<text transform="matrix(1 0 0 1 1153.8502 886.4353)" class="st0 st1">${color.name}</text>
-	<text transform="matrix(0.9945 -0.1045 0.1045 0.9945 1068.6095 471.4904)" class="st2 st4 st7 st8">${name}</text>
-</g>
 
+	<g transform="matrix(1 0 0 1 900 800)">${color.tag}</g>
+	<g>
+		<text transform="matrix(0.9945 -0.1045 0.1045 0.9945 1068.6095 471.4904)" class="st2 st4 st7 st8">${name}</text>
+	</g>
 <path class="st4" d="M1329.4,406.4v-20.2h-8.5v-9.3c0-22.2-8.8-43.4-24.4-59.1c-15.7-15.7-36.9-24.5-59.1-24.4h-141.2v-8.5h-20.2
 	v8.5H934.7c-22.2,0-43.4,8.8-59.1,24.4c-15.7,15.7-24.5,36.9-24.4,59.1v9.3h-8.5v20.2h8.5v34.9h-8.5v20.2h8.5v9.3
 	c0,22.2,8.8,43.4,24.4,59.1c15.7,15.7,36.9,24.5,59.1,24.4h57.4v8.5h16.2v-8.5h155.5v8.5h16.2v-8.5h57.4c22.2,0,43.4-8.8,59.1-24.4

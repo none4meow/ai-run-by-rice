@@ -7,8 +7,6 @@ export const svg = (style, fontNumber, color, name) => {
   const fontNumberInt = parseInt(fontNumber);
   const isBold = fontNumberInt === 20 || fontNumberInt === 26;
 
-  const hex = color.hexCode;
-
   return `
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
   viewBox="0 0 1718.1 1175.8" style="enable-background:new 0 0 1718.1 1175.8;" xml:space="preserve">
@@ -18,15 +16,20 @@ export const svg = (style, fontNumber, color, name) => {
  .st2{fill:#5A412A;stroke:#00FF00;stroke-width:0.1;stroke-miterlimit:10;}
  .st3{fill:#FFFFFF;}
  .st4{fill:#FFCE42;}
- .st5{fill:${hex};stroke:${hex};stroke-width:1.34;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+ .st5{fill:${color.hexCode};stroke:${
+    color.hexCode
+  };stroke-width:1.34;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
  .st6{font-family:'${fontName}';${isBold ? `font-weight:bold;` : ""}}
  .st7{font-size:173px;}
  .st8{font-family:'#9Slide03QuicksandBold-Bold';}
  .st9{font-size:82px;}
  .st11{font-size:69px;}
+ .st12{fill:${color.hexCode};}
 </style>
 
 <text transform="matrix(1 0 0 1 20 -200)" class="st6 st11">${info}</text>
+
+<g transform="matrix(1 0 0 1 1000 900)" class="st12">${color.tag}</g>
 
 <path class="st0" d="M728.9,1145.2H20.3V365.6c0-195.7,158.6-354.3,354.3-354.3h0c195.7,0,354.3,158.6,354.3,354.3V1145.2z"/>
 <g>
@@ -563,9 +566,7 @@ export const svg = (style, fontNumber, color, name) => {
  </g>
 </g>
 
-    <text transform="matrix(1 0 0 1 1115.0425 879.4294)" class="st8 st9">${
-      color.name
-    }</text>
+
     <g>
         <text transform="matrix(1 0 0 1 231.7715 317.4398)" class="st5 st6 st7">${name}</text>
     </g>

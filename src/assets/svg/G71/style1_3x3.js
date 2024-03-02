@@ -7,7 +7,6 @@ export const svg = (style, fontNumber, color, name) => {
   const fontNumberInt = parseInt(fontNumber);
   const isBold = fontNumberInt === 20 || fontNumberInt === 26;
 
-  const hex = color.hexCode;
 
   return `
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -20,13 +19,16 @@ export const svg = (style, fontNumber, color, name) => {
 	.st4{fill:#FFCE42;}
 	.st5{font-family:'#9Slide03QuicksandBold-Bold';}
 	.st6{font-size:82px;}
-	.st7{fill:${hex};stroke:${hex};stroke-width:1.34;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st7{fill:${color.hexCode};stroke:${color.hexCode};stroke-width:1.34;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 	.st8{font-family:'${fontName}';${isBold ? `font-weight:bold;` : ""}}
 	.st9{font-size:173px;}
     .st11{font-size:69px;}
+	.st12{fill:${color.hexCode};}
 </style>
 
 <text transform="matrix(1 0 0 1 20 -200)" class="st8 st11">${info}</text>
+
+<g transform="matrix(1 0 0 1 1000 900)" class="st12">${color.tag}</g>
 
 <path class="st0" d="M842.1,1518.9H20l0-1091.3c0-227,184-411,411-411h0c227,0,411,184,411,411V1518.9z"/>
 <g>
@@ -564,9 +566,6 @@ export const svg = (style, fontNumber, color, name) => {
 	</g>
 </g>
 
-    <text transform="matrix(1 0 0 1 1115.0425 1038.5873)" class="st5 st6">${
-      color.name
-    }</text>
     <g>
         <text transform="matrix(1 0 0 1 140.6855 339.478)" class="st7 st8 st9">${name}</text>
     </g>

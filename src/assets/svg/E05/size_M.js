@@ -1,5 +1,3 @@
-import { fonts } from "../../../configs/constants";
-
 export const svg = (
   name,
   text,
@@ -8,7 +6,6 @@ export const svg = (
   fontNumber,
   fontFamily
 ) => {
-  const fontNumberNName = `#${fontNumber} - ${fonts[fontNumber].name}`;
   const fontNumberInt = parseInt(fontNumber);
   const isBold = fontNumberInt === 20 || fontNumberInt === 26;
 
@@ -45,18 +42,18 @@ export const svg = (
 </style>
 
 <text transform="matrix(1 0 0 1 3.1617 701.0704)" class="st0 st1">M</text>
-<text style="font-family: '${fontFamily}'" transform="matrix(1 0 0 1 31.6959 876.4713)" class="st0 st13">${fontNumberNName}</text>
+<text style="font-family: '${fontFamily}'" transform="matrix(1 0 0 1 31.6959 876.4713)" class="st0 st13">font #${fontNumber}</text>
 
-<g>
+<g transform="matrix(1 0 0 1 1000 1080)" class="st15">${boxColor.tag}</g>
+<g transform="matrix(1 0 0 1 -300 200)" class="st2">${nameColor.tag}</g>
+
     <g>
         <text ${extra} transform="matrix(0.9469 0 0 1 1142.8046 663.1362)" class="st7 st8 st9">${name}</text>
         <text ${extra} transform="matrix(0.9469 0 0 1 1142.8046 663.1362)" class="st10 st8 st9">${name}</text>
         <text ${extra} transform="matrix(0.9469 0 0 1 1142.8046 663.1362)" class="st11 st8 st9">${name}</text>
         <text ${extra} transform="matrix(0.9469 0 0 1 1142.8046 663.1362)" class="st2 st8 st9">${name}</text>
     </g>
-    <text transform="matrix(1 0 0 1 1034.8003 1179.1442)" class="st0 st12">${boxColor.name}</text>
-    <text transform="matrix(1 0 0 1 34.6187 240.7532)" class="st0 st13">${nameColor.name}</text>
-</g>
+
 
 <path class="st15" d="M1487.1,551.6v-28.3h-8.5v-13c0-31-12.3-60.7-34.2-82.6c-21.9-21.9-51.6-34.2-82.6-34.2h-197.4v-8.5h-28.3v8.5
 	H938.8c-31,0-60.7,12.3-82.6,34.2c-21.9,21.9-34.2,51.6-34.2,82.6v13h-8.4v28.3h8.4v48.8h-8.4v28.3h8.4v13c0,31,12.3,60.7,34.2,82.6

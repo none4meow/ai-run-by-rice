@@ -109,7 +109,9 @@ export const svg = (color, fontNumber, name, year) => {
      <path class="st6" d="M579.7,238.6v707H99.4v-707H579.7 M594.7,223.6H84.4v737h510.2V223.6L594.7,223.6z"/>
  </g>
 </g>
-<text transform="matrix(0.9469 0 0 1 179.9971 826.7621)" class="st7 st8 st9">${name}</text>
+<g>
+    <text transform="matrix(0.9469 0 0 1 179.9971 826.7621)" class="st7 st8 st9">${name}</text>
+</g>
 <g>
 </g>
 

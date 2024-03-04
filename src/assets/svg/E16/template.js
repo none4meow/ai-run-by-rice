@@ -9,7 +9,6 @@ export const svg = (color, fontNumber, name, year) => {
 
   const hex = color.hexCode;
 
-
   return `<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
   viewBox="0 0 1609 1175.8" style="enable-background:new 0 0 1609 1175.8;" xml:space="preserve">
 <style type="text/css">
@@ -123,7 +122,7 @@ ${
         <polygon class="st0" points="1183.9,925.6 1200.9,946.8 1043.9,946.8 1060.9,925.6 1043.9,904.3 1200.9,904.3 	"/>
     </g>     
     <g>
-        <text transform="matrix(0.9872 0 0 1 1101.8784 932.9123)" class="st1 st2 st3 st4">year</text>
+        <text transform="matrix(0.9872 0 0 1 1101.8784 932.9123)" class="st1 st2 st3 st4">${year}</text>
     </g>
 `
 }

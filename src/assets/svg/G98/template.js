@@ -23,7 +23,6 @@ export const svg = (fontNumber, style, name, quote) => {
 	.st1{fill:#5B412A;stroke:#5B412A;stroke-width:1.34;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 	.st2{font-family:'${fontName}';${isBold ? `font-weight:bold;` : ""}}
 	.st3{font-size:155.6894px;}
-	.st4{letter-spacing:4.2;}
     .st5{fill:#181717;stroke:#00FF00;stroke-width:0.25;stroke-miterlimit:10;}
 	.st6{font-family:'#9Slide03NanamiRoundedLight';}
 	.st7{font-size:33px;}

@@ -3,6 +3,7 @@ import styles from "./Home.module.css";
 import React, { useCallback, useEffect, useState } from "react";
 import { Modal } from "@mui/material";
 import G98 from "../G98/G98";
+import FindSKU from "./FindSKU";
 
 const Home = () => {
   const [justInput, setJustInput] = useState("");
@@ -466,7 +467,9 @@ const Home = () => {
         {editor}
       </Modal>
 
-      <div className="row g-3 align-items-center mb-3">
+      <FindSKU />
+
+      {/* <div className="row g-3 align-items-center mb-3">
         <label htmlFor="rawHTML" className="form-label col-auto col-form-label">
           Raw HTML
         </label>
@@ -503,13 +506,13 @@ const Home = () => {
             ></span>
           </div>
         ))}
-      </div>
-      <span
+      </div> */}
+      {/* <span
         className="btn btn-secondary"
         onClick={() => setIsShowSort(!isShowSort)}
       >
         Sort names
-      </span>
+      </span> */}
 
       {isShowSort && (
         <div>

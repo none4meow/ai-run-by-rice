@@ -215,7 +215,7 @@ ${
 }
 
 <g>
-	<text transform="matrix(0.9469 0 0 1 228.9194 676.3947)" class="st1 st2 st3 st4">${name}</text>
+	<text transform="matrix(0.9469 0 0 1 228.9194 676.3947)" class="st1 st2 st3">${name}</text>
 </g>
 <g>
 	<text transform="matrix(0.9872 0 0 1 313.5655 744.7579)" class="st5 st6 st7">${quotee}</text>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 316.91 71.38">
+    <defs>
+        <style>
+            .cls-1 {
+            font-family: LoraRoman-SemiBold, Lora;
+            font-size: 18px;
+            font-variation-settings: 'wght' 600;
+            font-weight: 600;
+            letter-spacing: .04em;
+            stroke: #000;
+            stroke-miterlimit: 10;
+            stroke-width: .5px;
+            }
+        </style>
+    </defs>
+    <g id="Layer_1-2" data-name="Layer 1">
+        <text class="cls-1" transform="translate(0 15.3)">
+            <tspan x="0" y="0">YOU WERE MY FAVORITE HELLO </tspan>
+            <tspan x="0" y="44.04">AND MY HARDEST GOODBYE</tspan>
+        </text>
+    </g>
+</svg>

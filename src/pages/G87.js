@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { templates } from "../configs/templates";
 import { colors } from "../constants/colors";
 import { Modal } from "@mui/material";
+import { animals } from "../constants/animals";
 
 export const PickColorModal = ({ open, title, onPickColor, onClose }) => {
   return (
@@ -61,7 +62,7 @@ export const PickAnimalModal = ({
         onChange={(e) => onChangeAnimal(e)}
       />
       <div className="grid-container">
-        {Object.keys(templates.G87.animals).map((key, index) => (
+        {Object.keys(animals).map((key, index) => (
           <div
             key={index}
             className="grid-item"
@@ -71,7 +72,7 @@ export const PickAnimalModal = ({
               <svg
                 style={{ width: "182px" }}
                 dangerouslySetInnerHTML={{
-                  __html: templates.G87.animals[key].tag(23, 0, 0.8),
+                  __html: `<g tranform="translate(23,0) scale(0.8)">${animals[key].tag}</g>`,
                 }}
               ></svg>
             </div>

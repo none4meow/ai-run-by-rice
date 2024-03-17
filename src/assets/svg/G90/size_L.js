@@ -1,4 +1,4 @@
-import { templates } from "../../../configs/templates";
+import { animals } from "../../../constants/animals";
 
 export const svg = (name, color, animalNumber, text) => {
   const hex = color.hexCode;
@@ -10,10 +10,9 @@ export const svg = (name, color, animalNumber, text) => {
 	</text>`
       : "";
 
-  const animalTag = templates.G87.animals[animalNumber].tag(0, 0, 1.69);
+  const animalTag = `<g transform="translate(0, 0) scale(1.69)">${animals[animalNumber].tag}</g>`;
 
-  return `  <svg version="1.1">
-
+  return `<svg version="1.1">
   ${animalTag}
 <text transform="matrix(1 0 0 1 24.2296 780.8976)" font-family="'#9Slide03QuicksandBold-Bold'" font-size="480px">L</text>
 <text transform="matrix(1 0 0 1 -16 -39)" font-family="'#9Slide03QuicksandBold-Bold'" font-size="98px"># ${animalNumber}</text>

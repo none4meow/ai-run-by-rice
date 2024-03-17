@@ -1,7 +1,8 @@
-import { templates } from "../../../configs/templates";
+import { animals } from "../../../constants/animals";
 
 export const svg = (name, color, animalNumber, text) => {
-  const animalTag = templates.G87.animals[animalNumber].tag(860, 500, 1.4);
+  const animalTag = `<g transform="translate(860, 500) scale(1.4)">${animals[animalNumber].tag}</g>`;
+
   const customText =
     text.length > 0
       ? `<text transform="matrix(1 0 0 1 921.0762 361.6034)" class="st7 st8">${text}</text>`

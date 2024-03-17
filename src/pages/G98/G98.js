@@ -53,6 +53,7 @@ export const PickEarModal = ({
               ></svg>
             </div>
             <span>{key}</span>
+            <span>{dogears[key].name}</span>
           </div>
         ))}
       </div>

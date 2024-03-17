@@ -1,9 +1,7 @@
 import { fonts } from "../../../configs/constants";
+import { dogears } from "../../../constants/dogears";
 
-export const svg = (fontNumber, style, name, quote) => {
-  const fontName = fonts[fontNumber].name;
-  const font = `Font: #${fontNumber}`;
-
+export const svg = (fontNumber, style, name, earNumber, quote) => {
   const fontNumberInt = parseInt(fontNumber);
   const isBold = fontNumberInt === 20 || fontNumberInt === 26;
 
@@ -13,6 +11,7 @@ export const svg = (fontNumber, style, name, quote) => {
     if (quote[index - 1] !== " " && quote[index + 1] !== " ")
       quotee = quotee.replace("-", " - ");
 
+  const earTag = `<g transform="translate(0, 0) scale(3)">${dogears[earNumber].tag}</g>`;
 
   return `<?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 27.9.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
@@ -21,7 +20,9 @@ export const svg = (fontNumber, style, name, quote) => {
 <style type="text/css">
 	.st0{fill:#FFFFFF;}
 	.st1{fill:#5B412A;stroke:#5B412A;stroke-width:1.34;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
-	.st2{font-family:'${fontName}';${isBold ? `font-weight:bold;` : ""}}
+	.st2{font-family:'${fonts[fontNumber].name}';${
+    isBold ? `font-weight:bold;` : ""
+  }}
 	.st3{font-size:155.6894px;}
     .st5{fill:#181717;stroke:#00FF00;stroke-width:0.25;stroke-miterlimit:10;}
 	.st6{font-family:'#9Slide03NanamiRoundedLight';}
@@ -31,7 +32,10 @@ export const svg = (fontNumber, style, name, quote) => {
     .st10{font-size:69px;}
 </style>
 
-<text transform="matrix(1 0 0 1 20 1000)" class="st2 st10">${font}</text>
+<text transform="matrix(1 0 0 1 20 1000)" class="st2 st10">Font: #${fontNumber}</text>
+<text transform="matrix(1 0 0 1 20 1100)" class="st2 st10">Ear: #${earNumber} - ${
+    dogears[earNumber].name
+  }</text>
 
 <g>
 	<path d="M68.2,832.4c-1.3,0-2.4,0.4-3.2,1.3c-0.8,0.9-1.3,1.9-1.3,3.2v34.8l-29.5-37.6c-0.4-0.5-1-1-1.7-1.3
@@ -225,6 +229,7 @@ ${
 	<path class="st8" d="M593.8,57.6v707H113.6v-707H593.8 M608.8,42.6H98.6v737.0079h510.2362V42.6L608.8,42.6z"/>
 </g>
 
+${earTag}
 </svg>
 `;
 };

@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { templates } from "../configs/templates";
-import { colors } from "../configs/constants";
+import { colors } from "../constants/colors";
 import { PickColorModal } from "./G87";
 
 const E13 = () => {

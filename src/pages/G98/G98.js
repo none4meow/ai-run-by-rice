@@ -1,8 +1,64 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { templates } from "../../configs/templates";
 import { Modal } from "@mui/material";
 import { PickFontModal } from "../E05";
 import styles from "./G98.module.css";
+import { dogears } from "../../constants/dogears";
+
+export const PickEarModal = ({
+  open,
+  earNumber,
+  onChangeEar,
+  handlePickEar,
+  onClose,
+}) => {
+  const onEnter = (e) => {
+    if (e.key === "Enter") {
+      onClose();
+    }
+  };
+
+  const numberRef = useRef(null);
+
+  useEffect(() => {
+    // inputRef.current?.focus();
+    numberRef.current?.select();
+  }, [open]);
+
+  return (
+    <div className={"custom-modal"}>
+      <input
+        type="number"
+        autoFocus={true}
+        ref={numberRef}
+        autoComplete="off"
+        className="form-control dark-input mt-3 mb-3"
+        value={earNumber}
+        onKeyDown={(e) => onEnter(e)}
+        onChange={(e) => onChangeEar(e)}
+      />
+      <div className="grid-container">
+        {Object.keys(dogears).map((key) => (
+          <div
+            key={key}
+            className="grid-item"
+            onClick={() => handlePickEar(key)}
+          >
+            <div className="d-block m-auto">
+              <svg
+                style={{ width: "200px" }}
+                dangerouslySetInnerHTML={{
+                  __html: `<g transform="scale(0.69)">${dogears[key].tag}</g>`,
+                }}
+              ></svg>
+            </div>
+            <span>{key}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const G98 = ({ order }) => {
   const [customName, setCustomName] = useState("");
@@ -52,6 +108,7 @@ const G98 = ({ order }) => {
 
   const resetCustom = () => {
     setFontNumber("");
+    setEarNumber("");
     setCustomStyle(defaultStyles[0]);
     setCustomName("");
     setCustomQuote("");
@@ -59,8 +116,34 @@ const G98 = ({ order }) => {
 
   const sizeRef = useRef(null);
 
+  const [openEar, setOpenEar] = useState(false);
+  const onCloseEar = () => {
+    setOpenEar(!openEar);
+  };
+
+  const [earNumber, setEarNumber] = useState("");
+  const handlePickEar = (earNumber) => {
+    setEarNumber(earNumber);
+    onCloseEar();
+  };
+
+  const onChangeEar = (e) => {
+    const value = e.target.value;
+    setEarNumber(value);
+  };
+
   const getCode = () => {
-    return templates.G98.svg(fontNumber, customStyle, customName, customQuote);
+    try {
+      return templates.G98.svg(
+        fontNumber,
+        customStyle,
+        customName,
+        earNumber,
+        customQuote
+      );
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -128,6 +211,17 @@ const G98 = ({ order }) => {
               </div>
             </Modal>
 
+            <Modal open={openEar} onClose={onCloseEar}>
+              <div>
+                <PickEarModal
+                  earNumber={earNumber}
+                  onChangeEar={onChangeEar}
+                  handlePickEar={handlePickEar}
+                  onClose={onCloseEar}
+                />
+              </div>
+            </Modal>
+
             <div
               className="w-100 d-flex mb-3 pointer"
               onClick={handleONCFontModal}
@@ -175,6 +269,23 @@ const G98 = ({ order }) => {
                 value={customName}
                 onChange={(e) => onChangeCustomName(e)}
               />
+            </div>
+
+            <div
+              className="w-100 d-flex mb-3 pointer"
+              onClick={() => onCloseEar()}
+            >
+              <label htmlFor="ear-number" className="form-label pointer">
+                Ear number
+              </label>
+              <div className="d-flex ms-3">
+                <span># </span>
+                <input
+                  value={earNumber}
+                  className="ms-2 form-control pointer"
+                  onChange={() => onChangeEar()}
+                />
+              </div>
             </div>
 
             <div className="w-100 d-flex flex-column mt-3 mb-3">

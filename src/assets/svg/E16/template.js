@@ -1,13 +1,13 @@
 import { fonts } from "../../../configs/constants";
+import { dogears } from "../../../constants/dogears";
 
-export const svg = (color, fontNumber, name, year) => {
-  const fontName = fonts[fontNumber].name;
-  const font = `Font: #${fontNumber}`;
-
+export const svg = (color, fontNumber, name, earNumber, year) => {
   const fontNumberInt = parseInt(fontNumber);
   const isBold = fontNumberInt === 20 || fontNumberInt === 26;
 
   const hex = color.hexCode;
+
+  const earTag = `<g class="st0" transform="translate(0, 0) scale(3)">${dogears[earNumber].tag}</g>`;
 
   return `<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
   viewBox="0 0 1609 1175.8" style="enable-background:new 0 0 1609 1175.8;" xml:space="preserve">
@@ -20,13 +20,18 @@ export const svg = (color, fontNumber, name, year) => {
  .st5{fill:#606060;}
  .st6{fill:#9B6E4F;}
  .st7{fill:#E2D6C7;stroke:#E2D6C7;stroke-width:1.34;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
- .st8{font-family:'${fontName}';${isBold ? `font-weight:bold;` : ""}}
+ .st8{font-family:'${fonts[fontNumber].name}';${
+    isBold ? `font-weight:bold;` : ""
+  }}
  .st9{font-size:130px;}
  .st10{fill:${hex};}
  .st11{font-size:69px;}
 </style>
 
-<text transform="matrix(1 0 0 1 20 1300)" class="st8 st11">${font}</text>
+<text transform="matrix(1 0 0 1 20 1300)" class="st8 st11">Font: #${fontNumber}</text>
+<text transform="matrix(1 0 0 1 20 1400)" class="st8 st11">Ear: #${earNumber} - ${
+    dogears[earNumber].name
+  }</text>
 <g transform="matrix(1 0 0 1 30 1090)">${color.tag}</g>
 
 
@@ -128,7 +133,7 @@ ${
     </g>
 `
 }
-
+${earTag}
 </svg>
 `;
 };

@@ -3,7 +3,7 @@ import { templates } from "../configs/templates";
 import { Modal } from "@mui/material";
 import { PickFontModal } from "./E05";
 import { PickColorModal } from "./G87";
-import { colors } from "../configs/constants";
+import { colors } from "../constants/colors";
 
 const G71 = () => {
   const [customName, setCustomName] = useState("");

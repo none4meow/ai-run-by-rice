@@ -3,7 +3,8 @@ import { templates } from "../configs/templates";
 import { Modal } from "@mui/material";
 import { PickFontModal } from "./E05";
 import { PickColorModal } from "./G87";
-import { colors } from "../configs/constants";
+import { colors } from "../constants/colors";
+import { PickEarModal } from "./G98/G98";
 
 const E16 = () => {
   const [customName, setCustomName] = useState("");
@@ -54,9 +55,26 @@ const E16 = () => {
     setFontModal(!fontModal);
   };
 
+  const [openEar, setOpenEar] = useState(false);
+  const onCloseEar = () => {
+    setOpenEar(!openEar);
+  };
+
+  const [earNumber, setEarNumber] = useState("");
+  const handlePickEar = (earNumber) => {
+    setEarNumber(earNumber);
+    onCloseEar();
+  };
+
+  const onChangeEar = (e) => {
+    const value = e.target.value;
+    setEarNumber(value);
+  };
+
   const resetCustom = () => {
     setCustomColor(null);
     setFontNumber("");
+    setEarNumber("");
     setCustomName("");
     setCustomYear("");
   };
@@ -64,7 +82,17 @@ const E16 = () => {
   const sizeRef = useRef(null);
 
   const getCode = () => {
-    return templates.E16.svg(customColor, fontNumber, customName, customYear);
+    try {
+      return templates.E16.svg(
+        customColor,
+        fontNumber,
+        customName,
+        earNumber,
+        customYear
+      );
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -84,6 +112,17 @@ const E16 = () => {
               handlePickFont={handlePickFont}
               onChangeCustomFont={onChangeCustomFont}
               onClose={handleONCFontModal}
+            />
+          </div>
+        </Modal>
+
+        <Modal open={openEar} onClose={onCloseEar}>
+          <div>
+            <PickEarModal
+              earNumber={earNumber}
+              onChangeEar={onChangeEar}
+              handlePickEar={handlePickEar}
+              onClose={onCloseEar}
             />
           </div>
         </Modal>
@@ -135,6 +174,20 @@ const E16 = () => {
             value={customName}
             onChange={(e) => onChangeCustomName(e)}
           />
+        </div>
+
+        <div className="w-100 d-flex mb-3 pointer" onClick={() => onCloseEar()}>
+          <label htmlFor="ear-number" className="form-label pointer">
+            Ear number
+          </label>
+          <div className="d-flex ms-3">
+            <span># </span>
+            <input
+              value={earNumber}
+              className="ms-2 form-control pointer"
+              onChange={() => onChangeEar()}
+            />
+          </div>
         </div>
 
         <div className="w-100 d-flex flex-column mt-3 mb-3">

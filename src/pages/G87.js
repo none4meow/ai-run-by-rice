@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { templates } from "../configs/templates";
-import { colors } from "../configs/constants";
+import { colors } from "../constants/colors";
 import { Modal } from "@mui/material";
 
 export const PickColorModal = ({ open, title, onPickColor, onClose }) => {

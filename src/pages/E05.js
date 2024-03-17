@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { templates } from "../configs/templates";
-import { colors, fonts } from "../configs/constants";
+import { fonts } from "../configs/constants";
 import { Modal } from "@mui/material";
 import { PickColorModal } from "./G87";
+import { colors } from "../constants/colors";
 
 export const PickFontModal = ({
   fontNumber,

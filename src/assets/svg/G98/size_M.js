@@ -11,7 +11,14 @@ export const svg = (fontNumber, style, name, earNumber, quote) => {
     if (quote[index - 1] !== " " && quote[index + 1] !== " ")
       quotee = quotee.replace("-", " - ");
 
-  const earTag = `<g transform="translate(0, 0) scale(3)">${dogears[earNumber].tag}</g>`;
+  const earTag = earNumber
+    ? `<g transform="translate(0, 0) scale(3)">${dogears[earNumber].tag}</g>`
+    : "";
+
+  const earText =
+    earNumber.length > 0
+      ? `Ear: #${earNumber} - ${dogears[earNumber].name}`
+      : ``;
 
   return `<?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 27.9.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
@@ -23,19 +30,17 @@ export const svg = (fontNumber, style, name, earNumber, quote) => {
 	.st2{font-family:'${fonts[fontNumber].name}';${
     isBold ? `font-weight:bold;` : ""
   }}
-	.st3{font-size:155.6894px;}
-    .st5{fill:#181717;stroke:#00FF00;stroke-width:0.25;stroke-miterlimit:10;}
+	.st3{font-size:157px;}
+    .st5{fill:#00FF00}
 	.st6{font-family:'#9Slide03NanamiRoundedLight';}
-	.st7{font-size:33px;}
+	.st7{font-size:34px;}
 	.st8{fill:#5B412A;}
 	.st9{fill:#606161;}
     .st10{font-size:69px;}
 </style>
 
 <text transform="matrix(1 0 0 1 20 1000)" class="st2 st10">Font: #${fontNumber}</text>
-<text transform="matrix(1 0 0 1 20 1100)" class="st2 st10">Ear: #${earNumber} - ${
-    dogears[earNumber].name
-  }</text>
+<text transform="matrix(1 0 0 1 20 1100)" class="st2 st10">${earText}</text>
 
 <g>
 	<path d="M68.2,832.4c-1.3,0-2.4,0.4-3.2,1.3c-0.8,0.9-1.3,1.9-1.3,3.2v34.8l-29.5-37.6c-0.4-0.5-1-1-1.7-1.3
@@ -221,9 +226,8 @@ ${
 <g>
 	<text transform="matrix(0.9469 0 0 1 228.9194 676.3947)" class="st1 st2 st3">${name}</text>
 </g>
-<g>
-	<text transform="matrix(0.9872 0 0 1 313.5655 744.7579)" class="st5 st6 st7">${quotee}</text>
-</g>
+
+<text transform="matrix(0.9872 0 0 1 313.5655 744.7579)" class="st5 st6 st7">${quotee}</text>
 
 <g>
 	<path class="st8" d="M593.8,57.6v707H113.6v-707H593.8 M608.8,42.6H98.6v737.0079h510.2362V42.6L608.8,42.6z"/>

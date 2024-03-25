@@ -25,10 +25,27 @@ export const PickEarModal = ({
     numberRef.current?.select();
   }, [open]);
 
+  const [EarsMatched, setEarsMatched] = useState(Object.keys(dogears));
+
+  useEffect(() => {
+    const earNumberCap = earNumber.toUpperCase();
+
+    const matched =
+      earNumberCap.length > 0
+        ? Object.keys(dogears).filter(
+            (earNum) =>
+              dogears[earNum].name.toUpperCase().includes(earNumberCap) ||
+              earNum.includes(earNumberCap)
+          )
+        : Object.keys(dogears);
+
+    setEarsMatched(matched);
+  }, [earNumber]);
+
   return (
     <div className={"custom-modal"}>
       <input
-        type="number"
+        // type="number"
         autoFocus={true}
         ref={numberRef}
         autoComplete="off"
@@ -38,7 +55,7 @@ export const PickEarModal = ({
         onChange={(e) => onChangeEar(e)}
       />
       <div className="grid-container">
-        {Object.keys(dogears).map((key) => (
+        {EarsMatched.map((key) => (
           <div
             key={key}
             className="grid-item"
@@ -99,20 +116,18 @@ const G98 = ({ order }) => {
     setFontModal(!fontModal);
   };
 
+  const sizes = ["M", "L"];
+  const [customSize, setCustomSize] = useState(sizes[0]);
+  const onChangeCustomSize = (e) => {
+    setCustomSize(e.target.value);
+  };
+
   const [defaultStyles] = useState([1, 2]);
   const [customStyle, setCustomStyle] = useState(
     order?.properties.style ?? defaultStyles[0]
   );
   const onChangeCustomStyle = (e) => {
     setCustomStyle(parseInt(e.target.value));
-  };
-
-  const resetCustom = () => {
-    setFontNumber("");
-    setEarNumber("");
-    setCustomStyle(defaultStyles[0]);
-    setCustomName("");
-    setCustomQuote("");
   };
 
   const sizeRef = useRef(null);
@@ -132,10 +147,18 @@ const G98 = ({ order }) => {
     const value = e.target.value;
     setEarNumber(value);
   };
+  const resetCustom = () => {
+    setFontNumber("");
+    setEarNumber("");
+    setCustomSize(sizes[0]);
+    setCustomStyle(defaultStyles[0]);
+    setCustomName("");
+    setCustomQuote("");
+  };
 
   const getCode = () => {
     try {
-      return templates.G98.svg(
+      return templates.G98[`size${customSize}`](
         fontNumber,
         customStyle,
         customName,
@@ -240,12 +263,31 @@ const G98 = ({ order }) => {
               </div>
             </div>
 
-            <div className="d-flex">
-              <label htmlFor="sku" className="form-label col-form-label me-3">
+            <div className="d-flex mb-3">
+              <label htmlFor="Size" className="form-label col-form-label me-3">
+                Size
+              </label>
+              <select
+                id="Size"
+                ref={sizeRef}
+                className="form-control form-select"
+                value={customSize}
+                onChange={(e) => onChangeCustomSize(e)}
+              >
+                {sizes.map((ele) => (
+                  <option key={ele} value={ele}>
+                    {ele}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="d-flex mb-3">
+              <label htmlFor="Style" className="form-label col-form-label me-3">
                 Style
               </label>
               <select
-                ref={sizeRef}
+                id="Style"
                 className="form-control form-select"
                 value={customStyle}
                 onChange={(e) => onChangeCustomStyle(e)}
@@ -258,7 +300,7 @@ const G98 = ({ order }) => {
               </select>
             </div>
 
-            <div className="w-100 d-flex flex-column mt-3 mb-3">
+            <div className="w-100 d-flex flex-column mb-3">
               <label htmlFor="Name" className="form-label text-start">
                 Name
               </label>

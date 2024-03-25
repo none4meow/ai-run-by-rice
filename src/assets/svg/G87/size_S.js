@@ -3,9 +3,18 @@ import { animals } from "../../../constants/animals";
 export const svg = (name, color, animalNumber, text) => {
   const animalTag = `<g transform="translate(900, 360) scale(1)">${animals[animalNumber].tag}</g>`;
 
+  const specialChars = {
+    "&": "&amp;",
+    "<": "&lt;",
+  };
+  const quote = text.replace(/[&<]/g, (c) => specialChars[c]);
+
   const customText =
     text.length > 0
-      ? `<text transform="matrix(1 0 0 1 951.7607 270.5911)" class="st5 st6">${text}</text>`
+      ? `
+	  <text transform="matrix(1 0 0 1 951.7607 270.5911)" class="st5 st6">
+	  	${quote}
+	  </text>`
       : "";
 
   return `

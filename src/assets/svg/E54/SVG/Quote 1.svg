@@ -10,7 +10,7 @@
 			letter-spacing: .04em;
 			stroke: #000;
             stroke-miterlimit: 10;
-            stroke-width: .5px;
+            stroke-width: .25px;
 			}
 		</style>
 	</defs>

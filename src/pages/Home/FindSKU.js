@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDebounceCallback } from "usehooks-ts";
-import { imageUrl } from "./images";
+import { skuPreviewImages } from "./PreviewImages";
 
 const FindSKU = () => {
   const [sku, setSKU] = useState("");
@@ -11,7 +11,7 @@ const FindSKU = () => {
   useEffect(() => {
     const skuCap = sku.toUpperCase();
 
-    if (imageUrl.hasOwnProperty(skuCap)) setUrls(imageUrl[skuCap]);
+    if (skuPreviewImages.hasOwnProperty(skuCap)) setUrls(skuPreviewImages[skuCap]);
     else setUrls([]);
   }, [sku]);
 

@@ -7,16 +7,23 @@ export const svg = (color, fontNumber, name, earNumber, year) => {
 
   const hex = color.hexCode;
 
-  const earTag = `<g class="st0" transform="translate(0, 0) scale(3)">${dogears[earNumber].tag}</g>`;
+  const earTag = earNumber
+    ? `<g class="st0" transform="translate(0, 0) scale(3)">${dogears[earNumber].tag}</g>`
+    : "";
+
+  const earText =
+    earNumber.length > 0
+      ? `Ear: #${earNumber} - ${dogears[earNumber].name}`
+      : ``;
 
   return `<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
   viewBox="0 0 1609 1175.8" style="enable-background:new 0 0 1609 1175.8;" xml:space="preserve">
 <style type="text/css">
  .st0{fill:#E2D6C7;}
- .st1{fill:#161515;}
- .st2{font-family:'Pacifico-Regular';}
- .st3{font-size:23px;}
- .st4{stroke:#00FF00;stroke-width:0.3;stroke-miterlimit:10;}
+ .st1{}
+ .st2{}
+ .st3{font-family:'Pacifico-Regular'; font-size:23px;}
+ .st4{fill:#00FF00;}
  .st5{fill:#606060;}
  .st6{fill:#9B6E4F;}
  .st7{fill:#E2D6C7;stroke:#E2D6C7;stroke-width:1.34;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
@@ -29,9 +36,7 @@ export const svg = (color, fontNumber, name, earNumber, year) => {
 </style>
 
 <text transform="matrix(1 0 0 1 20 1300)" class="st8 st11">Font: #${fontNumber}</text>
-<text transform="matrix(1 0 0 1 20 1400)" class="st8 st11">Ear: #${earNumber} - ${
-    dogears[earNumber].name
-  }</text>
+<text transform="matrix(1 0 0 1 20 1400)" class="st8 st11">${earText}</text>
 <g transform="matrix(1 0 0 1 30 1090)">${color.tag}</g>
 
 

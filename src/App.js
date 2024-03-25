@@ -13,6 +13,7 @@ import {
   G98,
   E16,
   G71,
+  E54,
 } from "./pages";
 import Layout from "./hocs/Layout";
 
@@ -32,6 +33,7 @@ const App = () => {
         <Route path={`O44/`} element={<O44 />} />
         <Route path={`O50/`} element={<O50 />} />
         <Route path={`O51/`} element={<O51 />} />
+        <Route path={`E54/`} element={<E54 />} />
       </Routes>
     </Layout>
   );

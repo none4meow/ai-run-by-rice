@@ -12,11 +12,16 @@ export const svg = (
   const extra = `style="font-family: '${fontFamily}';" ${
     isBold ? `font-weight="bold"` : ""
   } `;
+  const specialChars = {
+    "&": "&amp;",
+    "<": "&lt;",
+  };
+  const quote = text.replace(/[&<]/g, (c) => specialChars[c]);
 
   const customText =
     text.length > 0
       ? `<text transform="matrix(1 0 0 1 798.969 268.5094)" class="st5 st6">
-			${text}
+			${quote}
 		</text>`
       : "";
 

@@ -507,12 +507,13 @@ const Home = () => {
           </div>
         ))}
       </div> */}
-      {/* <span
+      
+      <span
         className="btn btn-secondary"
         onClick={() => setIsShowSort(!isShowSort)}
       >
         Sort names
-      </span> */}
+      </span>
 
       {isShowSort && (
         <div>

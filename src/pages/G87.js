@@ -101,9 +101,7 @@ const G87 = () => {
 
   const [customText, setCustomText] = useState("");
   const onChangeCustomText = (e) => {
-    const value = e.target.value;
-
-    setCustomText(value.replace("&", "&amp;"));
+    setCustomText(e.target.value);
   };
 
   const [animalNumber, setAnimalNumber] = useState("");

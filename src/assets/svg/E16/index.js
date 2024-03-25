@@ -1,1 +1,2 @@
-export { svg } from "./template";
+export { svg as sizeM } from "./size_M";
+export { svg as sizeL } from "./size_L";

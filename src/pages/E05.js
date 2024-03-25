@@ -77,20 +77,13 @@ const E05 = () => {
 
   const [customName, setCustomName] = useState("");
   const onChangeCustomName = (e) => {
-    const value = e.target.value;
-    setCustomName(value);
+    setCustomName(e.target.value);
   };
 
   const [customText, setCustomText] = useState("");
 
-  const specialChars = {
-    "&": "&amp;",
-    "<": "&lt;",
-  };
-
   const onChangeCustomText = (e) => {
-    const value = e.target.value;
-    setCustomText(value.replace(/[&<]/g, (c) => specialChars[c]));
+    setCustomText(e.target.value);
   };
 
   const [fontNumber, setFontNumber] = useState("");

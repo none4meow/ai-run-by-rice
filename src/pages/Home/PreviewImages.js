@@ -1,4 +1,4 @@
-export const imageUrl = {
+export const skuPreviewImages = {
   G98: [
     "https://i.etsystatic.com/28538313/r/il/3ac0e3/5812779400/il_794xN.5812779400_ddb7.jpg",
     "https://i.etsystatic.com/28538313/r/il/7aca41/5647621577/il_794xN.5647621577_caa3.jpg",

@@ -2,11 +2,17 @@ import { animals } from "../../../constants/animals";
 
 export const svg = (name, color, animalNumber, text) => {
   const hex = color.hexCode;
+  const specialChars = {
+    "&": "&amp;",
+    "<": "&lt;",
+  };
+  const quote = text.replace(/[&<]/g, (c) => specialChars[c]);
 
   const customText =
     text.length > 0
-      ? `<text transform="matrix(1 0 0 1 894.833 1203.7632)" font-family="'AmaticSC-Bold'" font-size="35.5385px">
-		${text}
+      ? `
+	<text transform="matrix(1 0 0 1 894.833 1203.7632)" font-family="'AmaticSC-Bold'" font-size="35.5385px">
+		${quote}
 	</text>`
       : "";
 

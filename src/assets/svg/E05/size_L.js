@@ -13,10 +13,16 @@ export const svg = (
     isBold ? `font-weight="bold"` : ""
   } `;
 
+  const specialChars = {
+    "&": "&amp;",
+    "<": "&lt;",
+  };
+  const quote = text.replace(/[&<]/g, (c) => specialChars[c]);
+
   const customText =
     text.length > 0
       ? `<text transform="matrix(1 0 0 1 899.9714 448.5577)" class="st3 st4">
-            ${text}
+            ${quote}
         </text>`
       : "";
 

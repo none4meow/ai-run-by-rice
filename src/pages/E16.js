@@ -35,6 +35,12 @@ const E16 = () => {
     handleONCFontModal();
   };
 
+  const sizes = ["M", "L"];
+  const [customSize, setCustomSize] = useState(sizes[0]);
+  const onChangeCustomSize = (e) => {
+    setCustomSize(e.target.value);
+  };
+
   const [fontNumber, setFontNumber] = useState("");
   const handlePickFont = (fontNumber) => {
     setFontNumber(fontNumber);
@@ -73,6 +79,7 @@ const E16 = () => {
 
   const resetCustom = () => {
     setCustomColor(null);
+    setCustomSize(sizes[0]);
     setFontNumber("");
     setEarNumber("");
     setCustomName("");
@@ -83,7 +90,7 @@ const E16 = () => {
 
   const getCode = () => {
     try {
-      return templates.E16.svg(
+      return templates.E16[`size${customSize}`](
         customColor,
         fontNumber,
         customName,
@@ -126,6 +133,24 @@ const E16 = () => {
             />
           </div>
         </Modal>
+
+        <div className="d-flex mb-3">
+          <label htmlFor="Size" className="form-label col-form-label me-3">
+            Size
+          </label>
+          <select
+            id="Size"
+            className="form-control form-select"
+            value={customSize}
+            onChange={(e) => onChangeCustomSize(e)}
+          >
+            {sizes.map((ele) => (
+              <option key={ele} value={ele}>
+                {ele}
+              </option>
+            ))}
+          </select>
+        </div>
 
         <div className="w-100 d-flex mb-3 pointer" onClick={onCloseColor}>
           {customColor ? (

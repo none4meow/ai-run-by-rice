@@ -10,6 +10,7 @@ import * as O17 from "../assets/svg/O17";
 import * as O44 from "../assets/svg/O44";
 import * as O50 from "../assets/svg/O50";
 import * as O51 from "../assets/svg/O51";
+import * as E54 from "../assets/svg/E54";
 
 export const templates = {
   E05,
@@ -23,4 +24,5 @@ export const templates = {
   O44,
   O50,
   O51,
+  E54,
 };
